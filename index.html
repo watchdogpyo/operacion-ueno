@@ -530,11 +530,11 @@
     { id: "kasas",         label: "Kasas Propiedades SAE",             role: "Venta de bonos a Factopar y La Tropa",          group: "satellite" },
     { id: "latropa",       label: "La Tropa Fletes EAS",               role: "Préstamo USD 10 M para bonos (11/06/2026)",     group: "satellite", short: "La Tropa" },
     { id: "model",         label: "Model SA",                          role: "Venta de bonos a La Tropa",                     group: "satellite" },
-    { id: "factopar",      label: "Factopar SA",                       role: "Recibió fondos (15/06/2026) y los transfirió",  group: "satellite" },
-    { id: "sagas",         label: "Sagas SA",                          role: "Recibió G. 86.100 M (15/06/2026)",              group: "satellite" },
-    { id: "hdinvest",      label: "HD Invest EAS Unipersonal",         role: "Recibió USD 35 M (15/06/2026)",                 group: "satellite", short: "HD Invest" },
-    { id: "satec",         label: "Satec SA",                          role: "Recibió USD 20 M (15/06/2026)",                 group: "satellite" },
-    { id: "henrici",       label: "Henrici SA",                        role: "Recibió USD 10,6 M (27/03/2026)",               group: "satellite" },
+    { id: "factopar",      label: "Factopar SA",                       role: "Recibió fondos el 15/06/2026 (origen no indicado) y los transfirió a Vinanzas", group: "satellite" },
+    { id: "sagas",         label: "Sagas SA",                          role: "Recibió G. 86.100 M el 15/06/2026 (origen no indicado) y los transfirió a Vinanzas", group: "satellite" },
+    { id: "hdinvest",      label: "HD Invest EAS Unipersonal",         role: "Recibió USD 35 M el 15/06/2026 (origen no indicado) y los transfirió a Vinanzas", group: "satellite", short: "HD Invest" },
+    { id: "satec",         label: "Satec SA",                          role: "Recibió USD 20 M el 15/06/2026 (origen no indicado) y los transfirió a Vinanzas", group: "satellite" },
+    { id: "henrici",       label: "Henrici SA",                        role: "Recibió USD 10,6 M el 27/03/2026 (origen no indicado) y los transfirió a Itti Saeca", group: "satellite" },
     { id: "valores",       label: "Valores Casa de Bolsa SA",          role: "Suspendida por la BVA (06/11/2026): fallas en reportos del 29/10, 02/11 y 04/11/2026", group: "satellite", short: "Valores CdB" },
     { id: "gsr",           label: "GSR EAS",                           role: "Deudora: G. 453.828 M (Caso IX)",               group: "satellite" },
     { id: "officedesign",  label: "Office Design SRL",                 role: "Deudora: G. 357.057 M (Caso X)",                group: "satellite", short: "Office Design" },
@@ -1246,6 +1246,8 @@
       { t: "GRUPO      : " + GROUPS[n.group].name },
       { t: "CATEGORÍA  : " + CATS[n.cat].name, dot: CATS[n.cat].color, dotEnd: true },
       { t: "GRADO      : " + (out.length + inc.length) + "  (entran:" + inc.length + " / salen:" + out.length + ")" },
+      { t: "ENTRADAS   : " + (inc.length ? [...new Set(inc.map(l => display(l.source)))].join(", ") : "ninguna registrada en las fuentes") },
+      { t: "SALIDAS     : " + (out.length ? [...new Set(out.map(l => display(l.target)))].join(", ") : "ninguna registrada en las fuentes") },
       { t: "CONTROL    : 0x" + hex(n.id + n.label), c: "gray" }
     ];
     if (n.pending) lines.push({ t: "ESTADO     : IDENTIDAD POR CONFIRMAR", c: "inv" });
