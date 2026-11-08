@@ -32,6 +32,8 @@ Todo está en `index.html`. Los datos están en tres listas dentro del archivo:
   - `group`: una de `hub`, `offshore`, `antecedent`, `state`, `regulator`, `political`, `family`, `holding`, `executive`, `satellite`.
   - **Agregá entidades nuevas al final de la lista** para no cambiar los códigos existentes.
 
+- **`CLUSTERS`** — los grupos del mapa (Familia Peña, Grupo Vázquez, Fondos del Estado, etc.). Para que una entidad nueva aparezca dentro de un grupo, agregá su `id` a la lista `members` de ese grupo. Si no está en ningún grupo, el mapa la ubica sola al lado de la entidad con la que está vinculada.
+
 - **`SOURCES`** — las fuentes. Cada artículo o documento se carga **una sola vez**, con una clave:
   ```js
   "abc-2026-11-04": { medio: "ABC Color", fecha: "04/11/2026", titulo: "Título de la nota", url: "https://..." },

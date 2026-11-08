@@ -50,6 +50,17 @@
   .grid line { stroke: #111214; stroke-width: 1; }
   .crosshair { stroke: #1A1B1E; stroke-width: 1; }
 
+  /* cluster outlines + titles (drawn under the lines) */
+  .halo path { fill: rgba(255,255,255,.028); stroke: #2C2E33; stroke-width: 1; stroke-dasharray: 3 4; }
+  .halo text {
+    font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .12em;
+    fill: #7D828C; text-anchor: middle; pointer-events: none;
+    paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round;
+  }
+  .halo text.t { pointer-events: auto; cursor: zoom-in; }
+  .halo text.t:hover { fill: var(--white); }
+  .halo.hidden { display: none; }
+
   .link {
     stroke: var(--white);
     stroke-width: var(--w, 1.8);          /* set per line: thinner when its nodes have many connections */
@@ -68,6 +79,10 @@
     transition: opacity .35s;
   }
   @keyframes flow { to { stroke-dashoffset: -32; } }
+  .l:not(.money) .link { stroke: #8A8F98; stroke-dasharray: 4 4; opacity: .55; }
+  .l:not(.money) .link-flow { display: none; }
+  .l.money .link { opacity: .7; }
+  .l.lit:not(.money) .link { stroke: #C9CDD3; }
   .link-hit { stroke: transparent; stroke-width: 18; fill: none; cursor: pointer; }
   .link.hover { stroke-width: 4; opacity: 1; }
   .l.lit .link { opacity: 1; stroke-width: calc(var(--w, 1.8) + 1px); }
@@ -192,7 +207,7 @@
     letter-spacing: .1em;
     text-transform: uppercase;
     color: var(--gray);
-    display: flex; gap: 8px 20px; flex-wrap: wrap; align-items: center;
+    display: flex; gap: 8px 15px; flex-wrap: wrap; align-items: center;
     max-width: calc(100vw - var(--sidebar-w) - 48px);
     pointer-events: none;
   }
@@ -528,15 +543,15 @@
     { id: "uhs",           label: "Ueno Holding S.A.E.C.A.",           role: "Holding; Peña fue accionista hasta abril 2025",  group: "holding",    short: "Ueno Holding", ax: 330, ay: -250 },
     { id: "upy",           label: "u Paraguay S.A.",                   role: "Accionista de ueno bank (17,8%)",               group: "holding", ax: -260, ay: 160 },
     { id: "useg",          label: "Ueno Seguros S.A.",                 role: "Socio de Ueno Holding",                         group: "holding",    short: "Ueno Seguros", ax: 540, ay: -520 },
-    { id: "egb",           label: "Eduardo Gross Brown Costa",         role: "Director suplente y accionista de ueno bank",   group: "executive", ax: -320, ay: -110 },
-    { id: "nubicom",       label: "Nubicom Paraguay S.A.",             role: "Adjudicada 5G; dirigida por Grupo Vázquez (ABC)", group: "satellite", ax: 621, ay: -252 },
+    { id: "egb",           label: "Eduardo Gross Brown Costa",         role: "Director suplente y accionista de ueno bank",   group: "executive", ax: -320, ay: -110, short: "Eduardo Gross Brown" },
+    { id: "nubicom",       label: "Nubicom Paraguay S.A.",             role: "Adjudicada 5G; dirigida por Grupo Vázquez (ABC)", group: "satellite", ax: 621, ay: -252, short: "Nubicom" },
     { id: "wels",          label: "Wels S.A.",                         role: "Contrato IPS (G. 8.197 millones, 2023)",        group: "satellite", ax: -645, ay: 405 },
     { id: "mnp",           label: "Manuel Peña Palacios",              role: "Hermano del Presidente",                        group: "family", ax: -470, ay: 430 },
     { id: "gpo",           label: "Gonzalo Peña Ocampos",              role: "Hijo del Presidente",                           group: "family", ax: -190, ay: 590 },
     // Added from Última Hora (07/11/2026): Vinanzas route (Prioridad 1) and large debtors (Prioridad 2). Appended so existing codes stay the same
     { id: "vinanzas",      label: "Vinanzas SA",                       role: "Compradora de la cartera morosa de ueno (USD 74,4 M)", group: "satellite" },
-    { id: "technoma",      label: "Technoma SAECA",                    role: "Préstamo USD 10 M para bonos (11/06/2026)",     group: "satellite" },
-    { id: "kasas",         label: "Kasas Propiedades SAE",             role: "Venta de bonos a Factopar y La Tropa",          group: "satellite" },
+    { id: "technoma",      label: "Technoma SAECA",                    role: "Préstamo USD 10 M para bonos (11/06/2026)",     group: "satellite", short: "Technoma" },
+    { id: "kasas",         label: "Kasas Propiedades SAE",             role: "Venta de bonos a Factopar y La Tropa",          group: "satellite", short: "Kasas" },
     { id: "latropa",       label: "La Tropa Fletes EAS",               role: "Préstamo USD 10 M para bonos (11/06/2026)",     group: "satellite", short: "La Tropa" },
     { id: "model",         label: "Model SA",                          role: "Venta de bonos a La Tropa",                     group: "satellite" },
     { id: "factopar",      label: "Factopar SA",                       role: "Préstamos de ueno bank el 15/06/2026; los usó para comprar bonos y transferir a Vinanzas", group: "satellite" },
@@ -551,35 +566,35 @@
     { id: "nuevomundo",    label: "Nuevo Mundo Entertainment SA",      role: "Deudora: G. 198.205 M (Caso VII)",              group: "satellite", short: "Nuevo Mundo" },
     { id: "galadriel",     label: "Galadriel SA",                      role: "Deudora: G. 88.623 M",                          group: "satellite" },
     // Added from ABC Color (04/11/2026): people charged (imputados) and owners of the related companies. "Imputado" means charged, not convicted.
-    { id: "rey",           label: "Julio Daniel Rey Fernández",        role: "Director de Ueno. Imputado",                    group: "executive" },
-    { id: "mongelos",      label: "Diana Leticia Mongelos González",   role: "Directora de Ueno. Imputada",                   group: "executive" },
-    { id: "torres",        label: "Mariana Isabel Torres Rubiani",     role: "Directora de Ueno. Imputada",                   group: "executive" },
-    { id: "gomez_abente",  label: "Alejandro Gómez Abente",            role: "Director de Ueno. Imputado",                    group: "executive" },
+    { id: "rey",           label: "Julio Daniel Rey Fernández",        role: "Director de Ueno. Imputado",                    group: "executive", short: "Julio D. Rey" },
+    { id: "mongelos",      label: "Diana Leticia Mongelos González",   role: "Directora de Ueno. Imputada",                   group: "executive", short: "Diana Mongelos" },
+    { id: "torres",        label: "Mariana Isabel Torres Rubiani",     role: "Directora de Ueno. Imputada",                   group: "executive", short: "Mariana Torres" },
+    { id: "gomez_abente",  label: "Alejandro Gómez Abente",            role: "Director de Ueno. Imputado",                    group: "executive", short: "A. Gómez Abente" },
     { id: "duarte",        label: "Diego Fernando Duarte Schussmuller", role: "Director de Ueno. Imputado",                   group: "executive", short: "D. Duarte" },
-    { id: "almada",        label: "Miguel Ángel Almada Frutos",        role: "Ex síndico de Ueno. Imputado",                  group: "executive" },
-    { id: "sala",          label: "José Augusto Sala Cardozo",         role: "Presidente de MOWI SA. Imputado",               group: "executive" },
-    { id: "pizurno",       label: "Sergio Amado Pizurno Zsarán",       role: "Vicepresidente de MOWI SA. Imputado",           group: "executive" },
-    { id: "godoy",         label: "Vanessa Esther Godoy Ayala",        role: "Imputada. Presidenta de Grupo Hendy (dato en contradicción)", group: "executive" },
-    { id: "mengual",       label: "César Javier Mengual Mazacotte",    role: "Imputado. Presidente de Grupo Hendy (dato en contradicción)", group: "executive" },
-    { id: "astigarraga",   label: "César Manuel Astigarraga Lambaré",  role: "Imputado. Vinculado a Grupo M SA",              group: "executive" },
-    { id: "angulo",        label: "Luis Ernesto Angulo Rivera",        role: "Imputado. Vinculado a Grupo M SA",              group: "executive" },
-    { id: "guillermo_vaz", label: "Guillermo Vázquez Muniagurria",     role: "Imputado. Vinculado a Grupo M SA",              group: "executive" },
-    { id: "gomez_arce",    label: "Diego Sebastián Gómez Arce",        role: "Imputado. Vinculado a Grupo M SA (no confirmado si es Diego Gómez)", group: "executive" },
-    { id: "rios",          label: "Luis Fernando Ríos Espínola",       role: "Imputado. Vinculado a TUIU SA",                 group: "executive" },
+    { id: "almada",        label: "Miguel Ángel Almada Frutos",        role: "Ex síndico de Ueno. Imputado",                  group: "executive", short: "Miguel Á. Almada" },
+    { id: "sala",          label: "José Augusto Sala Cardozo",         role: "Presidente de MOWI SA. Imputado",               group: "executive", short: "José A. Sala" },
+    { id: "pizurno",       label: "Sergio Amado Pizurno Zsarán",       role: "Vicepresidente de MOWI SA. Imputado",           group: "executive", short: "Sergio Pizurno" },
+    { id: "godoy",         label: "Vanessa Esther Godoy Ayala",        role: "Imputada. Presidenta de Grupo Hendy (dato en contradicción)", group: "executive", short: "Vanessa Godoy" },
+    { id: "mengual",       label: "César Javier Mengual Mazacotte",    role: "Imputado. Presidente de Grupo Hendy (dato en contradicción)", group: "executive", short: "César Mengual" },
+    { id: "astigarraga",   label: "César Manuel Astigarraga Lambaré",  role: "Imputado. Vinculado a Grupo M SA",              group: "executive", short: "César Astigarraga" },
+    { id: "angulo",        label: "Luis Ernesto Angulo Rivera",        role: "Imputado. Vinculado a Grupo M SA",              group: "executive", short: "Luis Angulo" },
+    { id: "guillermo_vaz", label: "Guillermo Vázquez Muniagurria",     role: "Imputado. Vinculado a Grupo M SA",              group: "executive", short: "Guillermo Vázquez M." },
+    { id: "gomez_arce",    label: "Diego Sebastián Gómez Arce",        role: "Imputado. Vinculado a Grupo M SA (no confirmado si es Diego Gómez)", group: "executive", short: "Diego S. Gómez Arce" },
+    { id: "rios",          label: "Luis Fernando Ríos Espínola",       role: "Imputado. Vinculado a TUIU SA",                 group: "executive", short: "Luis F. Ríos" },
     { id: "gayol",         label: "André Gayol Pires",                 role: "Accionista de TUIU SA. Imputado",               group: "executive" },
-    { id: "di_iorio",      label: "Nicolás S. Di Iorio Olivares",      role: "Imputado. Vinculado a TUIU SA",                 group: "executive" },
-    { id: "franco",        label: "Rodrigo Ramón Franco Ortiz",        role: "Imputado. Vinculado a TUIU SA",                 group: "executive" },
-    { id: "mauro_vw",      label: "Mauro Vargas Wildberger",           role: "Presidente y accionista de Franede. Accionista de AIME", group: "executive" },
-    { id: "martin_vw",     label: "Martín Vargas Wildberger",          role: "Accionista de AIME SA",                         group: "executive" },
-    { id: "cecilia",       label: "Cecilia Domínguez Elizeche",        role: "Vicepresidenta de Franede SA",                  group: "executive" },
-    { id: "gloria_vf",     label: "Gloria Villasanti Farinha",         role: "Titular de AIME SA",                            group: "executive" },
-    { id: "raul_sanchez",  label: "Raúl Fernando Sánchez Gómez",       role: "Director de AIME SA",                           group: "executive" },
+    { id: "di_iorio",      label: "Nicolás S. Di Iorio Olivares",      role: "Imputado. Vinculado a TUIU SA",                 group: "executive", short: "Nicolás Di Iorio" },
+    { id: "franco",        label: "Rodrigo Ramón Franco Ortiz",        role: "Imputado. Vinculado a TUIU SA",                 group: "executive", short: "Rodrigo Franco" },
+    { id: "mauro_vw",      label: "Mauro Vargas Wildberger",           role: "Presidente y accionista de Franede. Accionista de AIME", group: "executive", short: "Mauro Vargas W." },
+    { id: "martin_vw",     label: "Martín Vargas Wildberger",          role: "Accionista de AIME SA",                         group: "executive", short: "Martín Vargas W." },
+    { id: "cecilia",       label: "Cecilia Domínguez Elizeche",        role: "Vicepresidenta de Franede SA",                  group: "executive", short: "Cecilia Domínguez" },
+    { id: "gloria_vf",     label: "Gloria Villasanti Farinha",         role: "Titular de AIME SA",                            group: "executive", short: "Gloria Villasanti" },
+    { id: "raul_sanchez",  label: "Raúl Fernando Sánchez Gómez",       role: "Director de AIME SA",                           group: "executive", short: "Raúl F. Sánchez" },
     // Added for Conatel and Nubicom (ABC 13/10/2026; tuit de @hectordalegre). Appended so existing codes stay the same
     { id: "conatel",       label: "Conatel",                           role: "Regulador de telecomunicaciones; según un tuit, depositó fondos en ueno (oct. 2026, no verificado)", group: "state", short: "Conatel" },
     { id: "serenella", label: "Serenella Argaña", role: "Nuera del Presidente; esposa de Gonzalo Peña Ocampos", group: "family", ax: 110, ay: 520 },
-    { id: "silvia_vc", label: "María Silvia Vázquez de Carvallo", role: "Esposa de Carlos Carvallo (ex presidente del BCP); consultora", group: "executive", ax: -120, ay: -200 },
+    { id: "silvia_vc", label: "María Silvia Vázquez de Carvallo", role: "Esposa de Carlos Carvallo (ex presidente del BCP); consultora", group: "executive", ax: -120, ay: -200, short: "Silvia V. de Carvallo" },
     // Added from Última Hora (05/11/2026): former MEF minister when Caja Fiscal funds were placed in ueno. Appended so existing codes stay the same
-    { id: "fernandez_v",   label: "Carlos Fernández Valdovinos",       role: "Ex ministro de Economía (durante la colocación de fondos de la Caja Fiscal en ueno, jul. 2025)", group: "political" },
+    { id: "fernandez_v",   label: "Carlos Fernández Valdovinos",       role: "Ex ministro de Economía (durante la colocación de fondos de la Caja Fiscal en ueno, jul. 2025)", group: "political", short: "C. Fernández Valdovinos" },
     // Added from ABC Color (06/11/2026): both brokerages suspended by the BVA. Ueno CdB and Valores CdB are brokerages, not the bank itself.
     { id: "ueno_cdb",      label: "Ueno Casa de Bolsa SA",             role: "Suspendida por la BVA (06/11/2026): falla en reporto del 03/11/2026, sin plazo para levantar la medida", group: "satellite", short: "Ueno CdB" },
     { id: "bva",           label: "Bolsa de Valores de Asunción (BVA)", role: "Suspendió preventivamente a Ueno CdB y Valores CdB por incumplimientos en reportos", group: "regulator", short: "BVA" }
@@ -842,28 +857,204 @@
   const srcLabel = s => s.medio + " · " + s.fecha;
   const openUrl = url => window.open(url, "_blank", "noopener,noreferrer");
 
-  // Anchors for groups laid out automatically
-  (function autoAnchors() {
-    const state = nodes.filter(n => n.group === "state");
-    state.forEach((n, i) => { n.ax = -640; n.ay = (i - (state.length - 1) / 2) * 125; });
-    // Satellites on a tighter arc. Nubicom (next to Grupo Vázquez) and Wels (next to the Peña family)
-    // have their own anchors; Grupo M and Hanoi go last so they sit near their directors (Gómez / Urdapilleta).
-    const ARC_ORDER = ["franede", "aime", "tuiu", "mowi", "hendy", "grupo_m", "hanoi"];
-    const arc = nodes.filter(n => n.group === "satellite" && n.ax === undefined)
-      .sort((p, q) => ARC_ORDER.indexOf(p.id) - ARC_ORDER.indexOf(q.id));
-    const a0 = -25 * Math.PI / 180, a1 = 55 * Math.PI / 180;
-    arc.forEach((n, i) => {
-      const a = a0 + (a1 - a0) * (i / Math.max(1, arc.length - 1));
-      n.ax = Math.cos(a) * 470; n.ay = Math.sin(a) * 450;
+  /* ================================================================
+     CLUSTERS (layout)
+     The map is drawn as groups ("clusters") so every line is easy to follow:
+     - "ring" clusters sit around ueno bank (state funds, directors, debtors...):
+       their members are spread on an arc facing the bank, so the lines are short spokes.
+     - "star" clusters have their own center (Grupo Vázquez, the Peña family,
+       Vinanzas, each satellite company...) with its members in a circle around it.
+     Members that are not linked to the center sit one step further out, behind
+     the member they are linked to (e.g. Muar behind Serenella Argaña).
+     To place a NEW entity: add its id to the "members" of the right cluster.
+     An entity in no cluster is placed automatically next to whatever it is linked to.
+     x / y = position of the cluster center (ueno bank is at 0,0; y grows downwards).
+     cols = for a group without its own center: how many side by side (the rest go in further rows).
+     ================================================================ */
+  const CLUSTERS = [
+    // above the bank: who owns and controls it
+    { id: "own",   title: "ACCIONISTAS", hub: "lux", x: 20, y: -330, R: 100,
+      members: ["upy", "ueno_cdb"] },
+    { id: "gv",    title: "GRUPO VÁZQUEZ", hub: "gv", x: 120, y: -680, R: 140,
+      members: ["fmvv", "vhv", "uhs", "useg", "nubicom", "hanoi"] },
+    { id: "ante",  title: "ANTECEDENTES", x: 270, y: -330, cols: 1, members: ["vision", "comercio"] },
+    { id: "pena",  title: "FAMILIA PEÑA", hub: "sp", x: -560, y: -620, R: 140,
+      members: ["fp", "mnp", "gpo", "serenella", "cbv", "muar", "wels"] },
+    { id: "reg",   title: "REGULADORES", x: -400, y: -300, cols: 3,
+      members: ["cv", "bcp_dir", "bva", "silvia_vc", "valores"] },
+    // left: public money that went into the bank
+    { id: "state", title: "FONDOS DEL ESTADO", x: -470, y: 20, cols: 2,
+      members: ["ips", "itaipu", "ande", "caja_ande", "mef", "petropar", "caja_bancaria", "conatel", "fernandez_v"] },
+    { id: "dir",   title: "DIRECTIVOS IMPUTADOS", x: -380, y: 400, cols: 4,
+      members: ["jg", "rey", "mongelos", "torres", "gomez_abente", "duarte", "almada", "egb"] },
+    // right: money that left the bank
+    { id: "debt",  title: "GRANDES DEUDORES", x: 300, y: 40, cols: 3,
+      members: ["gsr", "officedesign", "berilo", "nuevomundo", "galadriel"] },
+    { id: "vin",   title: "RUTA VINANZAS", hub: "vinanzas", x: 640, y: -360, R: 150,
+      members: ["technoma", "latropa", "kasas", "factopar", "sagas", "hdinvest", "satec", "model"] },
+    { id: "itti",  title: "DESTINO DE FONDOS", hub: "itti", x: 1000, y: 110, R: 85,
+      members: ["redipro", "henrici"] },
+    { id: "mowi",  title: "MOWI SA", hub: "mowi", x: 560, y: 190, R: 85, members: ["sala", "pizurno"] },
+    { id: "gm",    title: "GRUPO M SA", hub: "grupo_m", x: 870, y: 520, R: 115,
+      members: ["dg", "astigarraga", "angulo", "guillermo_vaz", "gomez_arce"] },
+    { id: "hendy", title: "GRUPO HENDY SA", hub: "hendy", x: 430, y: 410, R: 95, members: ["godoy", "mengual", "ou"] },
+    { id: "tuiu",  title: "TUIU SA", hub: "tuiu", x: 210, y: 560, R: 95, members: ["rios", "gayol", "di_iorio", "franco"] },
+    { id: "fran",  title: "FRANEDE SA", hub: "franede", x: 160, y: 900, R: 85, members: ["cecilia", "mauro_vw"] },
+    { id: "aime",  title: "AIME SA", hub: "aime", x: -60, y: 640, R: 95, members: ["martin_vw", "gloria_vf", "raul_sanchez"] }
+  ];
+
+  (function clusterLayout() {
+    const RAD = Math.PI / 180;
+    const nodeById = new Map(nodes.map(n => [n.id, n]));
+    const clusterOf = new Map();
+    CLUSTERS.forEach(c => {
+      if (c.hub) clusterOf.set(c.hub, c);
+      c.members.forEach(id => {
+        if (!nodeById.has(id)) console.warn("Grupo " + c.id + ": entidad desconocida " + id);
+        clusterOf.set(id, c);
+      });
+      c.members = c.members.filter(id => nodeById.has(id));
+      c.root = c.hub || "ueno";
     });
-    // People with no anchor of their own sit in a small ring beside the company or bank they are linked to.
-    // Without this, their position is NaN and the whole map is pushed off-screen.
+    nodes.forEach(n => n.cl = clusterOf.get(n.id) || null);
+    const ueno = nodeById.get("ueno"); ueno.ax = 0; ueno.ay = 0;
+
+    const nbrs = new Map(nodes.map(n => [n.id, []]));
+    links.forEach(l => { nbrs.get(l.source).push(l.target); nbrs.get(l.target).push(l.source); });
+    // rough position of any entity before the layout: its cluster center (ueno for the bank)
+    const roughPos = id => {
+      if (id === "ueno") return { x: 0, y: 0 };
+      const c = clusterOf.get(id);
+      return c ? { x: c.x, y: c.y } : null;
+    };
+    const wrap = a => Math.atan2(Math.sin(a), Math.cos(a));
+
+    // Keep clusters from overlapping: each one takes a rough circle; overlapping circles are pushed
+    // apart (the bank stays put). New members make a cluster bigger, and its neighbours move to make room.
+    CLUSTERS.forEach(c => {
+      const n = c.members.length;
+      if (c.hub) {
+        const deep = c.members.some(id => !nbrs.get(id).includes(c.hub));
+        c.size = c.R + (deep ? 105 : 0) + 70;
+      } else {
+        const cols = Math.min(c.cols || n, n), rows = Math.ceil(n / cols);
+        const side = Math.abs(c.x) > Math.abs(c.y);
+        const w = (side ? rows : cols) * 150, h = (side ? cols : rows) * 76 + 40;
+        c.size = Math.hypot(w, h) / 2 + 20;
+      }
+    });
+    const core = { x: 0, y: 0, size: 130, fixed: true };
+    const all = [core, ...CLUSTERS];
+    for (let it = 0; it < 200; it++) {
+      let moved = false;
+      for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) {
+        const p = all[i], q = all[j];
+        let dx = q.x - p.x, dy = q.y - p.y, d = Math.hypot(dx, dy);
+        const need = p.size + q.size + 16;
+        if (d >= need) continue;
+        if (d < 1) { dx = 1; dy = 0; d = 1; }
+        const push = (need - d) / 2, ux = dx / d, uy = dy / d;
+        const wp = p.fixed ? 0 : q.fixed ? 2 : 1, wq = q.fixed ? 0 : p.fixed ? 2 : 1;
+        p.x -= ux * push * wp; p.y -= uy * push * wp;
+        q.x += ux * push * wq; q.y += uy * push * wq;
+        moved = true;
+      }
+      if (!moved) break;
+    }
+
+    CLUSTERS.forEach(c => {
+      const inC = new Set(c.members);
+      // first ring: members linked to the center (or linked to nothing else in the cluster)
+      const depth = new Map(), parent = new Map();
+      c.members.forEach(id => { if (nbrs.get(id).includes(c.root)) depth.set(id, 1); });
+      const others = () => c.members.filter(id => !depth.has(id));
+      let grew = true;
+      while (grew) {
+        grew = false;
+        others().forEach(id => {
+          const p = nbrs.get(id).find(o => inC.has(o) && depth.has(o));
+          if (p) { depth.set(id, depth.get(p) + 1); parent.set(id, p); grew = true; }
+        });
+        if (!grew && others().length) { depth.set(others()[0], 1); grew = true; }
+      }
+      const first = c.members.filter(id => depth.get(id) === 1);
+      // each first-ring member faces the things it is linked to outside the cluster
+      const home = { x: c.x, y: c.y };
+      const outward = Math.atan2(c.y, c.x);   // away from ueno
+      const pref = id => {
+        const fam = [id, ...c.members.filter(m => { let p = parent.get(m); while (p) { if (p === id) return true; p = parent.get(p); } return false; })];
+        let sx = 0, sy = 0;
+        fam.forEach(f => nbrs.get(f).forEach(o => {
+          if (o === c.root || inC.has(o)) return;
+          const p = roughPos(o); if (!p) return;
+          const dx = p.x - home.x, dy = p.y - home.y, d = Math.hypot(dx, dy) || 1;
+          sx += dx / d; sy += dy / d;
+        }));
+        return sx || sy ? Math.atan2(sy, sx) : null;
+      };
+      const pos = new Map();
+      if (c.hub) {
+        const n = first.length;
+        const prefs = first.map(id => ({ id, a: pref(id) }));
+        prefs.forEach(p => { if (p.a === null) p.a = outward; });
+        prefs.sort((p, q) => wrap(p.a - outward) - wrap(q.a - outward));
+        // best rotation of the evenly spaced slots
+        let sx = 0, sy = 0;
+        prefs.forEach((p, i) => { const d = p.a - i * 2 * Math.PI / n; sx += Math.cos(d); sy += Math.sin(d); });
+        const rot = n > 1 ? Math.atan2(sy, sx) : prefs[0] ? prefs[0].a : 0;
+        prefs.forEach((p, i) => {
+          const a = rot + i * 2 * Math.PI / n;
+          pos.set(p.id, { x: c.x + Math.cos(a) * c.R, y: c.y + Math.sin(a) * c.R, a });
+        });
+        const hub = nodeById.get(c.hub); hub.ax = c.x; hub.ay = c.y;
+      } else {
+        // compact grid at (x, y): columns 150 apart, rows 76 apart. Every other row (or column, for a
+        // block beside the bank) is shifted half a step, so the lines of the back nodes pass between the front ones.
+        const prefs = first.map(id => ({ id, a: pref(id) }));
+        const side = Math.abs(c.x) > Math.abs(c.y);           // block left/right of the bank (else above/below)
+        const toward = Math.atan2(-c.y, -c.x);
+        // order: across the block, members pulled one way go to that side
+        prefs.forEach(p => { const a = p.a === null ? toward : p.a; p.k = side ? Math.sin(a) : Math.cos(a); });
+        prefs.sort((p, q) => p.k - q.k);
+        const n = prefs.length, cols = Math.min(c.cols || n, n), rows = Math.ceil(n / cols);
+        const CW = 150, RH = 76;
+        // a block beside the bank is filled column by column (front column first), else row by row (front row first)
+        prefs.forEach((p, i) => {
+          let col, row, x, y;
+          if (side) {
+            const per = rows;                                       // nodes per column
+            col = Math.floor(i / per); row = i - col * per;
+            const inCol = Math.min(per, n - col * per);
+            const front = c.x < 0 ? -1 : 1;                         // which way is away from the bank
+            x = c.x + (col - (Math.ceil(n / per) - 1) / 2) * CW * front;
+            y = c.y + (row - (inCol - 1) / 2 + (col % 2 ? .5 : 0)) * RH;
+          } else {
+            row = Math.floor(i / cols); col = i - row * cols;
+            const inRow = Math.min(cols, n - row * cols);
+            const front = c.y < 0 ? -1 : 1;
+            y = c.y + (row - (rows - 1) / 2) * RH * front;
+            x = c.x + (col - (inRow - 1) / 2 + (row % 2 && inRow === cols ? .5 : 0)) * CW;
+          }
+          pos.set(p.id, { x, y, a: Math.atan2(y, x) });
+        });
+      }
+      // further rings: one step out, behind the member they hang from
+      const deeper = c.members.filter(id => depth.get(id) > 1).sort((p, q) => depth.get(p) - depth.get(q));
+      const kids = new Map();
+      deeper.forEach(id => { const p = parent.get(id); kids.set(p, (kids.get(p) || []).concat(id)); });
+      deeper.forEach(id => {
+        const p = pos.get(parent.get(id)); const sib = kids.get(parent.get(id)); const k = sib.indexOf(id);
+        const a = p.a + (k - (sib.length - 1) / 2) * 0.55;
+        const step = c.hub ? 105 : 120;
+        pos.set(id, { x: p.x + Math.cos(a) * step, y: p.y + Math.sin(a) * step, a });
+      });
+      pos.forEach((p, id) => { const n = nodeById.get(id); n.ax = p.x; n.ay = p.y; });
+    });
+    // entities in no cluster: next to what they are linked to
     nodes.filter(n => n.ax === undefined).forEach((n, i) => {
-      const l = links.find(l => l.source === n.id);
-      const t = l && nodes.find(m => m.id === l.target);
-      const base = t && t.ax !== undefined ? t : { ax: 0, ay: 0 };
-      const a = i * 0.9;
-      n.ax = base.ax + Math.cos(a) * 150; n.ay = base.ay + Math.sin(a) * 150;
+      const o = nbrs.get(n.id).map(id => nodeById.get(id)).find(m => m.ax !== undefined);
+      const base = o || ueno, a = i * 0.9;
+      n.ax = base.ax + Math.cos(a) * 120; n.ay = base.ay + Math.sin(a) * 120;
     });
   })();
 
@@ -890,6 +1081,13 @@
     .attr("markerUnits", "userSpaceOnUse")
     .attr("orient", "auto")
     .append("path").attr("d", "M0,-5L10,0L0,5Z").attr("fill", "#FFFFFF");
+  defs.append("marker")
+    .attr("id", "arrow-dim").attr("viewBox", "0 -5 10 10")
+    .attr("refX", 10).attr("refY", 0)
+    .attr("markerWidth", 5).attr("markerHeight", 5)
+    .attr("markerUnits", "userSpaceOnUse")
+    .attr("orient", "auto")
+    .append("path").attr("d", "M0,-5L10,0L0,5Z").attr("fill", "#8A8F98");
 
   // Background: architectural grid (fixed frame, does not zoom)
   const bg = svg.append("g").attr("class", "grid");
@@ -907,11 +1105,19 @@
   // Phones/tablets: the map can't be zoomed out past "whole map on screen" nor dragged off into empty canvas
   // (fitView() sets both limits to the fitted view). Desktop keeps free zoom-out and free panning.
   const limitToFit = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
-  const zoom = d3.zoom().scaleExtent([0.2, 3]).on("zoom", e => world.attr("transform", e.transform));
+  let onZoom = () => {};
+  const zoom = d3.zoom().scaleExtent([0.2, 3]).on("zoom", e => { world.attr("transform", e.transform); onZoom(e.transform.k); });
   svg.call(zoom).on("dblclick.zoom", null);
 
+  const haloG = world.append("g");
   const linkG = world.append("g");
   const nodeG = world.append("g");
+  const haloSel = haloG.selectAll("g.halo").data(CLUSTERS).join("g").attr("class", "halo");
+  haloSel.append("path");
+  haloSel.append("text").attr("class", "t").text(c => c.title)
+    .append("title").text("Clic para acercar este grupo");
+  // cluster titles stay readable on screen when the whole map is zoomed out
+  onZoom = k => haloSel.select("text").style("font-size", ((W < 760 ? 7 : 11) / Math.min(1, k)).toFixed(1) + "px");
 
   const linkSel = linkG.selectAll("g.l").data(links).join("g").attr("class", "l");
   const linkPath = linkSel.append("line").attr("class", "link").attr("marker-end", "url(#arrow)");
@@ -956,14 +1162,14 @@
     .text(d => d.code);
 
   /* ================================================================
-     FORCE SIMULATION
-     Each node is pulled toward its anchor (its "district"), while
-     repulsion + label-aware collision keep everything readable.
+     LAYOUT SETTLING
+     Every node is held at its place in its cluster (see CLUSTERS);
+     a box-shaped collision only nudges nodes whose names would overlap.
      The whole world is then zoomed to fit the screen.
      ================================================================ */
   nodes.forEach((n, i) => {
     n.phase = i * 1.7; n.freq = 0.00035 + (i % 5) * 0.00007;
-    n.x = n.ax + (Math.random() - .5) * 40; n.y = n.ay + (Math.random() - .5) * 40;
+    n.x = n.ax; n.y = n.ay;
   });
 
   function driftForce() {
@@ -971,8 +1177,40 @@
     function force() {
       const t = performance.now();
       for (const n of ns) {
-        n.vx += Math.cos(t * n.freq + n.phase) * 0.01;
-        n.vy += Math.sin(t * n.freq * 1.3 + n.phase) * 0.01;
+        n.vx += Math.cos(t * n.freq + n.phase) * 0.006;
+        n.vy += Math.sin(t * n.freq * 1.3 + n.phase) * 0.006;
+      }
+    }
+    force.initialize = _ => ns = _;
+    return force;
+  }
+
+  // Collision on the box each node takes on screen (circle + its name underneath)
+  const boxOf = n => {
+    const r = radius(n) + (hasOuter(n) ? 8 : 0);
+    return { hw: Math.max(r, labelW(n) / 2) + 6, top: r + 12, bottom: r + (hasOuter(n) ? 30 : 22) };
+  };
+  function boxCollide() {
+    let ns;
+    function force() {
+      for (let i = 0; i < ns.length; i++) {
+        const a = ns[i], ba = boxOf(a);
+        for (let j = i + 1; j < ns.length; j++) {
+          const b = ns[j], bb = boxOf(b);
+          const dx = (b.x + b.vx) - (a.x + a.vx), dy = (b.y + b.vy) - (a.y + a.vy);
+          const ox = ba.hw + bb.hw - Math.abs(dx);
+          const oy = (dy > 0 ? ba.bottom + bb.top : ba.top + bb.bottom) - Math.abs(dy);
+          if (ox <= 0 || oy <= 0) continue;
+          const wa = a.id === "ueno" ? 0 : 0.5, wb = b.id === "ueno" ? 0 : 0.5;
+          const s = 1 / ((wa + wb) || 1);
+          if (ox < oy * 1.6) {   // names sit side by side: push sideways
+            const m = ox * 0.5 * (dx < 0 ? -1 : 1);
+            a.vx -= m * wa * s; b.vx += m * wb * s;
+          } else {
+            const m = oy * 0.5 * (dy < 0 ? -1 : 1);
+            a.vy -= m * wa * s; b.vy += m * wb * s;
+          }
+        }
       }
     }
     force.initialize = _ => ns = _;
@@ -980,12 +1218,11 @@
   }
 
   const sim = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id(d => d.id).distance(150).strength(0.06))
-    .force("charge", d3.forceManyBody().strength(d => d.group === "hub" ? -900 : -260).distanceMax(380))
-    .force("collide", d3.forceCollide().radius(d => Math.max(radius(d) + (hasOuter(d) ? 30 : 22), labelW(d) / 2 + 6)).iterations(2))
-    .force("x", d3.forceX(d => d.ax).strength(d => d.group === "hub" ? 0.6 : 0.2))
-    .force("y", d3.forceY(d => d.ay).strength(d => d.group === "hub" ? 0.6 : 0.2))
-    .velocityDecay(0.55)
+    .force("link", d3.forceLink(links).id(d => d.id).strength(0))   // only turns ids into nodes
+    .force("collide", boxCollide())
+    .force("x", d3.forceX(d => d.ax).strength(d => d.id === "ueno" ? 1 : 0.12))
+    .force("y", d3.forceY(d => d.ay).strength(d => d.id === "ueno" ? 1 : 0.12))
+    .velocityDecay(0.5)
     .stop();
 
   // Settle the layout before the first paint so nothing "explodes" on load
@@ -1007,6 +1244,39 @@
       d3.select(this).selectAll("line").attr("x1", p.x1).attr("y1", p.y1).attr("x2", p.x2).attr("y2", p.y2);
     });
     nodeSel.attr("transform", d => `translate(${d.x},${d.y})`);
+    drawHalos();
+  }
+
+  // Outline around each cluster: a circle around a cluster with its own center,
+  // a curved band (part of a ring around the bank) for the groups that sit around ueno.
+  const haloLine = d3.line().curve(d3.curveCatmullRomClosed.alpha(0.5));
+  function drawHalos() {
+    haloSel.each(function (c) {
+      const g = d3.select(this);
+      const ms = nodes.filter(n => n.cl === c && !n.hidden);
+      g.classed("hidden", ms.length === 0);
+      if (!ms.length) return;
+      const ext = n => Math.max(radius(n) + (hasOuter(n) ? 16 : 12), labelW(n) / 2 + 4);
+      let d, tx, ty;
+      if (c.hub) {
+        const h = byId.get(c.hub), cx = h.hidden ? d3.mean(ms, n => n.x) : h.x, cy = h.hidden ? d3.mean(ms, n => n.y) : h.y;
+        const r = d3.max(ms, n => Math.hypot(n.x - cx, n.y - cy) + ext(n) * (n === h ? 1 : .85)) + 10;
+        d = `M${cx - r},${cy}a${r},${r} 0 1,0 ${2 * r},0a${r},${r} 0 1,0 ${-2 * r},0`;
+        tx = cx; ty = cy - r - 8;
+      } else {
+        const pts = [];
+        ms.forEach(n => {
+          const r = radius(n) + (hasOuter(n) ? 18 : 14), hw = labelW(n) / 2 + 8, lb = n.y + radius(n) + (hasOuter(n) ? 32 : 24);
+          for (let k = 0; k < 12; k++) { const a = k * Math.PI / 6; pts.push([n.x + Math.cos(a) * r, n.y + Math.sin(a) * r]); }
+          pts.push([n.x - hw, lb], [n.x + hw, lb], [n.x - hw, n.y], [n.x + hw, n.y]);
+        });
+        const hull = d3.polygonHull(pts);
+        d = haloLine(hull);
+        tx = (d3.min(hull, p => p[0]) + d3.max(hull, p => p[0])) / 2; ty = d3.min(hull, p => p[1]) - 8;
+      }
+      g.select("path").attr("d", d);
+      g.select("text").attr("x", tx).attr("y", ty);
+    });
   }
   ticked();
 
@@ -1031,9 +1301,15 @@
   const FILTERS = { imputados: n => n.imputado };
   CAT_ORDER.forEach(k => FILTERS["cat:" + k] = n => n.cat === k);
   GROUP_ORDER.forEach(g => FILTERS["group:" + g] = n => n.group === g);
+  // Money lines = public funds into the bank + money between the bank and the satellite companies (both ways)
+  const bankOrSat = n => n.id === "ueno" || n.group === "satellite";
   const isMoney = l => l.source.group === "state" ||
-    (l.target.group === "satellite" && (l.source.id === "ueno" || l.source.group === "satellite"));
+    (l.target.group === "satellite" && bankOrSat(l.source)) ||
+    (l.source.group === "satellite" && l.target.id === "ueno");
   const moneyLinks = new Set(links.filter(isMoney));
+  // money lines are bright and animated; the other ties (family, ownership, posts) are thin dashed gray lines
+  linkSel.classed("money", isMoney);
+  linkPath.attr("marker-end", l => isMoney(l) ? "url(#arrow)" : "url(#arrow-dim)");
   const moneyNodes = new Set();
   moneyLinks.forEach(l => { moneyNodes.add(l.source.id); moneyNodes.add(l.target.id); });
   const isHidden = n => (picked.size > 0 && ![...picked].some(k => FILTERS[k](n))) || (flowOn && !moneyNodes.has(n.id));
@@ -1042,19 +1318,39 @@
   const keyOn = k => k === "flow" ? flowOn : picked.has(k);
 
   /* ---------- fit the whole map to the available screen ---------- */
-  function fitView(animate) {
-    const small = W < 760;
-    const padX = small ? 16 : 48, padTop = small ? 56 : 70, padBottom = small ? 16 : 64;   // desktop: room for the one-row legend
+  // world box of a set of nodes (circle + name), plus the outline and title of their clusters
+  function boxOfNodes(list) {
     let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
-    nodes.forEach(n => {
-      if (isHidden(n)) return;
+    list.forEach(n => {
       const half = Math.max(radius(n) + 8, labelW(n) / 2);
       x0 = Math.min(x0, n.x - half); x1 = Math.max(x1, n.x + half);
       y0 = Math.min(y0, n.y - radius(n) - 24); y1 = Math.max(y1, n.y + radius(n) + 34);
     });
-    if (x0 === Infinity) return;   // the filter hides everything: keep the current view
+    const cls = new Set(list.map(n => n.cl).filter(Boolean));
+    haloSel.each(function (c) {
+      if (!cls.has(c)) return;
+      const b = this.querySelector("path").getBBox(), t = this.querySelector("text").getBBox();
+      x0 = Math.min(x0, b.x, t.x); x1 = Math.max(x1, b.x + b.width, t.x + t.width);
+      y0 = Math.min(y0, b.y, t.y); y1 = Math.max(y1, b.y + b.height);
+    });
+    return { x0, y0, x1, y1 };
+  }
+
+  function fitView(animate) {
+    const small = W < 760;
+    const padX = small ? 16 : 48, padTop = small ? 56 : 70, padBottom = small ? 16 : 64;   // desktop: room for the one-row legend
+    const shown = nodes.filter(n => !isHidden(n));
     const availW = W - padX * 2, availH = H - padTop - padBottom;
-    const k = Math.min(1.1, availW / (x1 - x0), availH / (y1 - y0));
+    // twice: the cluster titles grow when the map is zoomed out, so measure again at the new zoom
+    let b = boxOfNodes(shown), k = 1;
+    if (b.x0 === Infinity) return;   // the filter hides everything: keep the current view
+    for (let pass = 0; pass < 2; pass++) {
+      k = Math.min(1.1, availW / (b.x1 - b.x0), availH / (b.y1 - b.y0));
+      onZoom(k); b = boxOfNodes(shown);
+    }
+    k = Math.min(1.1, availW / (b.x1 - b.x0), availH / (b.y1 - b.y0));
+    onZoom(d3.zoomTransform(svg.node()).k);
+    const { x0, y0, x1, y1 } = b;
     const tx = padX + availW / 2 - k * (x0 + x1) / 2;
     const ty = padTop + availH / 2 - k * (y0 + y1) / 2;
     const tr = d3.zoomIdentity.translate(tx, ty).scale(k);
@@ -1067,6 +1363,21 @@
     }
     (animate ? svg.transition().duration(800) : svg).call(zoom.transform, tr);
   }
+
+  // Click on a cluster title: zoom in so the whole cluster fills the screen
+  function zoomToCluster(c) {
+    const { x0, y0, x1, y1 } = boxOfNodes(nodes.filter(n => n.cl === c && !isHidden(n)));
+    if (x0 === Infinity) return;
+    const pad = W < 760 ? 16 : 48, padTop = W < 760 ? 56 : 70;
+    const availW = W - pad * 2, availH = H - padTop - pad;
+    const k = Math.min(1.8, availW / (x1 - x0), availH / (y1 - y0));
+    const tr = d3.zoomIdentity.translate(pad + availW / 2 - k * (x0 + x1) / 2, padTop + availH / 2 - k * (y0 + y1) / 2).scale(k);
+    svg.transition().duration(800).call(zoom.transform, tr);
+  }
+  haloSel.select("text.t")
+    .on("pointerdown", e => e.stopPropagation())   // a click on the title is not the start of a pan
+    .on("click", (e, c) => { e.stopPropagation(); zoomToCluster(c); });
+
   fitView(false);
 
   /* ================================================================
@@ -1200,8 +1511,13 @@
       { t: "> SUMARIO", c: "bold" },
       { t: "  Izquierda: fondos públicos que entran." },
       { t: "  Centro: ueno bank." },
-      { t: "  Derecha: créditos que salen hacia" },
-      { t: "  empresas satélite del holding." },
+      { t: "  Arriba: quién es dueño del banco." },
+      { t: "  Derecha y abajo: créditos que salen" },
+      { t: "  hacia empresas satélite." },
+      { t: "  Línea blanca = dinero." },
+      { t: "  Línea gris = otro vínculo." },
+      { t: "  Clic en el título de un grupo" },
+      { t: "  para acercarlo." },
       { t: "" },
       { t: "> CÓDIGO DE COLOR", c: "bold" }
     ];
@@ -1376,6 +1692,8 @@
   const fCount = document.getElementById("f-count");
 
   function applyFilter(refit = true) {
+    nodes.forEach(n => n.hidden = isHidden(n));
+    drawHalos();
     nodeSel.classed("hidden", isHidden);
     linkSel.classed("hidden", linkHidden);
     document.getElementById("tip").classList.remove("show");
@@ -1564,8 +1882,17 @@
     { k: "regulator", label: "Regulador" },
     { k: "person", label: "Persona / holding" },
     { k: "satellite", label: "Empresa satélite" },
-    { k: "flow", label: "Flujo" }
+    { k: "flow", label: "Dinero" },
+    { k: "tie", label: "Vínculo" }
   ].forEach(it => {
+    if (it.k === "tie") {   // not a filter: just explains the dashed gray lines
+      const row = legend.append("div").attr("class", "item").attr("title", "Familia, propiedad, cargos y otros vínculos que no son dinero");
+      const s = row.append("svg").attr("width", 30).attr("height", 18);
+      s.append("line").attr("x1", 0).attr("x2", 23).attr("y1", 9).attr("y2", 9).attr("stroke", "#8A8F98").attr("stroke-width", 1.6).attr("stroke-dasharray", "4 3");
+      s.append("path").attr("d", "M23,6L29,9L23,12Z").attr("fill", "#8A8F98");
+      row.append("span").text(it.label);
+      return;
+    }
     const row = legend.append("div").attr("class", "item pick");
     const s = row.append("svg").attr("width", it.k === "flow" ? 30 : 18).attr("height", 18);
     if (it.k === "flow") {
