@@ -1473,11 +1473,27 @@
   }
   ticked();
 
-  // Dragging
+  // Dragging. A drag only starts once the pointer has really moved (a few px with a mouse, more with a finger),
+  // so a tap with a slightly wobbly finger stays a tap and does not shake the map.
+  let movingDrags = 0;
   nodeSel.call(d3.drag()
-    .on("start", (e, d) => { tip.classList.remove("show"); if (!e.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
-    .on("drag",  (e, d) => { d.fx = e.x; d.fy = e.y; })
-    .on("end",   (e, d) => { if (!e.active) sim.alphaTarget(0.012); d.fx = null; d.fy = null; }));
+    .clickDistance(5)
+    .on("start", (e, d) => { d.dragFrom = { x: e.x, y: e.y }; d.dragging = false; })
+    .on("drag",  (e, d) => {
+      if (!d.dragging) {
+        const k = d3.zoomTransform(svg.node()).k;
+        if (Math.hypot(e.x - d.dragFrom.x, e.y - d.dragFrom.y) * k < (touchMode ? 12 : 5)) return;
+        d.dragging = true;
+        tip.classList.remove("show");
+        if (movingDrags++ === 0) sim.alphaTarget(0.2).restart();
+      }
+      d.fx = e.x; d.fy = e.y;
+    })
+    .on("end",   (e, d) => {
+      if (!d.dragging) return;
+      d.dragging = false; d.fx = null; d.fy = null;
+      if (--movingDrags === 0) sim.alphaTarget(0.012);
+    }));
 
   /* ---------- map filter (dropdown, top right) ----------
      Default view = TODO (everything). Ticking an option narrows the map to it; ticking several
@@ -2058,6 +2074,74 @@
       d3.select(this.parentNode).select(".link").classed("hover", false);
       tip.classList.remove("show");
     });
+
+  /* ---------- finger taps on the map (phones / tablets) ----------
+     Phones drop the "click" when the finger wobbles even a little, and with the whole map on screen the
+     circles are only a few px wide. So a short touch that barely moves is handled here as a tap:
+     it opens the node under the finger, or the node (circle or name) nearest to it, then a line, else
+     it goes back to the index. The phone's own click that may follow is ignored. */
+  const TAP_MOVE = 14, TAP_TIME = 700, NODE_REACH = 24, LINK_REACH = 12;
+  let tap = null, tapDoneAt = -1e9;
+  const svgEl = svg.node();
+  function nodeAt(cx, cy) {
+    const r = svgEl.getBoundingClientRect(), t = d3.zoomTransform(svgEl);
+    let best = null, bestGap = Infinity;
+    nodeSel.each(function (n) {
+      if (isHidden(n)) return;
+      const sx = r.left + t.applyX(n.x), sy = r.top + t.applyY(n.y);
+      let gap = Math.max(0, Math.hypot(cx - sx, cy - sy) - radius(n) * t.k);
+      const lb = this.querySelector("text.label:not(.bg)").getBoundingClientRect();   // the name under the circle counts too
+      const dx = Math.max(lb.left - cx, 0, cx - lb.right), dy = Math.max(lb.top - cy, 0, cy - lb.bottom);
+      gap = Math.min(gap, Math.hypot(dx, dy) + 2);
+      if (gap < bestGap) { bestGap = gap; best = n; }
+    });
+    return bestGap <= NODE_REACH ? best : null;
+  }
+  function linkAt(cx, cy) {
+    const r = svgEl.getBoundingClientRect(), t = d3.zoomTransform(svgEl);
+    let best = null, bestD = LINK_REACH;
+    links.forEach(l => {
+      if (linkHidden(l)) return;
+      const ax = r.left + t.applyX(l.source.x), ay = r.top + t.applyY(l.source.y);
+      const bx = r.left + t.applyX(l.target.x), by = r.top + t.applyY(l.target.y);
+      const vx = bx - ax, vy = by - ay, len2 = vx * vx + vy * vy || 1;
+      const u = Math.max(0, Math.min(1, ((cx - ax) * vx + (cy - ay) * vy) / len2));
+      const d = Math.hypot(cx - ax - u * vx, cy - ay - u * vy);
+      if (d < bestD) { bestD = d; best = l; }
+    });
+    return best;
+  }
+  function handleTap(target, cx, cy) {
+    tip.classList.remove("show");
+    const title = target.closest && target.closest(".halo text.t");
+    if (title) { zoomToCluster(d3.select(title).datum()); return; }
+    const hit = target.closest && target.closest(".node");
+    const n = hit && !isHidden(d3.select(hit).datum()) ? d3.select(hit).datum() : nodeAt(cx, cy);
+    if (n) { select(n.id); return; }
+    const lh = target.closest && target.closest(".link-hit");
+    const l = lh ? d3.select(lh).datum() : linkAt(cx, cy);
+    if (l) { selectLink(l); return; }
+    reset();
+  }
+  svgEl.addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse") return;
+    tap = e.isPrimary ? { id: e.pointerId, x: e.clientX, y: e.clientY, t: e.timeStamp, target: e.target } : null;   // 2nd finger = pinch
+  }, true);
+  svgEl.addEventListener("pointermove", e => {
+    if (tap && e.pointerId === tap.id && Math.hypot(e.clientX - tap.x, e.clientY - tap.y) > TAP_MOVE) tap = null;
+  }, true);
+  svgEl.addEventListener("pointercancel", () => { tap = null; }, true);
+  svgEl.addEventListener("pointerup", e => {
+    if (!tap || e.pointerId !== tap.id) return;
+    const t = tap; tap = null;
+    if (e.timeStamp - t.t > TAP_TIME) return;
+    tapDoneAt = performance.now();
+    handleTap(t.target, t.x, t.y);
+  }, true);
+  // the phone's own (late) click after a tap we already handled: drop it so nothing runs twice
+  svgEl.addEventListener("click", e => {
+    if (performance.now() - tapDoneAt < 800) { e.stopPropagation(); e.preventDefault(); }
+  }, true);
 
   svg.on("click", reset);
   resetBtn.addEventListener("click", reset);
