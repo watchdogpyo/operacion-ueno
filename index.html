@@ -1273,7 +1273,7 @@
       const other = dir === "OUT" ? l.target : l.source;
       lines.push({ t: "" });
       lines.push({
-        t: (dir === "OUT" ? "  ──▶ SALE   " : "  ◀── ENTRA  ") + l.code + "  " + display(other),
+        t: (dir === "OUT" ? "  ↗ SALE    " : "  ↘ ENTRA   ") + l.code + "  " + display(other),
         c: "bold",
         onClick: () => select(other.id),
         onEnter: () => highlight({ type: "link", link: l }),
