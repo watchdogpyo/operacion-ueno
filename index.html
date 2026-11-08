@@ -644,6 +644,12 @@
       titulo: "Ueno Bank: BVA suspende a Ueno y Valores Casa de Bolsa por falta de fondos para cumplir operaciones",
       url: "https://www.abc.com.py/economia/2026/11/06/ueno-bank-bva-suspende-a-ueno-y-valores-casa-de-bolsa-por-falta-de-fondos-para-cumplir-operaciones/"
     },
+    "bvsa-nota-182-2025": {
+      medio: "Ueno Casa de Bolsa, Nota SG N° 182/2025 (comunicación de hecho relevante a la SIV y a la BVA)",
+      fecha: "04/07/2025",
+      titulo: "Canje de 10.820 acciones de Ueno Casa de Bolsa entre Grupo Vázquez S.A.E. y U Paraguay S.A. (30/06/2025)",
+      url: "https://www.bolsadevalores.com.py/uploads/2025/07/Nota-SG-Nro.-182-Comunicacio%CC%81n-de-Hecho-Relevante.pdf"
+    },
     "abc-2026-11-04": {
       medio: "ABC Color",
       fecha: "04/11/2026",
@@ -785,8 +791,13 @@
     { source: "fernandez_v",   target: "mef",     desc: "Ministro de Economía cuando el MEF colocó fondos de la Caja Fiscal en ueno a cinco años (julio 2025, Resolución MEF N° 338/2025). Monto: USD 41,6 millones (G. 250.000 millones). Intereses pendientes de devengar entre 2026 y 2030: G. 123.838 millones. Según Última Hora, el MEF denunció el 05/11/2026 que esos fondos están en riesgo.", src: ["ultimahora-2026-11-05"] },
     // Added from ABC Color (06/11/2026): BVA suspensions of the two brokerages
     { source: "bva",         target: "valores",  desc: "Suspensión preventiva de Valores Casa de Bolsa (BVA Nº 224/26) por fallas repetidas en la liquidación de reportos: 29/10, 02/11 y 04/11/2026. No comunicó estos hechos directamente a la BVA. Sin plazo definido; el levantamiento lo decide la BVA y se comunica a la Superintendencia de Valores.", src: ["abc-2026-11-06-bva"] },
-    { source: "bva",         target: "ueno_cdb", desc: "Suspensión preventiva de Ueno Casa de Bolsa (BVA Nº 222/26) por no contar con todos los fondos para la recompra de reportos el 03/11/2026. Según nota de sus representantes legales, los vencimientos no se liquidarán \u201chasta nuevo aviso\u201d. El artículo no precisa montos. Sin plazo definido.", src: ["abc-2026-11-06-bva"] }
+    { source: "bva",         target: "ueno_cdb", desc: "Suspensión preventiva de Ueno Casa de Bolsa (BVA Nº 222/26) por no contar con todos los fondos para la recompra de reportos el 03/11/2026. Según nota de sus representantes legales, los vencimientos no se liquidarán \u201chasta nuevo aviso\u201d. El artículo no precisa montos. Sin plazo definido.", src: ["abc-2026-11-06-bva"] },
+    // Added from Nota SG N° 182/2025 (Ueno Casa de Bolsa to SIV and BVA, 04/07/2025): ownership of Ueno Casa de Bolsa
+    { source: "gv",          target: "ueno_cdb", desc: "Parte del canje de 10.820 acciones de Ueno Casa de Bolsa realizado el 30/06/2025 (Gs. 10.820.000.000 total; acciones ordinarias de voto simple).", src: ["bvsa-nota-182-2025"] },
+    { source: "upy",         target: "ueno_cdb", desc: "Parte del canje de 10.820 acciones de Ueno Casa de Bolsa realizado el 30/06/2025 (Gs. 10.820.000.000 total; acciones ordinarias de voto simple).", src: ["bvsa-nota-182-2025"] },
+    { source: "lux",         target: "ueno_cdb", desc: "Empresa del ecosistema U Holdings (según la presentación de U Holdings, que lista a 'ueno C.B.S.A.'). POR CONFIRMAR que 'ueno C.B.S.A.' sea Ueno Casa de Bolsa S.A." }
   ];
+
 
   /* ---------- derived fields ---------- */
   nodes.forEach((n, i) => n.code = "N-" + String(i).padStart(2, "0"));
