@@ -628,7 +628,9 @@
     { id: "fernandez_v",   label: "Carlos Fernández Valdovinos",       role: "Ex ministro de Economía (durante la colocación de fondos de la Caja Fiscal en ueno, jul. 2025)", group: "political", short: "C. Fernández Valdovinos" },
     // Added from ABC Color (06/11/2026): both brokerages suspended by the BVA. Ueno CdB and Valores CdB are brokerages, not the bank itself.
     { id: "ueno_cdb",      label: "Ueno Casa de Bolsa SA",             role: "Suspendida por la BVA (06/11/2026): falla en reporto del 03/11/2026, sin plazo para levantar la medida", group: "satellite", short: "Ueno CdB" },
-    { id: "bva",           label: "Bolsa de Valores de Asunción (BVA)", role: "Suspendió preventivamente a Ueno CdB y Valores CdB por incumplimientos en reportos", group: "regulator", short: "BVA" }
+    { id: "bva",           label: "Bolsa de Valores de Asunción (BVA)", role: "Suspendió preventivamente a Ueno CdB y Valores CdB por incumplimientos en reportos", group: "regulator", short: "BVA" },
+    // Added from ABC Color (07/11/2026): director of Ueno Casa de Bolsa. Appended so existing codes stay the same
+    { id: "abreu",         label: "Joshua Abreu",                      role: "Director de Ueno Casa de Bolsa SA. Ex Superintendente de Valores del BCP (2023–2024)", group: "executive" }
   ];
 
   /* ---------------------------------------------------------------
@@ -733,6 +735,12 @@
       fecha: "13/10/2026 y 15/10/2026",
       titulo: "Orden de transferencia N° 25/2026 (G. 50.000 M desde Interfisa) y N° 28/2026 (G. 20.000 M desde BNF) a ueno bank",
       url: "https://x.com/hectordalegre/status/2119058915094630612"
+    },
+    "abc-2026-11-07-abreu": {
+      medio: "ABC Color",
+      fecha: "07/11/2026",
+      titulo: "La trompeta sonó: la reacción en la iglesia de Joshua Abreu tras la suspensión de Ueno Casa de Bolsa",
+      url: "https://www.abc.com.py/politica/2026/11/07/y-la-trompeta-sono-ueno-casa-bolsa-de-joshua-abreu-fue-suspendida-esto-dicen-en-su-iglesia/"
     }
   };
 
@@ -869,7 +877,9 @@
     { source: "rey", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 68 acciones (0,031%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
     { source: "egb", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 43 acciones (0,019%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
     { source: "jg", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 41 acciones (0,018%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
-    { source: "astigarraga", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 3 acciones (0,001%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] }
+    { source: "astigarraga", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 3 acciones (0,001%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
+    // Added from ABC Color (07/11/2026): director of Ueno Casa de Bolsa (no amount given in the article)
+    { source: "abreu", target: "ueno_cdb", desc: "Director de Ueno Casa de Bolsa SA según ABC (07/11/2026). La BVA suspendió preventivamente a esa casa de bolsa por falta de fondos para cumplir operaciones.", src: ["abc-2026-11-07-abreu"] }
   ];
 
 
