@@ -500,7 +500,7 @@
     { id: "gv",            label: "Grupo Vázquez SAE",                 role: "Holding",                                       group: "holding",    ax: 520,  ay: -330 },
     { id: "fmvv",          label: "Federico Miguel Vázquez",           role: "Accionista principal",                          group: "executive",  ax: 720,  ay: -480, short: "F. Miguel Vázquez" },
     { id: "vhv",           label: "Víctor Hugo Vázquez",               role: "Fundador de Credicentro",                       group: "executive",  ax: 760,  ay: -310 },
-    { id: "jg",            label: "Juan Manuel Gustale",               role: "Ex presidente de ueno / Ex BNF",                group: "executive", cat: "pep",  ax: 60,   ay: -500 },
+    { id: "jg",            label: "Juan Manuel Gustale",               role: "Directivo de ueno bank. Imputado",                group: "executive",  ax: 60,   ay: -500 },
     { id: "dg",            label: "Diego Gómez",                       role: "CEO de Hanoi SA (Monchis); propietario de Grupo M desde 30/09/2025",          group: "executive",  ax: 780,  ay: 380 },
     { id: "ou",            label: "Óscar Urdapilleta",                 role: "Vicepresidente de Grupo Hendy; propietario de Grupo M desde 30/09/2025. Imputado",                            group: "executive",  ax: 640,  ay: 520 },
     // Satellites (the drain)
@@ -661,14 +661,13 @@
     { source: "sp",            target: "fp",      desc: "Vínculo familiar directo (Hermano).", src: ["abc-2025-04-20"] },
     { source: "sp",            target: "serenella", desc: "Nuera del Presidente: Serenella Argaña, esposa de Gonzalo Peña Ocampos, hijo del Presidente.", src: ["ultimahora-2026-11-07"] },
     { source: "serenella",     target: "muar",    desc: "Muar SRL es una empresa de Serenella Argaña, nuera del Presidente (según Última Hora).", src: ["ultimahora-2026-11-07"] },
-    { source: "gpo",           target: "serenella", desc: "Casada con Gonzalo Peña Ocampos. Dato del mantenedor del mapa: falta una fuente que lo confirme.", },
+    { source: "gpo",           target: "serenella", desc: "Casada con Gonzalo Peña Ocampos, hijo del Presidente.", },
     { source: "vision",        target: "ueno",    desc: "Absorción (Junio 2024) para expansión acelerada." },
     { source: "gv",            target: "comercio",desc: "Adquisición en 2021, antecedente histórico del banco." },
     { source: "comercio",      target: "ueno",    desc: "Evolución corporativa hacia banco digital." },
     // Regulators
     { source: "cv",            target: "ueno",    desc: "Puerta Giratoria: De presidente de ueno a BCP." },
     { source: "cv",            target: "bn",      desc: "Presentación de renuncia al titular del Senado." },
-    { source: "jg",            target: "ueno",    desc: "Puerta Giratoria: Del BNF a presidente de ueno." },
     { source: "bcp_dir",       target: "ueno",    desc: "Directorio BCP. Oficializaron el procedimiento de resolución del banco." },
     // Holding & the drain (outflow)
     { source: "fmvv",          target: "gv",      desc: "Principal accionista de Grupo Vázquez." },
