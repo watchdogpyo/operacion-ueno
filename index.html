@@ -305,6 +305,7 @@
   }
   .term-bar button:hover { border-color: var(--white); color: var(--white); }
   .term-bar button[hidden] { display: none; }
+  #reset .k-phone { display: none; }
 
   .search {
     position: relative;
@@ -416,8 +417,17 @@
   @media (max-width: 760px) {
     :root { --sidebar-w: 0px; --panel-h: 42vh; }
     @supports (height: 100dvh) { :root { --panel-h: 42dvh; } }   /* follows the phone's address bar */
-    #stage { inset: 0 0 var(--panel-h) 0; }
-    aside { top: auto; left: 0; width: 100%; height: var(--panel-h); border-left: none; border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); }
+    #stage { inset: 0; }   /* the map fills the screen; the panel slides over its lower part */
+    aside { top: auto; left: 0; width: 100%; height: var(--panel-h); border-left: none; border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); transition: height .28s cubic-bezier(.2, .8, .2, 1); }
+    aside.dragging { transition: none; }
+    /* the title bar becomes the grab handle: drag it (or tap it) to make the panel smaller or bigger */
+    .term-bar { justify-content: flex-end; height: 30px; padding: 0 14px; position: relative; cursor: grab; }
+    .term-bar::before { content: ""; position: absolute; left: 50%; top: 50%; width: 44px; height: 4px; margin: -2px 0 0 -22px; background: var(--gray); }
+    .term-bar .dots, #term-title { display: none; }
+    .term-bar button { padding: 2px 8px; }
+    #reset .k-desk { display: none; }
+    #reset .k-phone { display: inline; }
+    .term-foot { display: none; }
     .search input { font-size: 16px; }   /* 16px+ stops iPhones from zooming the page when typing */
     .search kbd { display: none; }
     #filterBtn { width: 40px; height: 36px; }
@@ -434,6 +444,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .link-flow, .cursor { animation: none; }
+    aside { transition: none; }
   }
 </style>
 </head>
@@ -466,7 +477,7 @@
   <div class="term-bar">
     <div class="dots"><i></i><i></i><i></i></div>
     <span id="term-title">tty://watchdog/archivo_01</span>
-    <button id="reset" hidden>[ ESC ]</button>
+    <button id="reset" hidden aria-label="Cerrar"><span class="k-desk">[ ESC ]</span><span class="k-phone">[ CERRAR ]</span></button>
   </div>
   <div class="search">
     <span class="prompt">&gt;</span>
@@ -1233,6 +1244,63 @@
   const stage = document.getElementById("stage");
   let W = stage.clientWidth, H = stage.clientHeight;
 
+  /* ---------- phone: the panel slides between 3 heights ----------
+     peek = mostly map, half = map and text, full = reading (a strip of the map stays on top).
+     Drag the grab bar (the top row of the panel) or tap it. */
+  const phone = window.matchMedia("(max-width: 760px)");
+  const asideEl = document.querySelector("aside");
+  const grab = asideEl.querySelector(".term-bar");
+  const SNAPS = ["peek", "half", "full"];
+  let snap = "half";
+  function panelPx(s) {
+    const ih = window.innerHeight;
+    if (s === "peek") return Math.min(200, Math.round(ih * 0.4));
+    if (s === "full") return Math.max(ih - 140, Math.round(ih * 0.6));   // keeps the title row and a strip of map
+    return Math.round(ih * 0.42);
+  }
+  const coverPx = () => phone.matches ? panelPx(snap) : 0;   // how much of the map the panel hides
+  function setSnap(s) {
+    snap = s;
+    asideEl.dataset.snap = s;
+    asideEl.style.height = phone.matches ? panelPx(s) + "px" : "";
+  }
+  setSnap("half");
+  phone.addEventListener("change", () => setSnap(snap));
+  let drag = null;
+  grab.addEventListener("pointerdown", e => {
+    if (!phone.matches || e.target.closest("button")) return;
+    drag = { id: e.pointerId, y: e.clientY, h: asideEl.offsetHeight, moved: false, lastY: e.clientY, lastT: e.timeStamp, v: 0 };
+    grab.setPointerCapture(e.pointerId);
+    asideEl.classList.add("dragging");
+  });
+  grab.addEventListener("pointermove", e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dy = e.clientY - drag.y;
+    if (Math.abs(dy) > 6) drag.moved = true;
+    asideEl.style.height = Math.max(panelPx("peek") - 40, Math.min(panelPx("full") + 20, drag.h - dy)) + "px";
+    const dt = e.timeStamp - drag.lastT;
+    if (dt > 0) { drag.v = (e.clientY - drag.lastY) / dt; drag.lastY = e.clientY; drag.lastT = e.timeStamp; }
+  });
+  function endDrag(e) {
+    if (!drag || e.pointerId !== drag.id) return;
+    const d = drag; drag = null;
+    asideEl.classList.remove("dragging");
+    if (!d.moved) { setSnap(snap === "half" ? "full" : "half"); return; }   // a tap on the bar
+    const h = asideEl.offsetHeight;
+    const v = e.timeStamp - d.lastT > 120 ? 0 : d.v;   // finger stopped before lifting: no fling
+    let next;
+    if (Math.abs(v) > 0.4) {   // a quick flick goes to the next height in that direction
+      next = v < 0 ? (SNAPS.find(s => panelPx(s) > h + 1) || "full")
+                   : (SNAPS.slice().reverse().find(s => panelPx(s) < h - 1) || "peek");
+    } else {
+      next = SNAPS.reduce((a, b) => Math.abs(panelPx(b) - h) < Math.abs(panelPx(a) - h) ? b : a);
+    }
+    setSnap(next);
+  }
+  grab.addEventListener("pointerup", endDrag);
+  grab.addEventListener("pointercancel", endDrag);
+
+
   const svg = d3.select(stage).append("svg").attr("role", "img")
     .attr("aria-label", "Red de conexiones del caso ueno");
 
@@ -1547,7 +1615,7 @@
 
   function fitView(animate) {
     const small = W < 760;
-    const padX = small ? 16 : 48, padTop = small ? 86 : 70, padBottom = small ? 16 : 64;   // desktop: room for the one-row legend
+    const padX = small ? 16 : 48, padTop = small ? 86 : 70, padBottom = (small ? 16 : 64) + coverPx();   // desktop: room for the one-row legend
     const shown = nodes.filter(n => !isHidden(n));
     const availW = W - padX * 2, availH = H - padTop - padBottom;
     // twice: the cluster titles grow when the map is zoomed out, so measure again at the new zoom
@@ -1578,7 +1646,7 @@
     const { x0, y0, x1, y1 } = boxOfNodes(nodes.filter(n => n.cl === c && !isHidden(n)));
     if (x0 === Infinity) return;
     const pad = W < 760 ? 16 : 48, padTop = W < 760 ? 86 : 70;
-    const availW = W - pad * 2, availH = H - padTop - pad;
+    const availW = W - pad * 2, availH = H - padTop - pad - coverPx();
     const k = Math.min(1.8, availW / (x1 - x0), availH / (y1 - y0));
     const tr = d3.zoomIdentity.translate(pad + availW / 2 - k * (x0 + x1) / 2, padTop + availH / 2 - k * (y0 + y1) / 2).scale(k);
     svg.transition().duration(800).call(zoom.transform, tr);
@@ -1688,6 +1756,7 @@
 
   // Each line: { t: text, c: class, instant: bool, onClick, onEnter, onLeave }
   function type(lines) {
+    if (phone.matches) lines = lines.filter(L => !L.deco);   // phones: no room for the fake log lines
     const token = ++typingToken;
     term.innerHTML = "";
     term.scrollTop = 0;
@@ -1709,7 +1778,7 @@
       }
       if (L.onClick) {
         el.classList.add("link-line");
-        el.addEventListener("click", L.onClick);
+        el.addEventListener("click", e => { L.onClick(e); if (phone.matches) centerOnSelected(); });   // phone: show where it is on the map
         if (L.onEnter) el.addEventListener("mouseenter", L.onEnter);
         if (L.onLeave) el.addEventListener("mouseleave", L.onLeave);
       }
@@ -1742,9 +1811,9 @@
     resetBtn.hidden = true;
     const count = g => nodes.filter(n => n.group === g).length;
     const lines = [
-      { t: "[" + ts() + "] SESIÓN ABIERTA · TLS OK", c: "muted" },
-      { t: "[" + ts() + "] montando /archivo/01 ... listo", c: "muted" },
-      { t: "" },
+      { t: "[" + ts() + "] SESIÓN ABIERTA · TLS OK", c: "muted", deco: true },
+      { t: "[" + ts() + "] montando /archivo/01 ... listo", c: "muted", deco: true },
+      { t: "", deco: true },
       { t: "ARCHIVO [01] // OPERACIÓN: UENO", c: "bold" },
       { t: RULE, c: "rule", instant: true },
       { t: "CLASIF.    : ██████████ / USO PERIODÍSTICO", c: "gray" },
@@ -1823,9 +1892,9 @@
     const out = links.filter(l => l.source.id === n.id);
     const inc = links.filter(l => l.target.id === n.id);
     const lines = [
-      { t: "[" + ts() + "] $ consultar --entidad=" + n.id, c: "muted" },
-      { t: "[" + ts() + "] 200 OK · " + (out.length + inc.length) + " registros", c: "muted" },
-      { t: "" },
+      { t: "[" + ts() + "] $ consultar --entidad=" + n.id, c: "muted", deco: true },
+      { t: "[" + ts() + "] 200 OK · " + (out.length + inc.length) + " registros", c: "muted", deco: true },
+      { t: "", deco: true },
       { t: n.code + " // " + GROUPS[n.group].name, c: "inv" },
       { t: n.label, c: "big" },
       { t: RULE, c: "rule", instant: true },
@@ -1870,8 +1939,8 @@
     termTitle.textContent = "tty://archivo_01/" + l.code.toLowerCase();
     resetBtn.hidden = false;
     const lines = [
-      { t: "[" + ts() + "] $ rastrear --vinculo=" + l.code, c: "muted" },
-      { t: "" },
+      { t: "[" + ts() + "] $ rastrear --vinculo=" + l.code, c: "muted", deco: true },
+      { t: "", deco: true },
       { t: l.code + " // VÍNCULO", c: "inv" },
       { t: display(l.source) + " → " + display(l.target), c: "big" },
       { t: RULE, c: "rule", instant: true },
@@ -1990,12 +2059,14 @@
   function select(id) {
     if (isHidden(byId.get(id))) clearFilter();   // asked for something the filter hides → show everything
     selected = { type: "node", id };
+    if (phone.matches) setSnap("half");   // map and text both visible
     highlight(selected);
     nodeScreen(byId.get(id));
   }
   function selectLink(l) {
     if (linkHidden(l)) clearFilter();
     selected = { type: "link", link: l };
+    if (phone.matches) setSnap("half");
     highlight(selected);
     linkScreen(l);
   }
@@ -2003,6 +2074,7 @@
     const qi = document.getElementById("q");
     if (qi && qi.value) { qi.value = ""; qi.dispatchEvent(new Event("input")); }
     selected = null;
+    if (phone.matches && snap === "full") setSnap("half");
     highlight(null);
     homeScreen();
   }
@@ -2113,6 +2185,7 @@
   }
   function handleTap(target, cx, cy) {
     tip.classList.remove("show");
+    if (phone.matches && snap === "full") { setSnap("half"); return; }   // reading: a tap on the map just lowers the panel
     const title = target.closest && target.closest(".halo text.t");
     if (title) { zoomToCluster(d3.select(title).datum()); return; }
     const hit = target.closest && target.closest(".node");
@@ -2260,6 +2333,7 @@
   let rz;
   window.addEventListener("resize", () => {
     W = stage.clientWidth; H = stage.clientHeight;
+    setSnap(snap);
     drawGrid();
     clearTimeout(rz); rz = setTimeout(() => fitView(true), 200);
   });
@@ -2347,8 +2421,14 @@
   function centerOn(x, y) {
     const [kMin, kMax] = zoom.scaleExtent();
     const k = Math.min(kMax, Math.max(d3.zoomTransform(svg.node()).k, 0.85, kMin));
-    const t = d3.zoomIdentity.translate(W / 2 - k * x, H / 2 - k * y).scale(k);
+    const t = d3.zoomIdentity.translate(W / 2 - k * x, (H - coverPx()) / 2 - k * y).scale(k);
     svg.transition().duration(700).call(zoom.transform, zoom.constrain()(t, [[0, 0], [W, H]], zoom.translateExtent()));
+  }
+
+  function centerOnSelected() {
+    if (!selected) return;
+    if (selected.type === "node") { const n = byId.get(selected.id); centerOn(n.x, n.y); }
+    else { const l = selected.link; centerOn((l.source.x + l.target.x) / 2, (l.source.y + l.target.y) / 2); }
   }
 
   function choose(i) {
@@ -2370,7 +2450,7 @@
   }
 
   q.addEventListener("input", runSearch);
-  q.addEventListener("focus", () => { if (q.value.trim()) runSearch(); });
+  q.addEventListener("focus", () => { if (phone.matches) setSnap("full"); if (q.value.trim()) runSearch(); });
   q.addEventListener("keydown", e => {
     if (e.key === "ArrowDown") { e.preventDefault(); if (hits.length) setCursor((cursorIdx + 1) % hits.length); }
     else if (e.key === "ArrowUp") { e.preventDefault(); if (hits.length) setCursor((cursorIdx - 1 + hits.length) % hits.length); }
