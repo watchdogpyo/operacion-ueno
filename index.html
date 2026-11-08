@@ -159,6 +159,14 @@
     width: 32px; height: 28px; padding: 0; cursor: pointer;
   }
   #filterBtn:hover, #filterBtn[aria-expanded="true"] { border-color: var(--white); color: var(--white); }
+  /* "+" call to action: opens the GitHub "new link or correction" form */
+  #addBtn {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg); border: 1px solid var(--dim); color: var(--gray);
+    width: 32px; height: 28px; text-decoration: none; cursor: pointer;
+  }
+  #addBtn:hover { background: var(--white); border-color: var(--white); color: var(--bg); }
+  #addBtn:focus-visible { outline: 1px dashed var(--white); outline-offset: 2px; }
   #filterBtn.on { background: var(--white); border-color: var(--white); color: var(--bg); font-weight: 700; }
   #filterPanel {
     position: absolute; right: 0; top: calc(100% + 6px);
@@ -414,6 +422,7 @@
     .search input { font-size: 16px; }   /* 16px+ stops iPhones from zooming the page when typing */
     .search kbd { display: none; }
     #filterBtn { width: 40px; height: 36px; }
+    #addBtn { position: fixed; top: 44px; left: 132px; width: 36px; height: 30px; }   /* second row, next to Grupos/Libre: the title row has no spare room */
     #viewSw { position: fixed; top: 44px; left: 14px; height: 30px; }   /* under the title, so it never covers it */
     #viewSw button { padding: 0 9px; font-size: 9px; }
     header { top: 12px; left: 14px; gap: 8px; }
@@ -444,6 +453,9 @@
     <button type="button" data-view="groups" title="Vista por grupos: cada grupo en su círculo">Grupos</button>
     <button type="button" data-view="free" title="Vista libre: la red original, todo conectado">Libre</button>
   </div>
+  <a id="addBtn" href="https://github.com/watchdogpyo/operacion-ueno/issues/new?template=nuevo-vinculo.yml" target="_blank" rel="noopener noreferrer" aria-label="Proponer un vínculo o corrección en GitHub (se abre en otra pestaña)" title="Proponer un vínculo o corrección (abre GitHub)">
+    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" fill="none"/></svg>
+  </a>
   <button id="filterBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="filterPanel" aria-label="Filtro del mapa" title="Filtro: elegí qué entidades mostrar en el mapa">
     <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M1 1.5h14M4 6h8M6.5 10.5h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" fill="none"/></svg>
   </button>
