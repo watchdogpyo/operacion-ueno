@@ -1,0 +1,54 @@
+name: Nuevo vínculo o corrección
+description: Proponer una entidad, un vínculo nuevo, o corregir algo del mapa
+title: "[Vínculo] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por colaborar. **Sin fuente pública, la propuesta no se puede agregar.**
+        No incluyas datos privados (domicilios, teléfonos, documentos de identidad).
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: ¿Qué tipo de propuesta es?
+      options:
+        - Nuevo vínculo
+        - Nueva entidad (persona, empresa, organismo)
+        - Corrección de algo que ya está en el mapa
+    validations:
+      required: true
+  - type: input
+    id: entidad1
+    attributes:
+      label: Entidad 1 (quién)
+      placeholder: "Ej.: Empresa X S.A."
+    validations:
+      required: true
+  - type: input
+    id: entidad2
+    attributes:
+      label: Entidad 2 (con quién)
+      placeholder: "Ej.: ueno bank"
+  - type: textarea
+    id: relacion
+    attributes:
+      label: Relación
+      description: Qué dice la fuente, con montos y fechas si los hay. Hechos, no opiniones.
+    validations:
+      required: true
+  - type: textarea
+    id: fuentes
+    attributes:
+      label: Fuente(s) — enlace obligatorio
+      placeholder: "https://..."
+    validations:
+      required: true
+  - type: dropdown
+    id: identidad
+    attributes:
+      label: ¿La fuente confirma la identidad de las personas mencionadas?
+      options:
+        - Sí, la fuente la confirma
+        - No / no estoy seguro
+    validations:
+      required: true
