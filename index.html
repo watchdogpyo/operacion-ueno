@@ -55,8 +55,10 @@
   .halo text {
     font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .12em;
     fill: #7D828C; text-anchor: middle; pointer-events: none;
-    paint-order: stroke; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round;
   }
+  /* dark outline drawn as its own copy UNDER the text (iPhones paint "paint-order: stroke"
+     letter by letter, so each letter's outline covered the previous letter) */
+  .halo text.bg { fill: none; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }
   .halo text.t { pointer-events: auto; cursor: zoom-in; }
   .halo text.t:hover { fill: var(--white); }
   .halo.hidden { display: none; }
@@ -124,11 +126,8 @@
     fill: var(--white);
     text-anchor: middle;
     pointer-events: none;
-    paint-order: stroke;
-    stroke: var(--bg);
-    stroke-width: 5px;
-    stroke-linejoin: round;
   }
+  .node .label.bg { fill: none; stroke: var(--bg); stroke-width: 5px; stroke-linejoin: round; }   /* outline layer, see .halo text.bg */
   .node .code {
     font-family: var(--mono);
     font-size: 9px;
@@ -1278,10 +1277,11 @@
   const nodeG = world.append("g");
   const haloSel = haloG.selectAll("g.halo").data(CLUSTERS).join("g").attr("class", "halo");
   haloSel.append("path");
+  haloSel.append("text").attr("class", "bg").attr("aria-hidden", "true").text(c => c.title);
   haloSel.append("text").attr("class", "t").text(c => c.title)
     .append("title").text("Clic para acercar este grupo");
   // cluster titles stay readable on screen when the whole map is zoomed out
-  onZoom = k => haloSel.select("text").style("font-size", ((W < 760 ? 7 : 11) / Math.min(1, k)).toFixed(1) + "px");
+  onZoom = k => haloSel.selectAll("text").style("font-size", ((W < 760 ? 7 : 11) / Math.min(1, k)).toFixed(1) + "px");
 
   const linkSel = linkG.selectAll("g.l").data(links).join("g").attr("class", "l");
   const linkPath = linkSel.append("line").attr("class", "link").attr("marker-end", "url(#arrow)");
@@ -1318,6 +1318,9 @@
     }
     g.select(".core").style("fill", CATS[d.cat].color);   // center dot = category color
   });
+  nodeSel.append("text").attr("class", "label bg").attr("aria-hidden", "true")
+    .attr("dy", d => radius(d) + (hasOuter(d) ? 24 : 16))
+    .text(display);
   nodeSel.append("text").attr("class", "label")
     .attr("dy", d => radius(d) + (hasOuter(d) ? 24 : 16))
     .text(display);
@@ -1465,7 +1468,7 @@
         tx = (d3.min(hull, p => p[0]) + d3.max(hull, p => p[0])) / 2; ty = d3.min(hull, p => p[1]) - 8;
       }
       g.select("path").attr("d", d);
-      g.select("text").attr("x", tx).attr("y", ty);
+      g.selectAll("text").attr("x", tx).attr("y", ty);
     });
   }
   ticked();
@@ -1519,7 +1522,7 @@
     const cls = new Set(view === "groups" ? list.map(n => n.cl).filter(Boolean) : []);
     haloSel.each(function (c) {
       if (!cls.has(c)) return;
-      const b = this.querySelector("path").getBBox(), t = this.querySelector("text").getBBox();
+      const b = this.querySelector("path").getBBox(), t = this.querySelector("text.t").getBBox();
       x0 = Math.min(x0, b.x, t.x); x1 = Math.max(x1, b.x + b.width, t.x + t.width);
       y0 = Math.min(y0, b.y, t.y); y1 = Math.max(y1, b.y + b.height);
     });
