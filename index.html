@@ -895,8 +895,9 @@
   drawGrid();
 
   const world = svg.append("g");
-  // The map can't be zoomed out past "whole map on screen" nor dragged off into empty canvas:
-  // fitView() sets both limits to the fitted view (zooming in still lets you move around inside it).
+  // Phones/tablets: the map can't be zoomed out past "whole map on screen" nor dragged off into empty canvas
+  // (fitView() sets both limits to the fitted view). Desktop keeps free zoom-out and free panning.
+  const limitToFit = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
   const zoom = d3.zoom().scaleExtent([0.2, 3]).on("zoom", e => world.attr("transform", e.transform));
   svg.call(zoom).on("dblclick.zoom", null);
 
@@ -1047,8 +1048,13 @@
     const tx = padX + availW / 2 - k * (x0 + x1) / 2;
     const ty = padTop + availH / 2 - k * (y0 + y1) / 2;
     const tr = d3.zoomIdentity.translate(tx, ty).scale(k);
-    zoom.scaleExtent([k, Math.max(3, k * 6)])
-      .translateExtent([[-tx / k, -ty / k], [(W - tx) / k, (H - ty) / k]]);
+    if (limitToFit) {
+      zoom.scaleExtent([k, Math.max(3, k * 6)])
+        .translateExtent([[-tx / k, -ty / k], [(W - tx) / k, (H - ty) / k]]);
+    } else {
+      zoom.scaleExtent([0.2, 3])
+        .translateExtent([[-Infinity, -Infinity], [Infinity, Infinity]]);
+    }
     (animate ? svg.transition().duration(800) : svg).call(zoom.transform, tr);
   }
   fitView(false);
