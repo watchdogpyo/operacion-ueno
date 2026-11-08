@@ -644,6 +644,12 @@
       titulo: "Ueno Bank: BVA suspende a Ueno y Valores Casa de Bolsa por falta de fondos para cumplir operaciones",
       url: "https://www.abc.com.py/economia/2026/11/06/ueno-bank-bva-suspende-a-ueno-y-valores-casa-de-bolsa-por-falta-de-fondos-para-cumplir-operaciones/"
     },
+    "ueno-nomina-holdings-2025": {
+      medio: "ueno (nómina de accionistas de U Holdings S.à r.l., publicada en ueno.com.py)",
+      fecha: "Composición accionaria al 12/03/2025",
+      titulo: "Nómina de accionistas de U Holdings S.à r.l. (Grupo Vázquez S.A.E.: 206.100 acciones, 92,894%)",
+      url: "https://www.ueno.com.py/wp-content/uploads/2025/04/Nomina-de-accionistas-web-ueno-holdings.pdf"
+    },
     "bvsa-nota-182-2025": {
       medio: "Ueno Casa de Bolsa, Nota SG N° 182/2025 (comunicación de hecho relevante a la SIV y a la BVA)",
       fecha: "04/07/2025",
@@ -795,7 +801,8 @@
     // Added from Nota SG N° 182/2025 (Ueno Casa de Bolsa to SIV and BVA, 04/07/2025): ownership of Ueno Casa de Bolsa
     { source: "gv",          target: "ueno_cdb", desc: "Parte del canje de 10.820 acciones de Ueno Casa de Bolsa realizado el 30/06/2025 (Gs. 10.820.000.000 total; acciones ordinarias de voto simple).", src: ["bvsa-nota-182-2025"] },
     { source: "upy",         target: "ueno_cdb", desc: "Parte del canje de 10.820 acciones de Ueno Casa de Bolsa realizado el 30/06/2025 (Gs. 10.820.000.000 total; acciones ordinarias de voto simple).", src: ["bvsa-nota-182-2025"] },
-    { source: "lux",         target: "ueno_cdb", desc: "Empresa del ecosistema U Holdings (según la presentación de U Holdings, que lista a 'ueno C.B.S.A.'). POR CONFIRMAR que 'ueno C.B.S.A.' sea Ueno Casa de Bolsa S.A." }
+    { source: "lux",         target: "ueno_cdb", desc: "Empresa del ecosistema U Holdings. La nómina de accionistas de U Holdings lista a 'ueno C.B.S.A.', que es Ueno Casa de Bolsa S.A.", src: ["ueno-nomina-holdings-2025"] },
+    { source: "gv",          target: "lux",     desc: "Accionista mayoritario de U Holdings S.à r.l.: 206.100 acciones, 92,894% (nómina de accionistas al 12/03/2025).", src: ["ueno-nomina-holdings-2025"] }
   ];
 
 
