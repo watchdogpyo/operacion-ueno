@@ -10,6 +10,8 @@
 4. **Nada de datos privados** (domicilios, teléfonos, documentos de identidad, menores de edad).
 5. **Las correcciones son bienvenidas**, incluso de las personas que aparecen en el mapa. Si algo está mal, abrí un Issue con la fuente que lo demuestra.
 
+> **¿Te preocupa tu seguridad?** Usá una cuenta de GitHub anónima para colaborar, o enviá la información por mensaje directo (DM) a [@watchdogpyo](https://x.com/watchdogpyo) en Twitter/X.
+
 ## Opción A — Sin programar: abrir un Issue
 
 1. Entrá a la pestaña **Issues** del repositorio → **New issue**.
