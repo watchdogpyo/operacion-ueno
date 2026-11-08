@@ -81,8 +81,8 @@
     stroke-width: var(--w, 1.8);          /* set per line: thinner when its nodes have many connections */
     stroke-linecap: square;
     fill: none;
-    opacity: .5;
-    transition: opacity .35s, stroke-width .2s;
+    stroke-opacity: .5;
+    transition: stroke-opacity .35s, stroke-width .2s;
   }
   .link-flow {
     stroke: var(--bg);
@@ -91,24 +91,25 @@
     fill: none;
     pointer-events: none;
     animation: flow 1.6s linear infinite;
-    transition: opacity .35s;
+    transition: stroke-opacity .35s;
   }
   @keyframes flow { to { stroke-dashoffset: -32; } }
-  .l:not(.money) .link { stroke: #8A8F98; stroke-dasharray: 4 4; opacity: .55; }
+  .l:not(.money) .link { stroke: #8A8F98; stroke-dasharray: 4 4; stroke-opacity: .55; }
   .l:not(.money) .link-flow { display: none; }
-  .l.money .link { opacity: .7; }
+  .l.money .link { stroke-opacity: .7; }
   .l.lit:not(.money) .link { stroke: #C9CDD3; }
   .link-hit { stroke: transparent; stroke-width: 18; fill: none; cursor: pointer; }
-  .link.hover { stroke-width: 4; opacity: 1; }
-  .l.lit .link { opacity: 1; stroke-width: calc(var(--w, 1.8) + 1px); }
+  .link.hover { stroke-width: 4; stroke-opacity: 1; }
+  .l.lit .link { stroke-opacity: 1; stroke-width: calc(var(--w, 1.8) + 1px); }
 
-  .node { cursor: pointer; transition: opacity .35s; outline: none; }
+  .node { cursor: pointer; outline: none; }
+  .node > * { transition: fill-opacity .35s, stroke-opacity .35s; }
   .node:focus-visible .ring { stroke-width: 4; stroke-dasharray: 2 3; }
   .node .ring {
     fill: var(--bg);
     stroke: var(--white);
     stroke-width: 2.4;
-    transition: stroke-width .2s;
+    transition: stroke-width .2s, fill-opacity .35s, stroke-opacity .35s;
   }
   .node .ring-outer { fill: none; stroke: var(--white); stroke-width: 1; }
   .node .core { fill: var(--white); }
@@ -135,14 +136,26 @@
     text-anchor: middle;
     pointer-events: none;
     letter-spacing: .12em;
-    opacity: 0;
-    transition: opacity .15s;
+    fill-opacity: 0;
+    transition: fill-opacity .15s;
   }
-  .node:hover .code, .node.active .code { opacity: 1; fill: var(--gray); }
+  .node:hover .code, .node.active .code { fill-opacity: 1; fill: var(--gray); }
   .node.hub .label { font-family: var(--sans); font-weight: 900; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; }
 
-  .dimmed { opacity: .12; }
-  .node.hidden, .l.hidden { opacity: 0 !important; pointer-events: none; }
+  /* Fading uses fill-/stroke-opacity on each shape, never "opacity" on a group: iPhones (Safari) draw every
+     element with "opacity" on its own offscreen layer, and with ~200 faded items redrawn every frame
+     (the map drifts) the page ran out of memory and crashed as soon as a node was tapped. */
+  .node.dimmed > * { fill-opacity: .12; stroke-opacity: .12; }
+  .node.dimmed .code { fill-opacity: 0; }
+  .l.dimmed .link { stroke-opacity: .08; }
+  .l.dimmed .link-flow { stroke-opacity: .12; }
+  .l.money.lit .link, .l.money .link.hover { marker-end: url(#arrow-lit); }
+  .l.lit:not(.money) .link, .l:not(.money) .link.hover { marker-end: url(#arrow-dim-lit); }
+  .l.money.dimmed .link { marker-end: url(#arrow-fade); }
+  .l.dimmed:not(.money) .link { marker-end: url(#arrow-dim-fade); }
+  .node.hidden, .l.hidden { pointer-events: none; }
+  .node.hidden > *, .l.hidden > * { fill-opacity: 0 !important; stroke-opacity: 0 !important; }
+  .l.hidden .link { marker-end: none; }
 
   /* ---------- FILTER dropdown (top right of the map) ---------- */
   #filter {
@@ -1305,20 +1318,18 @@
     .attr("aria-label", "Red de conexiones del caso ueno");
 
   const defs = svg.append("defs");
-  defs.append("marker")
-    .attr("id", "arrow").attr("viewBox", "0 -5 10 10")
-    .attr("refX", 10).attr("refY", 0)
-    .attr("markerWidth", 6).attr("markerHeight", 6)
-    .attr("markerUnits", "userSpaceOnUse")
-    .attr("orient", "auto")
-    .append("path").attr("d", "M0,-5L10,0L0,5Z").attr("fill", "#FFFFFF");
-  defs.append("marker")
-    .attr("id", "arrow-dim").attr("viewBox", "0 -5 10 10")
-    .attr("refX", 10).attr("refY", 0)
-    .attr("markerWidth", 5).attr("markerHeight", 5)
-    .attr("markerUnits", "userSpaceOnUse")
-    .attr("orient", "auto")
-    .append("path").attr("d", "M0,-5L10,0L0,5Z").attr("fill", "#8A8F98");
+  // arrow heads; the "-fade" copies are used on faded lines (see .dimmed in the CSS)
+  [["arrow", 6, "#FFFFFF", .7], ["arrow-dim", 5, "#8A8F98", .55],
+   ["arrow-lit", 6, "#FFFFFF", 1], ["arrow-dim-lit", 5, "#8A8F98", 1],
+   ["arrow-fade", 6, "#FFFFFF", .08], ["arrow-dim-fade", 5, "#8A8F98", .07]].forEach(([id, size, color, alpha]) => {
+    defs.append("marker")
+      .attr("id", id).attr("viewBox", "0 -5 10 10")
+      .attr("refX", 10).attr("refY", 0)
+      .attr("markerWidth", size).attr("markerHeight", size)
+      .attr("markerUnits", "userSpaceOnUse")
+      .attr("orient", "auto")
+      .append("path").attr("d", "M0,-5L10,0L0,5Z").attr("fill", color).attr("fill-opacity", alpha);
+  });
 
   // Background: architectural grid (fixed frame, does not zoom)
   const bg = svg.append("g").attr("class", "grid");
