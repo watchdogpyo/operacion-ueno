@@ -159,7 +159,7 @@
     width: 32px; height: 28px; padding: 0; cursor: pointer;
   }
   #filterBtn:hover, #filterBtn[aria-expanded="true"] { border-color: var(--white); color: var(--white); }
-  /* "+" call to action: opens the project's GitHub page */
+  /* "+" call to action: opens the GitHub "new link or correction" form */
   #addBtn {
     display: flex; align-items: center; justify-content: center;
     background: var(--bg); border: 1px solid var(--dim); color: var(--gray);
@@ -453,7 +453,7 @@
     <button type="button" data-view="groups" title="Vista por grupos: cada grupo en su círculo">Grupos</button>
     <button type="button" data-view="free" title="Vista libre: la red original, todo conectado">Libre</button>
   </div>
-  <a id="addBtn" href="https://github.com/watchdogpyo/operacion-ueno" target="_blank" rel="noopener noreferrer" aria-label="Ver el proyecto y colaborar en GitHub (se abre en otra pestaña)" title="Colaborar: ver el proyecto en GitHub">
+  <a id="addBtn" href="https://github.com/watchdogpyo/operacion-ueno/issues/new?template=nuevo-vinculo.yml" target="_blank" rel="noopener noreferrer" aria-label="Proponer un vínculo o corrección en GitHub (se abre en otra pestaña)" title="Proponer un vínculo o corrección (abre GitHub)">
     <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" fill="none"/></svg>
   </a>
   <button id="filterBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="filterPanel" aria-label="Filtro del mapa" title="Filtro: elegí qué entidades mostrar en el mapa">
