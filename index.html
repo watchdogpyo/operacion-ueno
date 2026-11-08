@@ -508,7 +508,8 @@
     family:     { name: "ENTORNO FAMILIAR",        r: 13 },
     holding:    { name: "HOLDING",                 r: 19 },
     executive:  { name: "ACCIONISTA / DIRECTIVO",  r: 12 },
-    satellite:  { name: "EMPRESA SATÉLITE",        r: 11 }
+    satellite:  { name: "EMPRESA SATÉLITE",        r: 11 },
+    rating:     { name: "CALIFICADORA DE RIESGO",  r: 13 }
   };
 
   /* Color dots: WHO the entity is (independent from the ring shape, which
@@ -523,9 +524,9 @@
   const CAT_ORDER = ["pep", "family", "company", "state", "person"];
   const GROUP_CAT = {
     hub: "company", offshore: "company", antecedent: "company", state: "state", regulator: "pep",
-    political: "pep", family: "family", holding: "company", executive: "person", satellite: "company"
+    political: "pep", family: "family", holding: "company", executive: "person", satellite: "company", rating: "company"
   };
-  const GROUP_ORDER = ["hub", "offshore", "antecedent", "state", "regulator", "political", "family", "holding", "executive", "satellite"];
+  const GROUP_ORDER = ["hub", "offshore", "antecedent", "state", "regulator", "political", "family", "holding", "executive", "satellite", "rating"];
 
   // ax / ay = anchor position in "world" space. The bank sits at 0,0:
   // public money on the left, power at the bottom, regulators on top,
@@ -637,7 +638,10 @@
     // Added from ueno bank Informe anual de Gobierno Corporativo 2025 (sección II.C, III.A y V.B)
     { id: "carolina_galeano", label: "Carolina María Galeano de Bastar", role: "Directora suplente de ueno bank (desde 01/03/2022)", group: "executive", short: "Carolina Galeano" },
     { id: "silvia_murto",     label: "Silvia Rosa Susana Murto Méndez",  role: "Directora suplente de ueno bank (desde 21/06/2021)", group: "executive", short: "Silvia Murto" },
-    { id: "pwc",              label: "PricewaterhouseCoopers (PwC)",     role: "Auditora externa de ueno bank (ejercicios 2024, 2025 y 2026)", group: "satellite" }
+    { id: "pwc",              label: "PricewaterhouseCoopers (PwC)",     role: "Auditora externa de ueno bank (ejercicios 2024, 2025 y 2026)", group: "satellite" },
+    // Added to CALIFICADORAS (local credit rating agencies listed on ueno's investors page, consultado 08/11/2026)
+    { id: "fix_scr",       label: "Fix SCR (Fitch Ratings)",           role: "Calificadora de riesgo local. Califica a ueno bank: AA-py, perspectiva «Strong» (según la página de inversores de ueno)", group: "rating", short: "Fix SCR" },
+    { id: "solventa",      label: "Solventa & Riskmetrica",            role: "Calificadora de riesgo local. Califica a ueno bank: AApy, perspectiva «Stable» (según la página de inversores de ueno)", group: "rating", short: "Solventa & Riskmetrica" }
   ];
 
   /* ---------------------------------------------------------------
@@ -766,6 +770,12 @@
       fecha: "consultado 08/11/2026",
       titulo: "Óscar Alcides Orué, Director Nacional",
       url: "https://www.dnit.gov.py/web/portal-institucional/w/oscar-alcides-orue"
+    },
+    "ueno-inversores-calificaciones": {
+      medio: "ueno bank (página de inversores, sección «Credit Ratings», publicada por el propio banco)",
+      fecha: "consultado 08/11/2026",
+      titulo: "Calificaciones locales de ueno bank: Fix Scr (Fitch Ratings) AA-py / Strong; Solventa & Riskmetrica AApy / Stable",
+      url: "https://www.ueno.com.py/inversores/en/investors/"
     }
   };
 
@@ -908,7 +918,10 @@
     // Added from ueno Informe anual de Gobierno Corporativo 2025
     { source: "carolina_galeano", target: "ueno", desc: "Directora suplente de ueno bank según el Informe anual de Gobierno Corporativo 2025 (nombrada por primera vez el 01/03/2022).", src: ["ueno-gobierno-corporativo-2025"] },
     { source: "silvia_murto", target: "ueno", desc: "Directora suplente de ueno bank según el Informe anual de Gobierno Corporativo 2025 (nombrada por primera vez el 21/06/2021).", src: ["ueno-gobierno-corporativo-2025"] },
-    { source: "pwc", target: "ueno", desc: "Auditora externa de ueno bank para los ejercicios 2024, 2025 y el ejercicio que finaliza el 31/12/2026, según el Informe anual de Gobierno Corporativo 2025.", src: ["ueno-gobierno-corporativo-2025"] }
+    { source: "pwc", target: "ueno", desc: "Auditora externa de ueno bank para los ejercicios 2024, 2025 y el ejercicio que finaliza el 31/12/2026, según el Informe anual de Gobierno Corporativo 2025.", src: ["ueno-gobierno-corporativo-2025"] },
+    // Added from ueno's investors page (consultado 08/11/2026). It is the bank's own statement; the agencies' reports were not checked
+    { source: "fix_scr",  target: "ueno", desc: "Califica a ueno bank en escala local: AA-py, perspectiva «Strong», según la página de inversores del propio banco. No se revisó el informe de la calificadora.", src: ["ueno-inversores-calificaciones"] },
+    { source: "solventa", target: "ueno", desc: "Califica a ueno bank en escala local: AApy, perspectiva «Stable», según la página de inversores del propio banco. No se revisó el informe de la calificadora.", src: ["ueno-inversores-calificaciones"] }
   ];
 
 
@@ -997,6 +1010,8 @@
       members: ["jg", "rey", "mongelos", "torres", "gomez_abente", "duarte", "almada"] },
     // directors that no source reports as charged: kept apart from "DIRECTIVOS IMPUTADOS" and from "ACCIONISTAS"
     { id: "odir",  title: "OTROS DIRECTIVOS", members: ["abreu", "egb"] },
+    // private rating agencies that rate the bank (listed on ueno's investors page)
+    { id: "rat",   title: "CALIFICADORAS", cols: 2, members: ["fix_scr", "solventa"] },
     // right: money that left the bank
     { id: "debt",  title: "GRANDES DEUDORES", x: 300, y: 40, cols: 3,
       members: ["gsr", "officedesign", "berilo", "nuevomundo", "galadriel"] },
