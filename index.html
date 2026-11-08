@@ -536,7 +536,7 @@
     { id: "hdinvest",      label: "HD Invest EAS Unipersonal",         role: "Recibió USD 35 M (15/06/2026)",                 group: "satellite", short: "HD Invest" },
     { id: "satec",         label: "Satec SA",                          role: "Recibió USD 20 M (15/06/2026)",                 group: "satellite" },
     { id: "henrici",       label: "Henrici SA",                        role: "Recibió USD 10,6 M (27/03/2026)",               group: "satellite" },
-    { id: "valores",       label: "Valores Casa de Bolsa SA",          role: "Compra y venta de bonos con transferencias",    group: "satellite", short: "Valores CdB" },
+    { id: "valores",       label: "Valores Casa de Bolsa SA",          role: "Suspendida por la BVA (06/11/2026): fallas en reportos del 29/10, 02/11 y 04/11/2026", group: "satellite", short: "Valores CdB" },
     { id: "gsr",           label: "GSR EAS",                           role: "Deudora: G. 453.828 M (Caso IX)",               group: "satellite" },
     { id: "officedesign",  label: "Office Design SRL",                 role: "Deudora: G. 357.057 M (Caso X)",                group: "satellite", short: "Office Design" },
     { id: "berilo",        label: "Grupo Berilo SA",                   role: "Deudora: G. 419.231 M (Caso XI)",               group: "satellite" },
@@ -571,7 +571,10 @@
     { id: "serenella", label: "Serenella Argaña", role: "Nuera del Presidente; esposa de Gonzalo Peña Ocampos", group: "family", ax: 110, ay: 520 },
     { id: "silvia_vc", label: "María Silvia Vázquez de Carvallo", role: "Esposa de Carlos Carvallo (ex presidente del BCP); consultora", group: "executive", ax: -120, ay: -200 },
     // Added from Última Hora (05/11/2026): former MEF minister when Caja Fiscal funds were placed in ueno. Appended so existing codes stay the same
-    { id: "fernandez_v",   label: "Carlos Fernández Valdovinos",       role: "Ex ministro de Economía (durante la colocación de fondos de la Caja Fiscal en ueno, jul. 2025)", group: "political" }
+    { id: "fernandez_v",   label: "Carlos Fernández Valdovinos",       role: "Ex ministro de Economía (durante la colocación de fondos de la Caja Fiscal en ueno, jul. 2025)", group: "political" },
+    // Added from ABC Color (06/11/2026): both brokerages suspended by the BVA. Ueno CdB and Valores CdB are brokerages, not the bank itself.
+    { id: "ueno_cdb",      label: "Ueno Casa de Bolsa SA",             role: "Suspendida por la BVA (06/11/2026): falla en reporto del 03/11/2026, sin plazo para levantar la medida", group: "satellite", short: "Ueno CdB" },
+    { id: "bva",           label: "Bolsa de Valores de Asunción (BVA)", role: "Suspendió preventivamente a Ueno CdB y Valores CdB por incumplimientos en reportos", group: "regulator", short: "BVA" }
   ];
 
   /* ---------------------------------------------------------------
@@ -634,6 +637,12 @@
       fecha: "06/11/2026",
       titulo: "Esposa de Carvallo facturó millones al Grupo Vázquez",
       url: "https://www.abc.com.py/politica/2026/11/06/esposa-de-carvallo-facturo-millones-al-grupo-vazquez/"
+    },
+    "abc-2026-11-06-bva": {
+      medio: "ABC Color",
+      fecha: "06/11/2026",
+      titulo: "Ueno Bank: BVA suspende a Ueno y Valores Casa de Bolsa por falta de fondos para cumplir operaciones",
+      url: "https://www.abc.com.py/economia/2026/11/06/ueno-bank-bva-suspende-a-ueno-y-valores-casa-de-bolsa-por-falta-de-fondos-para-cumplir-operaciones/"
     },
     "abc-2026-11-04": {
       medio: "ABC Color",
@@ -773,7 +782,10 @@
     { source: "cv",            target: "silvia_vc", desc: "Esposa de Carlos Carvallo (según ABC 06/11/2026).", src: ["abc-2026-11-06"] },
     { source: "silvia_vc",     target: "gv",      desc: "Tres facturas por consultoría de G. 55 millones cada una, entre abril de 2025 y septiembre de 2026; total G. 165 millones (ABC 06/11/2026).", src: ["abc-2026-11-06"] },
     // Added from Última Hora (05/11/2026). The article names him as minister when the placement happened; it does not say he signed Resolución MEF N° 338/2025
-    { source: "fernandez_v",   target: "mef",     desc: "Ministro de Economía cuando el MEF colocó fondos de la Caja Fiscal en ueno a cinco años (julio 2025, Resolución MEF N° 338/2025). Monto: USD 41,6 millones (G. 250.000 millones). Intereses pendientes de devengar entre 2026 y 2030: G. 123.838 millones. Según Última Hora, el MEF denunció el 05/11/2026 que esos fondos están en riesgo.", src: ["ultimahora-2026-11-05"] }
+    { source: "fernandez_v",   target: "mef",     desc: "Ministro de Economía cuando el MEF colocó fondos de la Caja Fiscal en ueno a cinco años (julio 2025, Resolución MEF N° 338/2025). Monto: USD 41,6 millones (G. 250.000 millones). Intereses pendientes de devengar entre 2026 y 2030: G. 123.838 millones. Según Última Hora, el MEF denunció el 05/11/2026 que esos fondos están en riesgo.", src: ["ultimahora-2026-11-05"] },
+    // Added from ABC Color (06/11/2026): BVA suspensions of the two brokerages
+    { source: "bva",         target: "valores",  desc: "Suspensión preventiva de Valores Casa de Bolsa (BVA Nº 224/26) por fallas repetidas en la liquidación de reportos: 29/10, 02/11 y 04/11/2026. No comunicó estos hechos directamente a la BVA. Sin plazo definido; el levantamiento lo decide la BVA y se comunica a la Superintendencia de Valores.", src: ["abc-2026-11-06-bva"] },
+    { source: "bva",         target: "ueno_cdb", desc: "Suspensión preventiva de Ueno Casa de Bolsa (BVA Nº 222/26) por no contar con todos los fondos para la recompra de reportos el 03/11/2026. Según nota de sus representantes legales, los vencimientos no se liquidarán \u201chasta nuevo aviso\u201d. El artículo no precisa montos. Sin plazo definido.", src: ["abc-2026-11-06-bva"] }
   ];
 
   /* ---------- derived fields ---------- */
