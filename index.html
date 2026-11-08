@@ -941,7 +941,9 @@
      Members that are not linked to the center sit one step further out, behind
      the member they are linked to (e.g. Muar behind Serenella Argaña).
      To place a NEW entity: add its id to the "members" of the right cluster.
-     An entity in no cluster is placed next to whatever it is linked to (and listed in the console).
+     An entity in no cluster gets its own small outline titled "SIN GRUPO", placed in a free spot
+     next to what it is linked to, so it never ends up inside another group's outline
+     (it is also listed in the console). Fix it by adding its id to the right cluster.
      To add a NEW cluster: { id, title, hub (optional), members }. Everything else is optional:
      x / y = where to put it (ueno bank is at 0,0; y grows downwards). Without x / y the map
              finds a free spot as close as possible to the clusters it is linked to.
@@ -964,6 +966,8 @@
       members: ["ips", "itaipu", "ande", "caja_ande", "mef", "petropar", "caja_bancaria", "conatel", "fernandez_v"] },
     { id: "dir",   title: "DIRECTIVOS IMPUTADOS", x: -380, y: 400, cols: 4,
       members: ["jg", "rey", "mongelos", "torres", "gomez_abente", "duarte", "almada", "egb"] },
+    // directors that no source reports as charged: kept apart from "DIRECTIVOS IMPUTADOS" and from "ACCIONISTAS"
+    { id: "odir",  title: "OTROS DIRECTIVOS", members: ["abreu"] },
     // right: money that left the bank
     { id: "debt",  title: "GRANDES DEUDORES", x: 300, y: 40, cols: 3,
       members: ["gsr", "officedesign", "berilo", "nuevomundo", "galadriel"] },
@@ -982,6 +986,12 @@
 
   (function clusterLayout() {
     const nodeById = new Map(nodes.map(n => [n.id, n]));
+    // entities in no cluster: each one gets its own "SIN GRUPO" cluster, so the map never draws it
+    // inside the outline of a group it does not belong to (e.g. a director inside ACCIONISTAS)
+    const listed = new Set(CLUSTERS.flatMap(c => [c.hub, ...c.members]).filter(Boolean));
+    const loose = nodes.filter(n => n.id !== "ueno" && !listed.has(n.id));
+    if (loose.length) console.warn("Entidades sin grupo (se muestran aparte como «SIN GRUPO»): " + loose.map(n => n.id).join(", "));
+    loose.forEach(n => CLUSTERS.push({ id: "solo_" + n.id, title: "SIN GRUPO", members: [n.id] }));
     const clusterOf = new Map();
     // check: unknown ids, entities in two clusters, entities in no cluster (see the browser console)
     CLUSTERS.forEach(c => {
@@ -994,8 +1004,6 @@
       if (c.hub && !nodeById.has(c.hub)) delete c.hub;
       c.root = c.hub || "ueno";
     });
-    const loose = nodes.filter(n => n.id !== "ueno" && !clusterOf.has(n.id));
-    if (loose.length) console.warn("Entidades sin grupo (se ubican junto a lo que están vinculadas): " + loose.map(n => n.id).join(", "));
     nodes.forEach(n => n.cl = clusterOf.get(n.id) || null);
 
     const nbrs = new Map(nodes.map(n => [n.id, []]));

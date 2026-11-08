@@ -32,7 +32,7 @@ Todo está en `index.html`. Los datos están en tres listas dentro del archivo:
   - `group`: una de `hub`, `offshore`, `antecedent`, `state`, `regulator`, `political`, `family`, `holding`, `executive`, `satellite`.
   - **Agregá entidades nuevas al final de la lista** para no cambiar los códigos existentes.
 
-- **`CLUSTERS`** — los grupos del mapa (Familia Peña, Grupo Vázquez, Fondos del Estado, etc.). Para que una entidad nueva aparezca dentro de un grupo, agregá su `id` a la lista `members` de ese grupo; el círculo del grupo crece solo. Si no está en ningún grupo, el mapa la ubica sola al lado de la entidad con la que está vinculada.
+- **`CLUSTERS`** — los grupos del mapa (Familia Peña, Grupo Vázquez, Fondos del Estado, etc.). Para que una entidad nueva aparezca dentro de un grupo, agregá su `id` a la lista `members` de ese grupo; el círculo del grupo crece solo. Si no está en ningún grupo, el mapa la muestra aparte, en un círculo propio llamado «SIN GRUPO» cerca de la entidad con la que está vinculada (nunca dentro del círculo de otro grupo). Eso es una señal de que falta asignarle un grupo.
   - Para crear un grupo nuevo alcanza con `{ id: "nuevo", title: "NOMBRE", hub: "id_del_centro", members: ["id1", "id2"] },` — el mapa le busca un lugar libre cerca de lo que está vinculado (`x` / `y` son opcionales).
   - Abrí la consola del navegador (F12): si un `id` no existe, está en dos grupos o quedó sin grupo, aparece un aviso.
 
