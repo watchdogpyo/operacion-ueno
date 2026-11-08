@@ -714,9 +714,9 @@
     { source: "ou",            target: "grupo_m", desc: "Propietario de Grupo M desde el 30/09/2025, junto a Diego Gómez (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     { source: "gv",            target: "hanoi",   desc: "Hanoi SA (Monchis) es otra empresa del Grupo Vázquez (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     { source: "ueno",          target: "muar",    desc: "Desvío: Financiamiento a empresa del entorno presidencial." },
-    { source: "ueno",          target: "mowi",    desc: "Movió US$ 42,5 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
-    { source: "ueno",          target: "hendy",   desc: "Movió US$ 42 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
-    { source: "ueno",          target: "grupo_m", desc: "Movió US$ 62 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "mowi",    desc: "Movió US$ 42,5 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", amt: ["US$ 42,5 millones"], src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "hendy",   desc: "Movió US$ 42 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", amt: ["US$ 42 millones"], src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "grupo_m", desc: "Movió US$ 62 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", amt: ["US$ 62 millones"], src: ["abc-2026-10-12"] },
     { source: "ueno",          target: "franede", desc: "Créditos con condiciones 'paupérrimas' que superaron el límite regulatorio (memo del exgerente de Supervisión, según ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     { source: "ueno",          target: "aime",    desc: "Créditos con condiciones 'paupérrimas' que superaron el límite regulatorio (memo del exgerente de Supervisión, según ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     { source: "ueno",          target: "tuiu",    desc: "Créditos con condiciones 'paupérrimas' que superaron el límite regulatorio (memo del exgerente de Supervisión, según ABC 12/10/2026).", src: ["abc-2026-10-12"] },
@@ -792,9 +792,9 @@
     { source: "conatel",       target: "ueno",    desc: "Según el tuit de @hectordalegre (no verificado: no se pudieron abrir los documentos): dos órdenes de transferencia a la cuenta 6192324350 de ueno bank, N° 25/2026 (13/10/2026) por G. 50.000 millones desde Interfisa, y N° 28/2026 (15/10/2026) por G. 20.000 millones desde el BNF. Concepto: 'pago a proveedores y acreedores varios'. Revisar: el título del tuit habla de depósitos 'del 15 al 26 de octubre'. El tuit también menciona un pico de G. 90.000 millones; el título confirma USD 16 millones, el pico no se pudo verificar.", src: ["docs-transf-conatel-2026", "x-dalegre-2026"] },
     { source: "conatel",       target: "nubicom", desc: "Conatel dio por cumplido el despliegue 5G de Nubicom (34 radiobases inspeccionadas; el mínimo exigido era 20), pero admite que tiene apenas dos abonados por cobertura limitada.", src: ["abc-2026-10-13"] },
     { source: "cv",            target: "silvia_vc", desc: "Esposa de Carlos Carvallo (según ABC 06/11/2026).", src: ["abc-2026-11-06"] },
-    { source: "silvia_vc",     target: "gv",      desc: "Tres facturas por consultoría de G. 55 millones cada una, entre abril de 2025 y septiembre de 2026; total G. 165 millones (ABC 06/11/2026).", src: ["abc-2026-11-06"] },
+    { source: "silvia_vc",     target: "gv",      desc: "Tres facturas por consultoría de G. 55 millones cada una, entre abril de 2025 y septiembre de 2026; total G. 165 millones (ABC 06/11/2026).", amt: ["G. 165 millones"], src: ["abc-2026-11-06"] },
     // Added from Última Hora (05/11/2026). The article names him as minister when the placement happened; it does not say he signed Resolución MEF N° 338/2025
-    { source: "fernandez_v",   target: "mef",     desc: "Ministro de Economía cuando el MEF colocó fondos de la Caja Fiscal en ueno a cinco años (julio 2025, Resolución MEF N° 338/2025). Monto: USD 41,6 millones (G. 250.000 millones). Intereses pendientes de devengar entre 2026 y 2030: G. 123.838 millones. Según Última Hora, el MEF denunció el 05/11/2026 que esos fondos están en riesgo.", src: ["ultimahora-2026-11-05"] },
+    { source: "fernandez_v",   target: "mef",     desc: "Ministro de Economía cuando el MEF colocó fondos de la Caja Fiscal en ueno a cinco años (julio 2025, Resolución MEF N° 338/2025). Monto: USD 41,6 millones (G. 250.000 millones). Intereses pendientes de devengar entre 2026 y 2030: G. 123.838 millones. Según Última Hora, el MEF denunció el 05/11/2026 que esos fondos están en riesgo.", amt: ["USD 41,6 millones", "G. 123.838 millones"], src: ["ultimahora-2026-11-05"] }
     // Added from ABC Color (06/11/2026): BVA suspensions of the two brokerages
     { source: "bva",         target: "valores",  desc: "Suspensión preventiva de Valores Casa de Bolsa (BVA Nº 224/26) por fallas repetidas en la liquidación de reportos: 29/10, 02/11 y 04/11/2026. No comunicó estos hechos directamente a la BVA. Sin plazo definido; el levantamiento lo decide la BVA y se comunica a la Superintendencia de Valores.", src: ["abc-2026-11-06-bva"] },
     { source: "bva",         target: "ueno_cdb", desc: "Suspensión preventiva de Ueno Casa de Bolsa (BVA Nº 222/26) por no contar con todos los fondos para la recompra de reportos el 03/11/2026. Según nota de sus representantes legales, los vencimientos no se liquidarán \u201chasta nuevo aviso\u201d. El artículo no precisa montos. Sin plazo definido.", src: ["abc-2026-11-06-bva"] },
@@ -812,8 +812,10 @@
   links.forEach((l, i) => l.code = "L-" + String(i + 1).padStart(2, "0"));
 
   // Money amounts inside a description (USD / US$ / G.)
+  // A link can set "amt" to list only the amounts that count (e.g. just the total, or one currency),
+  // so figures that merely repeat or contain each other are not shown as a sum.
   const AMOUNT_RE = /(?:USD|US\$|G\.)\s?[\d.,]+(?:\s?a\s?[\d.,]+)?(?:\s?millones)?/g;
-  links.forEach(l => l.amounts = l.desc.match(AMOUNT_RE) || []);
+  links.forEach(l => l.amounts = l.amt || l.desc.match(AMOUNT_RE) || []);
 
   // Resolve source keys -> source objects (unknown keys are reported in the console)
   links.forEach(l => {
