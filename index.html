@@ -60,6 +60,19 @@
   .halo text.t { pointer-events: auto; cursor: zoom-in; }
   .halo text.t:hover { fill: var(--white); }
   .halo.hidden { display: none; }
+  body.view-free .halo { display: none; }
+
+  /* view switch (Grupos | Libre), left of the filter button */
+  #filter { display: flex; gap: 8px; align-items: flex-start; }
+  #viewSw { display: flex; border: 1px solid var(--dim); height: 28px; }
+  #viewSw button {
+    background: var(--bg); border: none; color: var(--gray); cursor: pointer;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    padding: 0 10px;
+  }
+  #viewSw button + button { border-left: 1px solid var(--dim); }
+  #viewSw button:hover { color: var(--white); }
+  #viewSw button[aria-pressed="true"] { background: var(--white); color: var(--bg); font-weight: 700; }
 
   .link {
     stroke: var(--white);
@@ -401,6 +414,8 @@
     .search input { font-size: 16px; }   /* 16px+ stops iPhones from zooming the page when typing */
     .search kbd { display: none; }
     #filterBtn { width: 40px; height: 36px; }
+    #viewSw { position: fixed; top: 44px; left: 14px; height: 30px; }   /* under the title, so it never covers it */
+    #viewSw button { padding: 0 9px; font-size: 9px; }
     header { top: 12px; left: 14px; gap: 8px; }
     header img { width: 22px; }
     header .kicker { font-size: 9px; }
@@ -425,6 +440,10 @@
 
 <div id="legend"></div>
 <div id="filter">
+  <div id="viewSw" role="group" aria-label="Vista del mapa">
+    <button type="button" data-view="groups" title="Vista por grupos: cada grupo en su círculo">Grupos</button>
+    <button type="button" data-view="free" title="Vista libre: la red original, todo conectado">Libre</button>
+  </div>
   <button id="filterBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="filterPanel" aria-label="Filtro del mapa" title="Filtro: elegí qué entidades mostrar en el mapa">
     <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M1 1.5h14M4 6h8M6.5 10.5h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" fill="none"/></svg>
   </button>
@@ -858,6 +877,33 @@
   const openUrl = url => window.open(url, "_blank", "noopener,noreferrer");
 
   /* ================================================================
+     FREE VIEW anchors ("Libre"): the original layout. ax / ay = anchor in "world" space.
+     ================================================================ */
+  (function autoAnchors() {
+    const state = nodes.filter(n => n.group === "state");
+    state.forEach((n, i) => { n.ax = -640; n.ay = (i - (state.length - 1) / 2) * 125; });
+    // Satellites on a tighter arc. Nubicom (next to Grupo Vázquez) and Wels (next to the Peña family)
+    // have their own anchors; Grupo M and Hanoi go last so they sit near their directors (Gómez / Urdapilleta).
+    const ARC_ORDER = ["franede", "aime", "tuiu", "mowi", "hendy", "grupo_m", "hanoi"];
+    const arc = nodes.filter(n => n.group === "satellite" && n.ax === undefined)
+      .sort((p, q) => ARC_ORDER.indexOf(p.id) - ARC_ORDER.indexOf(q.id));
+    const a0 = -25 * Math.PI / 180, a1 = 55 * Math.PI / 180;
+    arc.forEach((n, i) => {
+      const a = a0 + (a1 - a0) * (i / Math.max(1, arc.length - 1));
+      n.ax = Math.cos(a) * 470; n.ay = Math.sin(a) * 450;
+    });
+    // People with no anchor of their own sit in a small ring beside the company or bank they are linked to.
+    // Without this, their position is NaN and the whole map is pushed off-screen.
+    nodes.filter(n => n.ax === undefined).forEach((n, i) => {
+      const l = links.find(l => l.source === n.id);
+      const t = l && nodes.find(m => m.id === l.target);
+      const base = t && t.ax !== undefined ? t : { ax: 0, ay: 0 };
+      const a = i * 0.9;
+      n.ax = base.ax + Math.cos(a) * 150; n.ay = base.ay + Math.sin(a) * 150;
+    });
+  })();
+
+  /* ================================================================
      CLUSTERS (layout)
      The map is drawn as groups ("clusters") so every line is easy to follow:
      - "ring" clusters sit around ueno bank (state funds, directors, debtors...):
@@ -867,18 +913,21 @@
      Members that are not linked to the center sit one step further out, behind
      the member they are linked to (e.g. Muar behind Serenella Argaña).
      To place a NEW entity: add its id to the "members" of the right cluster.
-     An entity in no cluster is placed automatically next to whatever it is linked to.
-     x / y = position of the cluster center (ueno bank is at 0,0; y grows downwards).
-     cols = for a group without its own center: how many side by side (the rest go in further rows).
+     An entity in no cluster is placed next to whatever it is linked to (and listed in the console).
+     To add a NEW cluster: { id, title, hub (optional), members }. Everything else is optional:
+     x / y = where to put it (ueno bank is at 0,0; y grows downwards). Without x / y the map
+             finds a free spot as close as possible to the clusters it is linked to.
+     cols  = for a group without its own center: how many side by side (the rest go in further rows).
+     The circle of a cluster grows with its number of members (and uses two staggered rings when full).
      ================================================================ */
   const CLUSTERS = [
     // above the bank: who owns and controls it
-    { id: "own",   title: "ACCIONISTAS", hub: "lux", x: 20, y: -330, R: 100,
+    { id: "own",   title: "ACCIONISTAS", hub: "lux", x: 20, y: -330,
       members: ["upy", "ueno_cdb"] },
-    { id: "gv",    title: "GRUPO VÁZQUEZ", hub: "gv", x: 120, y: -680, R: 140,
+    { id: "gv",    title: "GRUPO VÁZQUEZ", hub: "gv", x: 120, y: -680,
       members: ["fmvv", "vhv", "uhs", "useg", "nubicom", "hanoi"] },
     { id: "ante",  title: "ANTECEDENTES", x: 270, y: -330, cols: 1, members: ["vision", "comercio"] },
-    { id: "pena",  title: "FAMILIA PEÑA", hub: "sp", x: -560, y: -620, R: 140,
+    { id: "pena",  title: "FAMILIA PEÑA", hub: "sp", x: -560, y: -620,
       members: ["fp", "mnp", "gpo", "serenella", "cbv", "muar", "wels"] },
     { id: "reg",   title: "REGULADORES", x: -400, y: -300, cols: 3,
       members: ["cv", "bcp_dir", "bva", "silvia_vc", "valores"] },
@@ -890,62 +939,103 @@
     // right: money that left the bank
     { id: "debt",  title: "GRANDES DEUDORES", x: 300, y: 40, cols: 3,
       members: ["gsr", "officedesign", "berilo", "nuevomundo", "galadriel"] },
-    { id: "vin",   title: "RUTA VINANZAS", hub: "vinanzas", x: 640, y: -360, R: 150,
+    { id: "vin",   title: "RUTA VINANZAS", hub: "vinanzas", x: 640, y: -360,
       members: ["technoma", "latropa", "kasas", "factopar", "sagas", "hdinvest", "satec", "model"] },
-    { id: "itti",  title: "DESTINO DE FONDOS", hub: "itti", x: 1000, y: 110, R: 85,
+    { id: "itti",  title: "DESTINO DE FONDOS", hub: "itti", x: 1000, y: 110,
       members: ["redipro", "henrici"] },
-    { id: "mowi",  title: "MOWI SA", hub: "mowi", x: 560, y: 190, R: 85, members: ["sala", "pizurno"] },
-    { id: "gm",    title: "GRUPO M SA", hub: "grupo_m", x: 870, y: 520, R: 115,
+    { id: "mowi",  title: "MOWI SA", hub: "mowi", x: 560, y: 190, members: ["sala", "pizurno"] },
+    { id: "gm",    title: "GRUPO M SA", hub: "grupo_m", x: 870, y: 520,
       members: ["dg", "astigarraga", "angulo", "guillermo_vaz", "gomez_arce"] },
-    { id: "hendy", title: "GRUPO HENDY SA", hub: "hendy", x: 430, y: 410, R: 95, members: ["godoy", "mengual", "ou"] },
-    { id: "tuiu",  title: "TUIU SA", hub: "tuiu", x: 210, y: 560, R: 95, members: ["rios", "gayol", "di_iorio", "franco"] },
-    { id: "fran",  title: "FRANEDE SA", hub: "franede", x: 160, y: 900, R: 85, members: ["cecilia", "mauro_vw"] },
-    { id: "aime",  title: "AIME SA", hub: "aime", x: -60, y: 640, R: 95, members: ["martin_vw", "gloria_vf", "raul_sanchez"] }
+    { id: "hendy", title: "GRUPO HENDY SA", hub: "hendy", x: 430, y: 410, members: ["godoy", "mengual", "ou"] },
+    { id: "tuiu",  title: "TUIU SA", hub: "tuiu", x: 210, y: 560, members: ["rios", "gayol", "di_iorio", "franco"] },
+    { id: "fran",  title: "FRANEDE SA", hub: "franede", x: 160, y: 900, members: ["cecilia", "mauro_vw"] },
+    { id: "aime",  title: "AIME SA", hub: "aime", x: -60, y: 640, members: ["martin_vw", "gloria_vf", "raul_sanchez"] }
   ];
 
   (function clusterLayout() {
-    const RAD = Math.PI / 180;
     const nodeById = new Map(nodes.map(n => [n.id, n]));
     const clusterOf = new Map();
+    // check: unknown ids, entities in two clusters, entities in no cluster (see the browser console)
     CLUSTERS.forEach(c => {
-      if (c.hub) clusterOf.set(c.hub, c);
-      c.members.forEach(id => {
-        if (!nodeById.has(id)) console.warn("Grupo " + c.id + ": entidad desconocida " + id);
-        clusterOf.set(id, c);
+      [c.hub, ...c.members].filter(Boolean).forEach(id => {
+        if (!nodeById.has(id)) console.warn("Grupo " + c.id + ": entidad desconocida «" + id + "»");
+        else if (clusterOf.has(id) && clusterOf.get(id) !== c) console.warn("«" + id + "» está en dos grupos: " + clusterOf.get(id).id + " y " + c.id);
+        else clusterOf.set(id, c);
       });
-      c.members = c.members.filter(id => nodeById.has(id));
+      c.members = c.members.filter(id => nodeById.has(id) && clusterOf.get(id) === c && id !== c.hub);
+      if (c.hub && !nodeById.has(c.hub)) delete c.hub;
       c.root = c.hub || "ueno";
     });
+    const loose = nodes.filter(n => n.id !== "ueno" && !clusterOf.has(n.id));
+    if (loose.length) console.warn("Entidades sin grupo (se ubican junto a lo que están vinculadas): " + loose.map(n => n.id).join(", "));
     nodes.forEach(n => n.cl = clusterOf.get(n.id) || null);
-    const ueno = nodeById.get("ueno"); ueno.ax = 0; ueno.ay = 0;
 
     const nbrs = new Map(nodes.map(n => [n.id, []]));
     links.forEach(l => { nbrs.get(l.source).push(l.target); nbrs.get(l.target).push(l.source); });
-    // rough position of any entity before the layout: its cluster center (ueno for the bank)
-    const roughPos = id => {
-      if (id === "ueno") return { x: 0, y: 0 };
-      const c = clusterOf.get(id);
-      return c ? { x: c.x, y: c.y } : null;
-    };
     const wrap = a => Math.atan2(Math.sin(a), Math.cos(a));
 
-    // Keep clusters from overlapping: each one takes a rough circle; overlapping circles are pushed
-    // apart (the bank stays put). New members make a cluster bigger, and its neighbours move to make room.
+    // 1) inside each cluster: who is on the first ring, who hangs further out behind someone
     CLUSTERS.forEach(c => {
-      const n = c.members.length;
+      const inC = new Set(c.members);
+      const depth = new Map(), parent = new Map();
+      c.members.forEach(id => { if (nbrs.get(id).includes(c.root)) depth.set(id, 1); });
+      const others = () => c.members.filter(id => !depth.has(id));
+      let grew = true;
+      while (grew) {
+        grew = false;
+        others().forEach(id => {
+          const p = nbrs.get(id).find(o => inC.has(o) && depth.has(o));
+          if (p) { depth.set(id, depth.get(p) + 1); parent.set(id, p); grew = true; }
+        });
+        if (!grew && others().length) { depth.set(others()[0], 1); grew = true; }
+      }
+      Object.assign(c, { inC, depth, parent, first: c.members.filter(id => depth.get(id) === 1) });
+      const deep = c.members.length > c.first.length;
+      const n = c.first.length;
       if (c.hub) {
-        const deep = c.members.some(id => !nbrs.get(id).includes(c.hub));
-        c.size = c.R + (deep ? 105 : 0) + 70;
+        // ring size grows with the members: about 140 between neighbours; when one ring would get
+        // too big, every other member goes on a second ring 90 further out
+        const GAP = 140, MAXR = 200;
+        const need = k => k < 2 ? 0 : GAP / (2 * Math.sin(Math.PI / k));
+        c.stagger = need(n) > MAXR;
+        c.R = Math.max(c.R || 0, 85, c.stagger ? need(Math.ceil(n / 2)) : need(n));
+        c.size = c.R + (c.stagger ? 90 : 0) + (deep ? 105 : 0) + 70;
       } else {
-        const cols = Math.min(c.cols || n, n), rows = Math.ceil(n / cols);
-        const side = Math.abs(c.x) > Math.abs(c.y);
-        const w = (side ? rows : cols) * 150, h = (side ? cols : rows) * 76 + 40;
-        c.size = Math.hypot(w, h) / 2 + 20;
+        const cols = Math.min(c.cols || n, n) || 1, rows = Math.ceil(n / cols);
+        c.blockW = cols * 150; c.blockH = rows * 76;   // final orientation is decided once placed
+        c.size = Math.hypot(Math.max(cols, rows) * 150, Math.max(cols, rows) * 76 + 40) / 2 + 20 + (deep ? 60 : 0);
       }
     });
+
+    // 2) clusters without x / y: the free spot closest to what they are linked to
     const core = { x: 0, y: 0, size: 130, fixed: true };
+    const placed = [core, ...CLUSTERS.filter(c => c.x !== undefined)];
+    const fits = (c, x, y) => placed.every(q => Math.hypot(q.x - x, q.y - y) >= q.size + c.size + 16);
+    CLUSTERS.filter(c => c.x === undefined).forEach(c => {
+      let sx = 0, sy = 0, k = 0;
+      [c.hub, ...c.members].filter(Boolean).forEach(id => nbrs.get(id).forEach(o => {
+        const q = o === "ueno" ? core : clusterOf.get(o);
+        if (q && q !== c && q.x !== undefined) { sx += q.x; sy += q.y; k++; }
+      }));
+      const tx = k ? sx / k : 0, ty = k ? sy / k : 0;
+      let best = null;
+      for (let r = 0; r <= 3000 && !best; r += 60) {
+        const steps = r ? Math.max(12, Math.round(r / 40)) : 1;
+        let bd = Infinity;
+        for (let i = 0; i < steps; i++) {
+          const a = i * 2 * Math.PI / steps, x = tx + Math.cos(a) * r, y = ty + Math.sin(a) * r;
+          if (!fits(c, x, y)) continue;
+          const d = Math.hypot(x, y);   // among equal choices, stay closer to the bank
+          if (d < bd) { bd = d; best = { x, y }; }
+        }
+      }
+      c.x = best ? best.x : tx; c.y = best ? best.y : ty;
+      placed.push(c);
+    });
+
+    // 3) keep clusters from overlapping: overlapping circles are pushed apart (the bank stays put)
     const all = [core, ...CLUSTERS];
-    for (let it = 0; it < 200; it++) {
+    for (let it = 0; it < 300; it++) {
       let moved = false;
       for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) {
         const p = all[i], q = all[j];
@@ -962,32 +1052,26 @@
       if (!moved) break;
     }
 
+    // rough position of any entity: its cluster center (ueno for the bank)
+    const roughPos = id => {
+      if (id === "ueno") return core;
+      const c = clusterOf.get(id);
+      return c ? c : null;
+    };
+    const ueno = nodeById.get("ueno"); ueno.gx = 0; ueno.gy = 0;
+
+    // 4) place the members
     CLUSTERS.forEach(c => {
-      const inC = new Set(c.members);
-      // first ring: members linked to the center (or linked to nothing else in the cluster)
-      const depth = new Map(), parent = new Map();
-      c.members.forEach(id => { if (nbrs.get(id).includes(c.root)) depth.set(id, 1); });
-      const others = () => c.members.filter(id => !depth.has(id));
-      let grew = true;
-      while (grew) {
-        grew = false;
-        others().forEach(id => {
-          const p = nbrs.get(id).find(o => inC.has(o) && depth.has(o));
-          if (p) { depth.set(id, depth.get(p) + 1); parent.set(id, p); grew = true; }
-        });
-        if (!grew && others().length) { depth.set(others()[0], 1); grew = true; }
-      }
-      const first = c.members.filter(id => depth.get(id) === 1);
-      // each first-ring member faces the things it is linked to outside the cluster
-      const home = { x: c.x, y: c.y };
+      const { inC, parent, first } = c;
       const outward = Math.atan2(c.y, c.x);   // away from ueno
+      // each first-ring member faces the things it (and whoever hangs behind it) is linked to outside the cluster
       const pref = id => {
         const fam = [id, ...c.members.filter(m => { let p = parent.get(m); while (p) { if (p === id) return true; p = parent.get(p); } return false; })];
         let sx = 0, sy = 0;
         fam.forEach(f => nbrs.get(f).forEach(o => {
           if (o === c.root || inC.has(o)) return;
           const p = roughPos(o); if (!p) return;
-          const dx = p.x - home.x, dy = p.y - home.y, d = Math.hypot(dx, dy) || 1;
+          const dx = p.x - c.x, dy = p.y - c.y, d = Math.hypot(dx, dy) || 1;
           sx += dx / d; sy += dy / d;
         }));
         return sx || sy ? Math.atan2(sy, sx) : null;
@@ -1003,10 +1087,10 @@
         prefs.forEach((p, i) => { const d = p.a - i * 2 * Math.PI / n; sx += Math.cos(d); sy += Math.sin(d); });
         const rot = n > 1 ? Math.atan2(sy, sx) : prefs[0] ? prefs[0].a : 0;
         prefs.forEach((p, i) => {
-          const a = rot + i * 2 * Math.PI / n;
-          pos.set(p.id, { x: c.x + Math.cos(a) * c.R, y: c.y + Math.sin(a) * c.R, a });
+          const a = rot + i * 2 * Math.PI / n, r = c.R + (c.stagger && i % 2 ? 90 : 0);
+          pos.set(p.id, { x: c.x + Math.cos(a) * r, y: c.y + Math.sin(a) * r, a });
         });
-        const hub = nodeById.get(c.hub); hub.ax = c.x; hub.ay = c.y;
+        const hub = nodeById.get(c.hub); hub.gx = c.x; hub.gy = c.y;
       } else {
         // compact grid at (x, y): columns 150 apart, rows 76 apart. Every other row (or column, for a
         // block beside the bank) is shifted half a step, so the lines of the back nodes pass between the front ones.
@@ -1039,7 +1123,7 @@
         });
       }
       // further rings: one step out, behind the member they hang from
-      const deeper = c.members.filter(id => depth.get(id) > 1).sort((p, q) => depth.get(p) - depth.get(q));
+      const deeper = c.members.filter(id => c.depth.get(id) > 1).sort((p, q) => c.depth.get(p) - c.depth.get(q));
       const kids = new Map();
       deeper.forEach(id => { const p = parent.get(id); kids.set(p, (kids.get(p) || []).concat(id)); });
       deeper.forEach(id => {
@@ -1048,13 +1132,13 @@
         const step = c.hub ? 105 : 120;
         pos.set(id, { x: p.x + Math.cos(a) * step, y: p.y + Math.sin(a) * step, a });
       });
-      pos.forEach((p, id) => { const n = nodeById.get(id); n.ax = p.x; n.ay = p.y; });
+      pos.forEach((p, id) => { const n = nodeById.get(id); n.gx = p.x; n.gy = p.y; });
     });
     // entities in no cluster: next to what they are linked to
-    nodes.filter(n => n.ax === undefined).forEach((n, i) => {
-      const o = nbrs.get(n.id).map(id => nodeById.get(id)).find(m => m.ax !== undefined);
-      const base = o || ueno, a = i * 0.9;
-      n.ax = base.ax + Math.cos(a) * 120; n.ay = base.ay + Math.sin(a) * 120;
+    nodes.filter(n => n.gx === undefined).forEach((n, i) => {
+      const o = nbrs.get(n.id).map(id => nodeById.get(id)).find(m => m.gx !== undefined);
+      const base = o || ueno, a = i * 0.9 + 0.4;
+      n.gx = base.gx + Math.cos(a) * 130; n.gy = base.gy + Math.sin(a) * 130;
     });
   })();
 
@@ -1162,15 +1246,14 @@
     .text(d => d.code);
 
   /* ================================================================
-     LAYOUT SETTLING
-     Every node is held at its place in its cluster (see CLUSTERS);
-     a box-shaped collision only nudges nodes whose names would overlap.
+     LAYOUT SETTLING — two views
+     "groups" (default): every node is held at its place in its cluster (see CLUSTERS);
+       a box-shaped collision only nudges nodes whose names would overlap.
+     "free" (Libre): the original force layout, each node pulled toward its district (ax / ay).
+     Both layouts are computed once at load; switching view animates between them.
      The whole world is then zoomed to fit the screen.
      ================================================================ */
-  nodes.forEach((n, i) => {
-    n.phase = i * 1.7; n.freq = 0.00035 + (i % 5) * 0.00007;
-    n.x = n.ax; n.y = n.ay;
-  });
+  nodes.forEach((n, i) => { n.phase = i * 1.7; n.freq = 0.00035 + (i % 5) * 0.00007; });
 
   function driftForce() {
     let ns;
@@ -1217,16 +1300,43 @@
     return force;
   }
 
-  const sim = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id(d => d.id).strength(0))   // only turns ids into nodes
-    .force("collide", boxCollide())
-    .force("x", d3.forceX(d => d.ax).strength(d => d.id === "ueno" ? 1 : 0.12))
-    .force("y", d3.forceY(d => d.ay).strength(d => d.id === "ueno" ? 1 : 0.12))
-    .velocityDecay(0.5)
-    .stop();
-
-  // Settle the layout before the first paint so nothing "explodes" on load
-  for (let i = 0; i < 300; i++) sim.tick();
+  const sim = d3.forceSimulation(nodes).stop();
+  const VIEWS = {
+    groups: {
+      start: n => [n.gx, n.gy],
+      forces: () => sim
+        .force("link", d3.forceLink(links).id(d => d.id).strength(0))   // only turns ids into nodes
+        .force("charge", null)
+        .force("collide", boxCollide())
+        .force("x", d3.forceX(d => d.gx).strength(d => d.id === "ueno" ? 1 : 0.12))
+        .force("y", d3.forceY(d => d.gy).strength(d => d.id === "ueno" ? 1 : 0.12))
+        .velocityDecay(0.5)
+    },
+    free: {
+      start: n => [n.ax + (Math.random() - .5) * 40, n.ay + (Math.random() - .5) * 40],
+      forces: () => sim
+        .force("link", d3.forceLink(links).id(d => d.id).distance(150).strength(0.06))
+        .force("charge", d3.forceManyBody().strength(d => d.group === "hub" ? -900 : -260).distanceMax(380))
+        .force("collide", d3.forceCollide().radius(d => Math.max(radius(d) + (hasOuter(d) ? 30 : 22), labelW(d) / 2 + 6)).iterations(2))
+        .force("x", d3.forceX(d => d.ax).strength(d => d.group === "hub" ? 0.6 : 0.2))
+        .force("y", d3.forceY(d => d.ay).strength(d => d.group === "hub" ? 0.6 : 0.2))
+        .velocityDecay(0.55)
+    }
+  };
+  // Settle both layouts before the first paint so nothing "explodes" on load, and keep where each one ends
+  const settled = {};
+  ["free", "groups"].forEach(v => {
+    VIEWS[v].forces();
+    nodes.forEach(n => { [n.x, n.y] = VIEWS[v].start(n); n.vx = n.vy = 0; });
+    sim.alpha(1);
+    for (let i = 0; i < 300; i++) sim.tick();
+    settled[v] = new Map(nodes.map(n => [n.id, [n.x, n.y]]));
+  });
+  let view = "groups";
+  try { if (localStorage.getItem("ueno-vista") === "free") view = "free"; } catch (e) { /* storage blocked: default view */ }
+  VIEWS[view].forces();
+  nodes.forEach(n => { [n.x, n.y] = settled[view].get(n.id); n.vx = n.vy = 0; });
+  document.body.classList.toggle("view-free", view === "free");
   sim.force("drift", driftForce()).alphaMin(0).alpha(0.02).alphaTarget(0.012).on("tick", ticked).restart();
 
   function edgePoints(l) {
@@ -1244,11 +1354,11 @@
       d3.select(this).selectAll("line").attr("x1", p.x1).attr("y1", p.y1).attr("x2", p.x2).attr("y2", p.y2);
     });
     nodeSel.attr("transform", d => `translate(${d.x},${d.y})`);
-    drawHalos();
+    if (view === "groups") drawHalos();
   }
 
   // Outline around each cluster: a circle around a cluster with its own center,
-  // a curved band (part of a ring around the bank) for the groups that sit around ueno.
+  // a rounded outline around the blocks that sit beside the bank.
   const haloLine = d3.line().curve(d3.curveCatmullRomClosed.alpha(0.5));
   function drawHalos() {
     haloSel.each(function (c) {
@@ -1326,7 +1436,7 @@
       x0 = Math.min(x0, n.x - half); x1 = Math.max(x1, n.x + half);
       y0 = Math.min(y0, n.y - radius(n) - 24); y1 = Math.max(y1, n.y + radius(n) + 34);
     });
-    const cls = new Set(list.map(n => n.cl).filter(Boolean));
+    const cls = new Set(view === "groups" ? list.map(n => n.cl).filter(Boolean) : []);
     haloSel.each(function (c) {
       if (!cls.has(c)) return;
       const b = this.querySelector("path").getBBox(), t = this.querySelector("text").getBBox();
@@ -1338,7 +1448,7 @@
 
   function fitView(animate) {
     const small = W < 760;
-    const padX = small ? 16 : 48, padTop = small ? 56 : 70, padBottom = small ? 16 : 64;   // desktop: room for the one-row legend
+    const padX = small ? 16 : 48, padTop = small ? 86 : 70, padBottom = small ? 16 : 64;   // desktop: room for the one-row legend
     const shown = nodes.filter(n => !isHidden(n));
     const availW = W - padX * 2, availH = H - padTop - padBottom;
     // twice: the cluster titles grow when the map is zoomed out, so measure again at the new zoom
@@ -1368,7 +1478,7 @@
   function zoomToCluster(c) {
     const { x0, y0, x1, y1 } = boxOfNodes(nodes.filter(n => n.cl === c && !isHidden(n)));
     if (x0 === Infinity) return;
-    const pad = W < 760 ? 16 : 48, padTop = W < 760 ? 56 : 70;
+    const pad = W < 760 ? 16 : 48, padTop = W < 760 ? 86 : 70;
     const availW = W - pad * 2, availH = H - padTop - pad;
     const k = Math.min(1.8, availW / (x1 - x0), availH / (y1 - y0));
     const tr = d3.zoomIdentity.translate(pad + availW / 2 - k * (x0 + x1) / 2, padTop + availH / 2 - k * (y0 + y1) / 2).scale(k);
@@ -1377,6 +1487,43 @@
   haloSel.select("text.t")
     .on("pointerdown", e => e.stopPropagation())   // a click on the title is not the start of a pan
     .on("click", (e, c) => { e.stopPropagation(); zoomToCluster(c); });
+
+  /* ---------- view switch: Grupos | Libre ----------
+     Moves every node from where it is to where it sits in the other view (0.8 s),
+     then lets the gentle drift continue and fits the map to the screen. */
+  const viewBtns = document.querySelectorAll("#viewSw button");
+  const syncViewBtns = () => viewBtns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === view)));
+  syncViewBtns();
+  let viewTimer = null;
+  function switchView(v) {
+    if (v === view || !VIEWS[v]) return;
+    view = v;
+    try { localStorage.setItem("ueno-vista", v); } catch (e) { /* storage blocked: fine */ }
+    syncViewBtns();
+    document.body.classList.toggle("view-free", v === "free");
+    sim.stop();
+    if (viewTimer) viewTimer.stop();
+    VIEWS[v].forces();
+    const from = new Map(nodes.map(n => [n.id, [n.x, n.y]])), to = settled[v];
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const done = () => {
+      nodes.forEach(n => { n.vx = n.vy = 0; });
+      ticked();
+      sim.alpha(0.02).restart();
+      fitView(true);
+    };
+    if (reduce) { nodes.forEach(n => { [n.x, n.y] = to.get(n.id); }); done(); return; }
+    viewTimer = d3.timer(t => {
+      const k = d3.easeCubicInOut(Math.min(1, t / 800));
+      nodes.forEach(n => {
+        const [x0, y0] = from.get(n.id), [x1, y1] = to.get(n.id);
+        n.x = x0 + (x1 - x0) * k; n.y = y0 + (y1 - y0) * k;
+      });
+      ticked();
+      if (k >= 1) { viewTimer.stop(); viewTimer = null; done(); }
+    });
+  }
+  viewBtns.forEach(b => b.addEventListener("click", () => switchView(b.dataset.view)));
 
   fitView(false);
 
@@ -1518,6 +1665,8 @@
       { t: "  Línea gris = otro vínculo." },
       { t: "  Clic en el título de un grupo" },
       { t: "  para acercarlo." },
+      { t: "  GRUPOS / LIBRE (arriba): cambia" },
+      { t: "  la forma de ver el mapa." },
       { t: "" },
       { t: "> CÓDIGO DE COLOR", c: "bold" }
     ];
