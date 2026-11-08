@@ -569,7 +569,9 @@
     // Added for Conatel and Nubicom (ABC 13/10/2026; tuit de @hectordalegre). Appended so existing codes stay the same
     { id: "conatel",       label: "Conatel",                           role: "Regulador de telecomunicaciones; según un tuit, depositó fondos en ueno (oct. 2026, no verificado)", group: "state", short: "Conatel" },
     { id: "serenella", label: "Serenella Argaña", role: "Nuera del Presidente; esposa de Gonzalo Peña Ocampos", group: "family", ax: 110, ay: 520 },
-    { id: "silvia_vc", label: "María Silvia Vázquez de Carvallo", role: "Esposa de Carlos Carvallo (ex presidente del BCP); consultora", group: "executive", ax: -120, ay: -200 }
+    { id: "silvia_vc", label: "María Silvia Vázquez de Carvallo", role: "Esposa de Carlos Carvallo (ex presidente del BCP); consultora", group: "executive", ax: -120, ay: -200 },
+    // Added from Última Hora (05/11/2026): former MEF minister when Caja Fiscal funds were placed in ueno. Appended so existing codes stay the same
+    { id: "fernandez_v",   label: "Carlos Fernández Valdovinos",       role: "Ex ministro de Economía (durante la colocación de fondos de la Caja Fiscal en ueno, jul. 2025)", group: "political" }
   ];
 
   /* ---------------------------------------------------------------
@@ -608,6 +610,12 @@
       fecha: "14/12/2025",
       titulo: "Grupo Vázquez fue favorecido con US$ 780 millones en la era Peña",
       url: "https://www.abc.com.py/politica/2025/12/14/grupo-vazquez-fue-favorecido-con-us-780-millones-en-la-era-pena/"
+    },
+    "ultimahora-2026-11-05": {
+      medio: "Última Hora",
+      fecha: "05/11/2026",
+      titulo: "MEF denuncia que USD 60 millones de la Caja Fiscal están en riesgo ante colocación en ueno",
+      url: "https://www.ultimahora.com/mef-denuncia-que-usd-60-millones-de-la-caja-fiscal-estan-en-riesgo-ante-colocacion-en-ueno"
     },
     "ultimahora-2026-11-07": {
       medio: "Última Hora",
@@ -763,7 +771,9 @@
     { source: "conatel",       target: "ueno",    desc: "Según el tuit de @hectordalegre (no verificado: no se pudieron abrir los documentos): dos órdenes de transferencia a la cuenta 6192324350 de ueno bank, N° 25/2026 (13/10/2026) por G. 50.000 millones desde Interfisa, y N° 28/2026 (15/10/2026) por G. 20.000 millones desde el BNF. Concepto: 'pago a proveedores y acreedores varios'. Revisar: el título del tuit habla de depósitos 'del 15 al 26 de octubre'. El tuit también menciona un pico de G. 90.000 millones; el título confirma USD 16 millones, el pico no se pudo verificar.", src: ["docs-transf-conatel-2026", "x-dalegre-2026"] },
     { source: "conatel",       target: "nubicom", desc: "Conatel dio por cumplido el despliegue 5G de Nubicom (34 radiobases inspeccionadas; el mínimo exigido era 20), pero admite que tiene apenas dos abonados por cobertura limitada.", src: ["abc-2026-10-13"] },
     { source: "cv",            target: "silvia_vc", desc: "Esposa de Carlos Carvallo (según ABC 06/11/2026).", src: ["abc-2026-11-06"] },
-    { source: "silvia_vc",     target: "gv",      desc: "Tres facturas por consultoría de G. 55 millones cada una, entre abril de 2025 y septiembre de 2026; total G. 165 millones (ABC 06/11/2026).", src: ["abc-2026-11-06"] }
+    { source: "silvia_vc",     target: "gv",      desc: "Tres facturas por consultoría de G. 55 millones cada una, entre abril de 2025 y septiembre de 2026; total G. 165 millones (ABC 06/11/2026).", src: ["abc-2026-11-06"] },
+    // Added from Última Hora (05/11/2026). The article names him as minister when the placement happened; it does not say he signed Resolución MEF N° 338/2025
+    { source: "fernandez_v",   target: "mef",     desc: "Ministro de Economía cuando el MEF colocó USD 41,6 millones (G. 250.000 millones) de la Caja Fiscal en ueno a cinco años (julio 2025, Resolución MEF N° 338/2025). Según Última Hora, el MEF denunció el 05/11/2026 que esos fondos están en riesgo.", src: ["ultimahora-2026-11-05"] }
   ];
 
   /* ---------- derived fields ---------- */
