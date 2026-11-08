@@ -12,6 +12,10 @@ Todo el proyecto es un solo archivo: [`index.html`](index.html). Descargalo y ab
 
 - **Entidades** (personas, empresas, organismos del Estado, reguladores), con puntos de color por categoría: PEP, familia, empresa, Estado y persona privada.
 - **Vínculos** entre entidades, con descripción, montos y **la fuente** (enlace clicable).
+- **Líneas de dinero en color:** verde = fondos públicos que entran al banco; azul = créditos que salen hacia empresas satélite. Los demás vínculos (accionista, directivo, familia) son grises.
+- **Nombres legibles a cualquier zoom:** si dos nombres se pisan, se muestra el más importante; al acercarte aparecen los demás (o pasá el cursor sobre la entidad).
+- **Botones de zoom** (`+`, `−`, ver todo) abajo a la derecha del mapa. Teclas: `+`, `-` y `0`.
+- **En el celular:** el botón «Agrandar mapa» deja el mapa casi a pantalla completa.
 - **Buscador** (atajo de teclado: `/`).
 
 ## Cómo colaborar
