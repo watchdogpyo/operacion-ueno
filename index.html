@@ -630,7 +630,10 @@
     { id: "ueno_cdb",      label: "Ueno Casa de Bolsa SA",             role: "Suspendida por la BVA (06/11/2026): falla en reporto del 03/11/2026, sin plazo para levantar la medida", group: "satellite", short: "Ueno CdB" },
     { id: "bva",           label: "Bolsa de Valores de Asunción (BVA)", role: "Suspendió preventivamente a Ueno CdB y Valores CdB por incumplimientos en reportos", group: "regulator", short: "BVA" },
     // Added from ABC Color (07/11/2026): director of Ueno Casa de Bolsa. Appended so existing codes stay the same
-    { id: "abreu",         label: "Joshua Abreu",                      role: "Director de Ueno Casa de Bolsa SA. Ex Superintendente de Valores del BCP (2023–2024)", group: "executive" }
+    { id: "abreu",         label: "Joshua Abreu",                      role: "Director de Ueno Casa de Bolsa SA. Ex Superintendente de Valores del BCP (2023–2024)", group: "executive" },
+    // Added to REGULADORES (La Nación 05/11/2026; sitio oficial DNIT). No link to ueno found yet: needs a source before any link is added
+    { id: "orue",          label: "Óscar Alcides Orué",                role: "Director Nacional de la DNIT (Ingresos Tributarios)", group: "regulator", short: "Ó. Orué" },
+    { id: "alcaraz_seprelad", label: "Liliana Alcaraz",                role: "Ministra secretaria ejecutiva de la Seprelad (unidad contra el lavado de dinero)", group: "regulator", short: "L. Alcaraz" }
   ];
 
   /* ---------------------------------------------------------------
@@ -741,6 +744,18 @@
       fecha: "07/11/2026",
       titulo: "La trompeta sonó: la reacción en la iglesia de Joshua Abreu tras la suspensión de Ueno Casa de Bolsa",
       url: "https://www.abc.com.py/politica/2026/11/07/y-la-trompeta-sono-ueno-casa-bolsa-de-joshua-abreu-fue-suspendida-esto-dicen-en-su-iglesia/"
+    },
+    "lanacion-2026-11-05-seprelad": {
+      medio: "La Nación",
+      fecha: "05/11/2026",
+      titulo: "Caso ueno bank: Fiscalía pidió a Seprelad informes financieros y societarios de 27 imputados y 20 empresas",
+      url: "https://www.lanacion.com.py/politica/2026/11/05/caso-ueno-bank-fiscalia-pidio-a-seprelad-informes-financieros-y-societarios-de-27-imputados-y-20-empresas/"
+    },
+    "dnit-orue": {
+      medio: "DNIT (sitio oficial)",
+      fecha: "consultado 08/11/2026",
+      titulo: "Óscar Alcides Orué, Director Nacional",
+      url: "https://www.dnit.gov.py/web/portal-institucional/w/oscar-alcides-orue"
     }
   };
 
@@ -960,7 +975,7 @@
     { id: "pena",  title: "FAMILIA PEÑA", hub: "sp", x: -560, y: -620,
       members: ["fp", "mnp", "gpo", "serenella", "cbv", "muar", "wels"] },
     { id: "reg",   title: "REGULADORES", x: -400, y: -300, cols: 3,
-      members: ["cv", "bcp_dir", "bva", "silvia_vc", "valores"] },
+      members: ["cv", "bcp_dir", "bva", "valores", "orue", "alcaraz_seprelad"] },
     // left: public money that went into the bank
     { id: "state", title: "FONDOS DEL ESTADO", x: -470, y: 20, cols: 2,
       members: ["ips", "itaipu", "ande", "caja_ande", "mef", "petropar", "caja_bancaria", "conatel", "fernandez_v"] },
