@@ -630,7 +630,11 @@
     { id: "ueno_cdb",      label: "Ueno Casa de Bolsa SA",             role: "Suspendida por la BVA (06/11/2026): falla en reporto del 03/11/2026, sin plazo para levantar la medida", group: "satellite", short: "Ueno CdB" },
     { id: "bva",           label: "Bolsa de Valores de Asunción (BVA)", role: "Suspendió preventivamente a Ueno CdB y Valores CdB por incumplimientos en reportos", group: "regulator", short: "BVA" },
     // Added from ABC Color (07/11/2026): director of Ueno Casa de Bolsa. Appended so existing codes stay the same
-    { id: "abreu",         label: "Joshua Abreu",                      role: "Director de Ueno Casa de Bolsa SA. Ex Superintendente de Valores del BCP (2023–2024)", group: "executive" }
+    { id: "abreu",         label: "Joshua Abreu",                      role: "Director de Ueno Casa de Bolsa SA. Ex Superintendente de Valores del BCP (2023–2024)", group: "executive" },
+    // Added from ueno bank Informe anual de Gobierno Corporativo 2025 (sección II.C, III.A y V.B)
+    { id: "carolina_galeano", label: "Carolina María Galeano de Bastar", role: "Directora suplente de ueno bank (desde 01/03/2022)", group: "executive", short: "Carolina Galeano" },
+    { id: "silvia_murto",     label: "Silvia Rosa Susana Murto Méndez",  role: "Directora suplente de ueno bank (desde 21/06/2021)", group: "executive", short: "Silvia Murto" },
+    { id: "pwc",              label: "PricewaterhouseCoopers (PwC)",     role: "Auditora externa de ueno bank (ejercicios 2024, 2025 y 2026)", group: "satellite" }
   ];
 
   /* ---------------------------------------------------------------
@@ -705,6 +709,12 @@
       fecha: "Composición accionaria al 12/03/2025",
       titulo: "Nómina de accionistas de U Holdings S.à r.l. (Grupo Vázquez S.A.E.: 206.100 acciones, 92,894%)",
       url: "https://www.ueno.com.py/wp-content/uploads/2025/04/Nomina-de-accionistas-web-ueno-holdings.pdf"
+    },
+    "ueno-gobierno-corporativo-2025": {
+      medio: "ueno bank (Informe anual de Gobierno Corporativo, ejercicio 2025, aprobado por el Directorio el 26/06/2026)",
+      fecha: "Ejercicio 2025",
+      titulo: "Informe anual de Gobierno Corporativo: directores suplentes y auditor externo (PwC)",
+      url: "https://www.ueno.com.py/informacion-legal/"
     },
     "bvsa-nota-182-2025": {
       medio: "Ueno Casa de Bolsa, Nota SG N° 182/2025 (comunicación de hecho relevante a la SIV y a la BVA)",
@@ -879,7 +889,11 @@
     { source: "jg", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 41 acciones (0,018%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
     { source: "astigarraga", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 3 acciones (0,001%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
     // Added from ABC Color (07/11/2026): director of Ueno Casa de Bolsa (no amount given in the article)
-    { source: "abreu", target: "ueno_cdb", desc: "Director de Ueno Casa de Bolsa SA según ABC (07/11/2026). La BVA suspendió preventivamente a esa casa de bolsa por falta de fondos para cumplir operaciones.", src: ["abc-2026-11-07-abreu"] }
+    { source: "abreu", target: "ueno_cdb", desc: "Director de Ueno Casa de Bolsa SA según ABC (07/11/2026). La BVA suspendió preventivamente a esa casa de bolsa por falta de fondos para cumplir operaciones.", src: ["abc-2026-11-07-abreu"] },
+    // Added from ueno Informe anual de Gobierno Corporativo 2025
+    { source: "carolina_galeano", target: "ueno", desc: "Directora suplente de ueno bank según el Informe anual de Gobierno Corporativo 2025 (nombrada por primera vez el 01/03/2022).", src: ["ueno-gobierno-corporativo-2025"] },
+    { source: "silvia_murto", target: "ueno", desc: "Directora suplente de ueno bank según el Informe anual de Gobierno Corporativo 2025 (nombrada por primera vez el 21/06/2021).", src: ["ueno-gobierno-corporativo-2025"] },
+    { source: "pwc", target: "ueno", desc: "Auditora externa de ueno bank para los ejercicios 2024, 2025 y el ejercicio que finaliza el 31/12/2026, según el Informe anual de Gobierno Corporativo 2025.", src: ["ueno-gobierno-corporativo-2025"] }
   ];
 
 
