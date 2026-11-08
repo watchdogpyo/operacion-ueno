@@ -735,7 +735,7 @@
     { source: "itaipu",        target: "ueno",    desc: "Captación de recursos vinculados a la entidad binacional." },
     // Core matrix & structure
     { source: "lux",           target: "ueno",    desc: "Matriz dueña del banco. Capitalización de ecosistema sin efectivo." },
-    { source: "fp",            target: "lux",     desc: "Entró como accionista de U Holdings el 20/03/2024, con 58 acciones compradas a Grupo Vázquez.", src: ["abc-2025-04-06"] },
+    { source: "fp",            target: "lux",     desc: "Entró como accionista de U Holdings el 20/03/2024, con 58 acciones compradas a Grupo Vázquez. Salió el 01/03/2025: traspasó esas 58 acciones de vuelta a Grupo Vázquez (el registro en Luxemburgo se presentó el 04/04/2025). Ya no figura en la nómina de accionistas al 12/03/2025.", src: ["abc-2025-04-06", "ueno-nomina-holdings-2025"] },
     { source: "sp",            target: "fp",      desc: "Vínculo familiar directo (Hermano).", src: ["abc-2025-04-20"] },
     { source: "sp",            target: "serenella", desc: "Nuera del Presidente: Serenella Argaña, esposa de Gonzalo Peña Ocampos, hijo del Presidente.", src: ["ultimahora-2026-11-07"] },
     { source: "serenella",     target: "muar",    desc: "Muar SRL es una empresa de Serenella Argaña, nuera del Presidente (según Última Hora).", src: ["ultimahora-2026-11-07"] },
@@ -754,7 +754,7 @@
     { source: "dg",            target: "hanoi",   desc: "CEO de Hanoi SA (Monchis), según ABC 12/10/2026.", src: ["abc-2026-10-12"] },
     { source: "ou",            target: "grupo_m", desc: "Propietario de Grupo M desde el 30/09/2025, junto a Diego Gómez (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     { source: "gv",            target: "hanoi",   desc: "Hanoi SA (Monchis) es otra empresa del Grupo Vázquez (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
-    { source: "ueno",          target: "muar",    desc: "Desvío: Financiamiento a empresa del entorno presidencial." },
+    { source: "ueno",          target: "muar",    desc: "Figura en la nómina de deudores de ueno con un saldo de G. 8.819 millones. Última Hora la describe como firma vinculada a Serenella Argaña y aclara que no figura entre los antecedentes presentados por el BCP (UH 07/11/2026).", src: ["ultimahora-2026-11-07"] },
     { source: "ueno",          target: "mowi",    desc: "Movió US$ 42,5 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", amt: ["US$ 42,5 millones"], src: ["abc-2026-10-12"] },
     { source: "ueno",          target: "hendy",   desc: "Movió US$ 42 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", amt: ["US$ 42 millones"], src: ["abc-2026-10-12"] },
     { source: "ueno",          target: "grupo_m", desc: "Movió US$ 62 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", amt: ["US$ 62 millones"], src: ["abc-2026-10-12"] },
@@ -763,8 +763,8 @@
     { source: "ueno",          target: "tuiu",    desc: "Créditos con condiciones 'paupérrimas' que superaron el límite regulatorio (memo del exgerente de Supervisión, según ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     { source: "mowi",          target: "itti",    desc: "Transferencias millonarias desde Mowi para cubrir sobregiros de Itti.", src: ["abc-2026-10-12"] },
     { source: "hendy",         target: "itti",    desc: "Transferencias millonarias desde Hendy para cubrir sobregiros.", src: ["abc-2026-10-12"] },
-    { source: "hendy",         target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre.", src: ["abc-2026-10-12"] },
-    { source: "mowi",          target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre.", src: ["abc-2026-10-12"] },
+    { source: "hendy",         target: "redipro", desc: "El 30/09/2025 el dinero de los préstamos aprobados el 26/09 pasó a cuentas de Itti y Redipro para cubrir sobregiros (según ABC; el artículo no detalla cuánto recibió Redipro de Hendy).", src: ["abc-2026-10-12"] },
+    { source: "mowi",          target: "redipro", desc: "El 30/09/2025 el dinero de los préstamos aprobados el 26/09 pasó a cuentas de Itti y Redipro para cubrir sobregiros. El 30/12/2025 Mowi giró además G. 33.500 millones a Redipro (Wepa), cuya cuenta quedó sobregirada, según los supervisores del BCP (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     // César Berea Vargas (fuente: ABC Color, 20/04/2025)
     { source: "sp",            target: "cbv",     desc: "Vínculo familiar: concuñado del Presidente (esposo de Adriana Ocampos Villate, hermana de la Primera Dama).", src: ["abc-2025-04-20"] },
     { source: "cbv",           target: "ueno",    desc: "Director comercial de empresas en ueno desde abril de 2024, según su perfil de LinkedIn citado por ABC.", src: ["abc-2025-04-20"] },
@@ -851,7 +851,13 @@
     { source: "gv",          target: "ueno_cdb", desc: "Parte del canje de 10.820 acciones de Ueno Casa de Bolsa realizado el 30/06/2025 (Gs. 10.820.000.000 total; acciones ordinarias de voto simple).", src: ["bvsa-nota-182-2025"] },
     { source: "upy",         target: "ueno_cdb", desc: "Parte del canje de 10.820 acciones de Ueno Casa de Bolsa realizado el 30/06/2025 (Gs. 10.820.000.000 total; acciones ordinarias de voto simple).", src: ["bvsa-nota-182-2025"] },
     { source: "lux",         target: "ueno_cdb", desc: "Empresa del ecosistema U Holdings. La nómina de accionistas de U Holdings lista a 'ueno C.B.S.A.', que es Ueno Casa de Bolsa S.A.", src: ["ueno-nomina-holdings-2025"] },
-    { source: "gv",          target: "lux",     desc: "Accionista mayoritario de U Holdings S.à r.l.: 206.100 acciones, 92,894% (nómina de accionistas al 12/03/2025).", src: ["ueno-nomina-holdings-2025"] }
+    { source: "gv",          target: "lux",     desc: "Accionista mayoritario de U Holdings S.à r.l.: 206.100 acciones, 92,894% (nómina de accionistas al 12/03/2025).", src: ["ueno-nomina-holdings-2025"] },
+    // Added from the U Holdings shareholder list (12/03/2025): minor holdings of people already on the map. Appended so existing codes stay the same
+    { source: "gomez_abente", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 68 acciones (0,031%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
+    { source: "rey", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 68 acciones (0,031%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
+    { source: "egb", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 43 acciones (0,019%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
+    { source: "jg", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 41 acciones (0,018%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] },
+    { source: "astigarraga", target: "lux", desc: "Accionista de U Holdings S.à r.l. con 3 acciones (0,001%), participación mínima, según la nómina al 12/03/2025.", src: ["ueno-nomina-holdings-2025"] }
   ];
 
 
