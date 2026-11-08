@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operación Ueno</title>
+<meta name="description" content="@watchdogpyo — Archivo 01: mapa interactivo de conexiones entre entidades offshore, bancos, políticos y fondos estatales.">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --panel: #0B0C0E;
+    --white: #FFFFFF;
+    --gray: #A3A3A3;
+    --dim: #5C5C5C;
+    --line: #232428;
+    --sidebar-w: 350px;
+    --sans: 'Inter', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    --mono: 'Space Mono', 'Courier New', Courier, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--sans);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--white); color: var(--bg); }
+
+  /* ---------- STAGE (graph) ---------- */
+  #stage {
+    position: fixed;
+    inset: 0 var(--sidebar-w) 0 0;
+    background: var(--bg);
+    cursor: grab;
+  }
+  #stage:active { cursor: grabbing; }
+  #stage svg { width: 100%; height: 100%; display: block; }
+
+  /* architectural guide lines */
+  .grid line { stroke: #111214; stroke-width: 1; }
+  .crosshair { stroke: #1A1B1E; stroke-width: 1; }
+
+  .link {
+    stroke: var(--white);
+    stroke-width: var(--w, 1.8);          /* set per line: thinner when its nodes have many connections */
+    stroke-linecap: square;
+    fill: none;
+    opacity: .5;
+    transition: opacity .35s, stroke-width .2s;
+  }
+  .link-flow {
+    stroke: var(--bg);
+    stroke-width: var(--fw, 1.2);
+    stroke-dasharray: 2 14;
+    fill: none;
+    pointer-events: none;
+    animation: flow 1.6s linear infinite;
+    transition: opacity .35s;
+  }
+  @keyframes flow { to { stroke-dashoffset: -32; } }
+  .link-hit { stroke: transparent; stroke-width: 18; fill: none; cursor: pointer; }
+  .link.hover { stroke-width: 4; opacity: 1; }
+  .l.lit .link { opacity: 1; stroke-width: calc(var(--w, 1.8) + 1px); }
+
+  .node { cursor: pointer; transition: opacity .35s; outline: none; }
+  .node:focus-visible .ring { stroke-width: 4; stroke-dasharray: 2 3; }
+  .node .ring {
+    fill: var(--bg);
+    stroke: var(--white);
+    stroke-width: 2.4;
+    transition: stroke-width .2s;
+  }
+  .node .ring-outer { fill: none; stroke: var(--white); stroke-width: 1; }
+  .node .core { fill: var(--white); }
+  .node.offshore .ring { stroke-dasharray: 5 4; }
+  .node.state .ring-outer { stroke-dasharray: 1 4; }
+  .node:hover .ring, .node.active .ring { stroke-width: 4; }
+  .node.satellite .ring { fill: var(--white); }
+  .node.satellite .core { fill: var(--bg); }
+  .node.pending .ring { stroke-dasharray: 2 3; }
+  .node.pending .label { fill: var(--gray); }
+  .node .label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .03em;
+    fill: var(--white);
+    text-anchor: middle;
+    pointer-events: none;
+    paint-order: stroke;
+    stroke: var(--bg);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+  }
+  .node .code {
+    font-family: var(--mono);
+    font-size: 9px;
+    fill: var(--dim);
+    text-anchor: middle;
+    pointer-events: none;
+    letter-spacing: .12em;
+    opacity: 0;
+    transition: opacity .15s;
+  }
+  .node:hover .code, .node.active .code { opacity: 1; fill: var(--gray); }
+  .node.hub .label { font-family: var(--sans); font-weight: 900; font-size: 15px; letter-spacing: .02em; text-transform: uppercase; }
+
+  .dimmed { opacity: .12; }
+  .node.hidden, .l.hidden { opacity: 0 !important; pointer-events: none; }
+
+  /* ---------- FILTER dropdown (top right of the map) ---------- */
+  #filter {
+    position: fixed;
+    right: calc(var(--sidebar-w) + 24px); top: 18px;
+    z-index: 12;
+    font-family: var(--mono);
+  }
+  #filterBtn {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg); border: 1px solid var(--dim); color: var(--gray);
+    font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    width: 32px; height: 28px; padding: 0; cursor: pointer;
+  }
+  #filterBtn:hover, #filterBtn[aria-expanded="true"] { border-color: var(--white); color: var(--white); }
+  #filterBtn.on { background: var(--white); border-color: var(--white); color: var(--bg); font-weight: 700; }
+  #filterPanel {
+    position: absolute; right: 0; top: calc(100% + 6px);
+    width: 290px; max-height: calc(100vh - 90px); overflow-y: auto;
+    background: var(--panel); border: 1px solid var(--white);
+    box-shadow: 0 24px 40px rgba(0,0,0,.85);
+    font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--gray);
+    scrollbar-width: thin; scrollbar-color: var(--dim) transparent;
+  }
+  #filterPanel[hidden] { display: none; }
+  #filterPanel .f-head { padding: 12px 14px 4px; font-size: 9.5px; color: var(--dim); letter-spacing: .14em; }
+  #filterPanel .f-row { display: flex; align-items: center; gap: 9px; padding: 5px 14px; cursor: pointer; }
+  #filterPanel .f-row:hover { background: #17181B; color: var(--white); }
+  #filterPanel .f-row:has(input:checked) { color: var(--white); }
+  #filterPanel .f-row input {
+    appearance: none; -webkit-appearance: none; margin: 0; flex: none; cursor: pointer;
+    width: 12px; height: 12px; border: 1px solid var(--gray); background: none;
+  }
+  #filterPanel .f-row input:checked { background: var(--white); border-color: var(--white); box-shadow: inset 0 0 0 2px var(--panel); }
+  #filterPanel .f-row input:focus-visible { outline: 1px dashed var(--white); outline-offset: 2px; }
+  #filterPanel .f-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  #filterPanel .f-name { flex: 1; min-width: 0; }
+  #filterPanel .f-name small { display: block; font-size: 9px; color: var(--dim); text-transform: none; letter-spacing: .02em; margin-top: 2px; }
+  #filterPanel .f-n { color: var(--dim); font-size: 9.5px; }
+  #filterPanel .f-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    margin-top: 8px; padding: 10px 14px; border-top: 1px solid var(--line); font-size: 9.5px; color: var(--dim);
+  }
+
+  /* ---------- HEADER (minimal) ---------- */
+  header {
+    position: fixed;
+    top: 20px; left: 24px;
+    z-index: 5;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: .85;
+  }
+  header img { width: 26px; height: auto; display: block; }
+  header .kicker {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  header .kicker .sep { color: var(--dim); }
+
+  /* footer legend on the stage: one row (shapes + color dots) */
+  #legend {
+    position: fixed;
+    left: 24px; bottom: 20px;
+    z-index: 5;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    display: flex; gap: 8px 20px; flex-wrap: wrap; align-items: center;
+    max-width: calc(100vw - var(--sidebar-w) - 48px);
+    pointer-events: none;
+  }
+  #legend .item { display: flex; align-items: center; gap: 8px; }
+  #legend .head { color: var(--dim); }
+  #legend .sep { width: 1px; height: 14px; background: var(--line); }
+  #legend .dots { display: flex; align-items: center; gap: 4px; pointer-events: auto; }
+  #legend i.dot {
+    width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none;
+    cursor: help; transition: transform .15s, box-shadow .15s;
+  }
+  #legend i.dot:hover, #legend i.dot:focus-visible { transform: scale(1.35); box-shadow: 0 0 0 3px rgba(255,255,255,.18); outline: none; }
+  #legend svg { overflow: visible; }
+  /* tooltip for links */
+  #tip {
+    position: fixed;
+    z-index: 20;
+    pointer-events: none;
+    max-width: 280px;
+    background: var(--panel);
+    border: 1px solid var(--white);
+    padding: 10px 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity .15s, transform .15s;
+  }
+  #tip.show { opacity: 1; transform: none; }
+  #tip .t-src { margin-top: 8px; padding-top: 6px; border-top: 1px dashed var(--dim); color: var(--gray); font-size: 10px; letter-spacing: .06em; }
+  #tip .amt { background: var(--white); color: var(--bg); font-weight: 700; padding: 0 3px; }
+  #tip .t-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; vertical-align: 0; }
+  #tip .t-name { font-family: var(--sans); font-weight: 900; font-size: 14px; letter-spacing: -.01em; text-transform: uppercase; line-height: 1.15; margin-bottom: 4px; }
+  #tip .t-row { color: var(--gray); font-size: 10.5px; }
+  #tip .t-row b { color: var(--white); font-weight: 400; }
+  #tip .t-amt .amt { display: inline-block; margin: 3px 4px 0 0; }
+  #tip .t-amt { margin-top: 8px; padding-top: 6px; border-top: 1px dashed var(--dim); font-size: 10.5px; }
+  #tip .t-head { color: var(--gray); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; border-bottom: 1px dashed var(--dim); padding-bottom: 6px; }
+
+  /* ---------- SIDEBAR / TERMINAL ---------- */
+  aside {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--panel);
+    border-left: 1px solid var(--line);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--mono);
+  }
+  .term-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--gray);
+  }
+  .term-bar .dots { display: flex; gap: 6px; }
+  .term-bar .dots i { width: 8px; height: 8px; border: 1px solid var(--gray); display: block; }
+  .term-bar .dots i:first-child { background: var(--white); border-color: var(--white); }
+  .term-bar button {
+    background: none; border: 1px solid var(--dim); color: var(--gray);
+    font: inherit; letter-spacing: inherit; padding: 3px 7px; cursor: pointer;
+  }
+  .term-bar button:hover { border-color: var(--white); color: var(--white); }
+  .term-bar button[hidden] { display: none; }
+
+  .search {
+    position: relative;
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 18px;
+    height: 46px;
+    border-bottom: 1px solid var(--line);
+  }
+  .search:focus-within { border-bottom-color: var(--white); }
+  .search .prompt { font-weight: 700; color: var(--white); }
+  .search input {
+    flex: 1; min-width: 0;
+    background: none; border: none; outline: none;
+    color: var(--white);
+    font-family: var(--mono); font-size: 12px; letter-spacing: .02em;
+    caret-color: var(--white);
+  }
+  .search input::placeholder { color: var(--dim); }
+  #q-count { font-size: 10px; color: var(--gray); letter-spacing: .1em; white-space: nowrap; }
+  .search kbd {
+    font-family: var(--mono); font-size: 10px; color: var(--dim);
+    border: 1px solid var(--dim); padding: 0 5px; line-height: 16px;
+  }
+  .search:focus-within kbd, .search kbd[hidden] { display: none; }
+  #q-clear {
+    background: none; border: 1px solid var(--dim); color: var(--gray);
+    font-family: var(--mono); font-size: 13px; line-height: 1; width: 20px; height: 20px; cursor: pointer;
+  }
+  #q-clear:hover { border-color: var(--white); color: var(--white); }
+  #results {
+    position: absolute; left: 0; right: 0; top: 100%;
+    z-index: 30;
+    max-height: min(60vh, 420px); overflow-y: auto;
+    background: var(--panel);
+    border-bottom: 1px solid var(--white);
+    box-shadow: 0 24px 40px rgba(0,0,0,.85);
+    font-size: 11.5px;
+    scrollbar-width: thin; scrollbar-color: var(--dim) transparent;
+  }
+  #results .r-head {
+    padding: 10px 18px 4px; font-size: 9.5px; color: var(--dim); letter-spacing: .14em; text-transform: uppercase;
+  }
+  #results .r {
+    display: block; padding: 7px 18px; cursor: pointer; border-left: 3px solid transparent;
+  }
+  #results .r .r-top { display: flex; gap: 10px; }
+  #results .r .r-code { color: var(--dim); flex: none; }
+  #results .r .r-dot { width: 8px; height: 8px; border-radius: 50%; flex: none; align-self: center; }
+  #results .r .r-name { color: var(--white); font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #results .r .r-sub { color: var(--gray); font-size: 10.5px; padding-left: 64px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #results .r mark { background: var(--white); color: var(--bg); padding: 0 1px; }
+  #results .r.on, #results .r:hover { background: #17181B; border-left-color: var(--white); }
+  #results .r .r-off { margin-left: auto; flex: none; color: var(--dim); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+  #results .r-empty { padding: 14px 18px; color: var(--gray); }
+  #term {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 18px 28px;
+    font-size: 11.5px;
+    line-height: 1.62;
+    color: var(--white);
+    scrollbar-width: thin;
+    scrollbar-color: var(--dim) transparent;
+  }
+  #term .ln { white-space: pre-wrap; word-break: break-word; min-height: 1.62em; }
+  #term .muted { color: var(--dim); }
+  #term .gray { color: var(--gray); }
+  #term .big {
+    font-family: var(--sans); font-weight: 900; font-size: 26px; line-height: 1;
+    letter-spacing: -.03em; text-transform: uppercase; margin: 6px 0 8px;
+  }
+  #term .inv { background: var(--white); color: var(--bg); display: inline; padding: 0 4px; font-weight: 700; }
+  #term .rule { color: var(--dim); overflow: hidden; white-space: nowrap; }
+  #term .link-line { cursor: pointer; }
+  #term .link-line:hover { background: #17181B; }
+  #term a.src-line { display: block; color: var(--white); text-decoration: underline; text-decoration-style: dashed; text-underline-offset: 3px; text-decoration-color: var(--gray); }
+  #term a.src-line.gray { color: var(--gray); }
+  #term a.src-line:hover { background: #17181B; text-decoration-style: solid; text-decoration-color: var(--white); }
+  #term .bold { font-weight: 700; }
+  /* colored category dot: before the text (index) or after it (detail) */
+  #term .dotl::before, #term .dote::after {
+    content: ""; display: inline-block; width: .7em; height: .7em; border-radius: 50%;
+    background: var(--dot); vertical-align: .02em;
+  }
+  #term .dotl::before { margin-right: calc(2ch - .7em); }
+  #term .dote::after { margin-left: 1ch; }
+  #term .ind { padding-left: 6ch; }
+  #term .ind2 { padding-left: 2ch; }
+  #term .amtl { display: table; background: var(--white); color: var(--bg); font-weight: 700; padding: 0 5px; margin: 3px 0 3px 6ch; }
+  #term .amtl.flush { margin-left: 0; }
+  .cursor {
+    display: inline-block; width: 7px; height: 13px; background: var(--white);
+    vertical-align: -2px; margin-left: 2px; animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .term-foot {
+    border-top: 1px solid var(--line);
+    padding: 10px 18px;
+    font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim);
+    display: flex; justify-content: space-between;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 760px) {
+    :root { --sidebar-w: 0px; }
+    #stage { inset: 0 0 42vh 0; }
+    aside { top: auto; left: 0; width: 100%; height: 42vh; border-left: none; border-top: 1px solid var(--line); }
+    header { top: 12px; left: 14px; gap: 8px; }
+    header img { width: 22px; }
+    header .kicker { font-size: 9px; }
+    #legend { display: none; }
+    #filter { top: 10px; right: 14px; }
+    #filterPanel { width: min(290px, calc(100vw - 28px)); max-height: calc(58vh - 60px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .link-flow, .cursor { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="data:image/png;base64,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" alt="@watchdogpyo">
+  <div class="kicker"><span>Watchdog</span><span class="sep">/</span><span>Archivo 01</span><span class="sep">/</span><span>Operación Ueno</span></div>
+</header>
+
+<div id="stage"></div>
+
+<div id="legend"></div>
+<div id="filter">
+  <button id="filterBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="filterPanel" aria-label="Filtro del mapa" title="Filtro: elegí qué entidades mostrar en el mapa">
+    <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M1 1.5h14M4 6h8M6.5 10.5h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" fill="none"/></svg>
+  </button>
+  <div id="filterPanel" role="group" aria-label="Filtro del mapa" hidden></div>
+</div>
+<div id="tip"></div>
+
+<aside>
+  <div class="term-bar">
+    <div class="dots"><i></i><i></i><i></i></div>
+    <span id="term-title">tty://watchdog/archivo_01</span>
+    <button id="reset" hidden>[ ESC ]</button>
+  </div>
+  <div class="search">
+    <span class="prompt">&gt;</span>
+    <input id="q" type="text" placeholder="buscar entidad, rol o monto" autocomplete="off" spellcheck="false" aria-label="Buscar en el archivo" role="combobox" aria-controls="results" aria-expanded="false">
+    <span id="q-count"></span>
+    <kbd id="q-key">F</kbd>
+    <button id="q-clear" type="button" aria-label="Borrar búsqueda" hidden>×</button>
+    <div id="results" role="listbox" hidden></div>
+  </div>
+  <div id="term" aria-live="polite"></div>
+  <div class="term-foot"><span>@watchdogpyo</span><span id="clock">--:--:--</span></div>
+</aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ================================================================
+     DATASET
+     ================================================================ */
+  const GROUPS = {
+    hub:        { name: "NÚCLEO / BANCO",          r: 34 },
+    offshore:   { name: "MATRIZ OFFSHORE",         r: 20 },
+    antecedent: { name: "ANTECEDENTE CORPORATIVO", r: 14 },
+    state:      { name: "FONDOS DEL ESTADO",       r: 18 },
+    regulator:  { name: "REGULADOR",               r: 14 },
+    political:  { name: "PODER POLÍTICO",          r: 17 },
+    family:     { name: "ENTORNO FAMILIAR",        r: 13 },
+    holding:    { name: "HOLDING",                 r: 19 },
+    executive:  { name: "ACCIONISTA / DIRECTIVO",  r: 12 },
+    satellite:  { name: "EMPRESA SATÉLITE",        r: 11 }
+  };
+
+  /* Color dots: WHO the entity is (independent from the ring shape, which
+     is the structural GROUP). Category = group default, or n.cat override. */
+  const CATS = {
+    pep:     { name: "PEP / PODER POLÍTICO",         legend: "PEP / político",   color: "#FF5C5C" },
+    family:  { name: "FAMILIA DEL PRESIDENTE",       legend: "Familia del Pte.", color: "#F5A524" },
+    company: { name: "EMPRESA",                      legend: "Empresa",          color: "#4DA3FF" },
+    state:   { name: "ESTADO / FONDOS PÚBLICOS",     legend: "Estado / fondos",  color: "#3DD6A0" },
+    person:  { name: "PERSONA PRIVADA / ACCIONISTA", legend: "Persona privada",  color: "#B8B8B8" }
+  };
+  const CAT_ORDER = ["pep", "family", "company", "state", "person"];
+  const GROUP_CAT = {
+    hub: "company", offshore: "company", antecedent: "company", state: "state", regulator: "pep",
+    political: "pep", family: "family", holding: "company", executive: "person", satellite: "company"
+  };
+  const GROUP_ORDER = ["hub", "offshore", "antecedent", "state", "regulator", "political", "family", "holding", "executive", "satellite"];
+
+  // ax / ay = anchor position in "world" space. The bank sits at 0,0:
+  // public money on the left, power at the bottom, regulators on top,
+  // the holding top-right and the drain (satellites) on the right.
+  const nodes = [
+    // Core & offshore
+    { id: "ueno",          label: "ueno bank",                         role: "Núcleo central",                                group: "hub",        ax: 0,    ay: 0 },
+    { id: "lux",           label: "U Holdings S.à r.l. (Luxemburgo)",  role: "Matriz offshore",                               group: "offshore",   ax: -130, ay: 330, short: "U Holdings S.à r.l." },
+    { id: "vision",        label: "Visión Banco",                      role: "Entidad absorbida",                             group: "antecedent", ax: 190,  ay: -400 },
+    { id: "comercio",      label: "Financiera El Comercio",            role: "Antecedente",                                   group: "antecedent", ax: 340,  ay: -470, short: "Fin. El Comercio" },
+    // State & public funds
+    { id: "ips",           label: "Fondos IPS",                        role: "Jubilados",                                     group: "state" },
+    { id: "itaipu",        label: "Itaipú Binacional",                 role: "Entidad binacional",                            group: "state" },
+    { id: "ande",          label: "ANDE",                              role: "Administración Nacional de Electricidad",       group: "state" },
+    { id: "caja_ande",     label: "Caja de Jubilaciones ANDE",         role: "Fondos jubilatorios",                           group: "state",      short: "Caja Jub. ANDE" },
+    { id: "mef",           label: "Ministerio de Economía y Finanzas", role: "Recursos del Tesoro",                           group: "state",      short: "MEF" },
+    { id: "petropar",      label: "Petropar",                          role: "Petróleos Paraguayos",                          group: "state" },
+    { id: "caja_bancaria", label: "Caja Bancaria",                     role: "Jubilaciones bancarias",                        group: "state" },
+    // Regulators
+    { id: "cv",            label: "Carlos Carvallo",                   role: "Ex presidente del BCP / Ex presidente de ueno", group: "regulator",  ax: -200, ay: -320 },
+    { id: "bcp_dir",       label: "Directorio BCP",                    role: "L. Caballero, H. Insfrán, M.A. González, M.A. Mora", group: "regulator", ax: -290, ay: -470 },
+    // Politicians & family
+    { id: "sp",            label: "Santiago Peña",                     role: "Presidente del Paraguay",                       group: "political",  ax: -60,  ay: 520 },
+    { id: "bn",            label: "Basilio Núñez",                     role: "Titular del Senado",                            group: "political",  ax: -470, ay: -470 },
+    { id: "fp",            label: "Francisco Peña",                    role: "Hermano del Presidente",                        group: "family",     ax: -290, ay: 450 },
+    // Grupo Vázquez
+    { id: "gv",            label: "Grupo Vázquez SAE",                 role: "Holding",                                       group: "holding",    ax: 520,  ay: -330 },
+    { id: "fmvv",          label: "Federico Miguel Vázquez",           role: "Accionista principal",                          group: "executive",  ax: 720,  ay: -480, short: "F. Miguel Vázquez" },
+    { id: "vhv",           label: "Víctor Hugo Vázquez",               role: "Fundador de Credicentro",                       group: "executive",  ax: 760,  ay: -310 },
+    { id: "jg",            label: "Juan Manuel Gustale",               role: "Ex presidente de ueno / Ex BNF",                group: "executive", cat: "pep",  ax: 60,   ay: -500 },
+    { id: "dg",            label: "Diego Gómez",                       role: "CEO de Hanoi SA / Control de Grupo M",          group: "executive",  ax: 780,  ay: 380 },
+    { id: "ou",            label: "Óscar Urdapilleta",                 role: "Control de Grupo M",                            group: "executive",  ax: 640,  ay: 520 },
+    // Satellites (the drain)
+    { id: "muar",          label: "Muar",                              role: "Nuera del Pte.",                                group: "satellite",  cat: "family",  ax: 60,  ay: 420 },
+    { id: "franede",       label: "Franede SA",                        role: "Deudora",                                       group: "satellite" },
+    { id: "aime",          label: "Aime SA",                           role: "Corredora de seguros",                          group: "satellite" },
+    { id: "tuiu",          label: "Tuiu SA",                           role: "Deudora",                                       group: "satellite" },
+    { id: "mowi",          label: "Mowi SA",                           role: "Deudora",                                       group: "satellite" },
+    { id: "hendy",         label: "Grupo Hendy SA",                    role: "Deudora",                                       group: "satellite" },
+    { id: "grupo_m",       label: "Grupo M SA",                        role: "Deudora",                                       group: "satellite" },
+    { id: "hanoi",         label: "Hanoi SA / Monchis",                role: "Satélite",                                      group: "satellite" },
+    { id: "itti",          label: "Itti",                              role: "Satélite tecnológico",                          group: "satellite",  ax: 830,  ay: 0 },
+    { id: "redipro",       label: "Redipro SA",                        role: "Procesamiento digital",                         group: "satellite",  ax: 830,  ay: 170 },
+    // Added after the first release: appended at the end so existing N-/L- codes stay the same
+    { id: "cbv",           label: "César Berea Vargas",                role: "Concuñado del Presidente / Director comercial en ueno (desde abril 2024)", group: "family", ax: 286, ay: 386 },
+    // Added after the first release (sources: ABC Color, 2023 and 2025): appended so existing codes stay the same
+    { id: "uhs",           label: "Ueno Holding S.A.E.C.A.",           role: "Holding; Peña fue accionista hasta abril 2025",  group: "holding",    short: "Ueno Holding", ax: 330, ay: -250 },
+    { id: "upy",           label: "u Paraguay S.A.",                   role: "Accionista de ueno bank (17,8%)",               group: "holding", ax: -260, ay: 160 },
+    { id: "useg",          label: "Ueno Seguros S.A.",                 role: "Socio de Ueno Holding",                         group: "holding",    short: "Ueno Seguros", ax: 540, ay: -520 },
+    { id: "egb",           label: "Eduardo Gross Brown Costa",         role: "Director suplente y accionista de ueno bank",   group: "executive", ax: -320, ay: -110 },
+    { id: "nubicom",       label: "Nubicom Paraguay S.A.",             role: "Adjudicada 5G; dirigida por Grupo Vázquez (ABC)", group: "satellite", ax: 621, ay: -252 },
+    { id: "wels",          label: "Wels S.A.",                         role: "Contrato IPS (G. 8.197 millones, 2023)",        group: "satellite", ax: -645, ay: 405 },
+    { id: "mnp",           label: "Manuel Peña Palacios",              role: "Hermano del Presidente",                        group: "family", ax: -470, ay: 430 },
+    { id: "gpo",           label: "Gonzalo Peña Ocampos",              role: "Hijo del Presidente",                           group: "family", ax: -190, ay: 590 },
+    // Added from Última Hora (07/11/2026): Vinanzas route (Prioridad 1) and large debtors (Prioridad 2). Appended so existing codes stay the same
+    { id: "vinanzas",      label: "Vinanzas SA",                       role: "Compradora de la cartera morosa de ueno (USD 74,4 M)", group: "satellite" },
+    { id: "technoma",      label: "Technoma SAECA",                    role: "Préstamo USD 10 M para bonos (11/06/2026)",     group: "satellite" },
+    { id: "kasas",         label: "Kasas Propiedades SAE",             role: "Venta de bonos a Factopar y La Tropa",          group: "satellite" },
+    { id: "latropa",       label: "La Tropa Fletes EAS",               role: "Préstamo USD 10 M para bonos (11/06/2026)",     group: "satellite", short: "La Tropa" },
+    { id: "model",         label: "Model SA",                          role: "Venta de bonos a La Tropa",                     group: "satellite" },
+    { id: "factopar",      label: "Factopar SA",                       role: "Recibió fondos (15/06/2026) y los transfirió",  group: "satellite" },
+    { id: "sagas",         label: "Sagas SA",                          role: "Recibió G. 86.100 M (15/06/2026)",              group: "satellite" },
+    { id: "hdinvest",      label: "HD Invest EAS Unipersonal",         role: "Recibió USD 35 M (15/06/2026)",                 group: "satellite", short: "HD Invest" },
+    { id: "satec",         label: "Satec SA",                          role: "Recibió USD 20 M (15/06/2026)",                 group: "satellite" },
+    { id: "henrici",       label: "Henrici SA",                        role: "Recibió USD 10,6 M (27/03/2026)",               group: "satellite" },
+    { id: "valores",       label: "Valores Casa de Bolsa SA",          role: "Compra y venta de bonos con transferencias",    group: "satellite", short: "Valores CdB" },
+    { id: "gsr",           label: "GSR EAS",                           role: "Deudora: G. 453.828 M (Caso IX)",               group: "satellite" },
+    { id: "officedesign",  label: "Office Design SRL",                 role: "Deudora: G. 357.057 M (Caso X)",                group: "satellite", short: "Office Design" },
+    { id: "berilo",        label: "Grupo Berilo SA",                   role: "Deudora: G. 419.231 M (Caso XI)",               group: "satellite" },
+    { id: "nuevomundo",    label: "Nuevo Mundo Entertainment SA",      role: "Deudora: G. 198.205 M (Caso VII)",              group: "satellite", short: "Nuevo Mundo" },
+    { id: "galadriel",     label: "Galadriel SA",                      role: "Deudora: G. 88.623 M",                          group: "satellite" },
+    // Added from ABC Color (04/11/2026): people charged (imputados) and owners of the related companies. "Imputado" means charged, not convicted.
+    { id: "rey",           label: "Julio Daniel Rey Fernández",        role: "Director de Ueno. Imputado",                    group: "executive" },
+    { id: "mongelos",      label: "Diana Leticia Mongelos González",   role: "Directora de Ueno. Imputada",                   group: "executive" },
+    { id: "torres",        label: "Mariana Isabel Torres Rubiani",     role: "Directora de Ueno. Imputada",                   group: "executive" },
+    { id: "gomez_abente",  label: "Alejandro Gómez Abente",            role: "Director de Ueno. Imputado",                    group: "executive" },
+    { id: "duarte",        label: "Diego Fernando Duarte Schussmuller", role: "Director de Ueno. Imputado",                   group: "executive", short: "D. Duarte" },
+    { id: "almada",        label: "Miguel Ángel Almada Frutos",        role: "Ex síndico de Ueno. Imputado",                  group: "executive" },
+    { id: "sala",          label: "José Augusto Sala Cardozo",         role: "Presidente de MOWI SA. Imputado",               group: "executive" },
+    { id: "pizurno",       label: "Sergio Amado Pizurno Zsarán",       role: "Vicepresidente de MOWI SA. Imputado",           group: "executive" },
+    { id: "godoy",         label: "Vanessa Esther Godoy Ayala",        role: "Imputada. Presidenta de Grupo Hendy (dato en contradicción)", group: "executive" },
+    { id: "mengual",       label: "César Javier Mengual Mazacotte",    role: "Imputado. Presidente de Grupo Hendy (dato en contradicción)", group: "executive" },
+    { id: "astigarraga",   label: "César Manuel Astigarraga Lambaré",  role: "Imputado. Vinculado a Grupo M SA",              group: "executive" },
+    { id: "angulo",        label: "Luis Ernesto Angulo Rivera",        role: "Imputado. Vinculado a Grupo M SA",              group: "executive" },
+    { id: "guillermo_vaz", label: "Guillermo Vázquez Muniagurria",     role: "Imputado. Vinculado a Grupo M SA",              group: "executive" },
+    { id: "gomez_arce",    label: "Diego Sebastián Gómez Arce",        role: "Imputado. Vinculado a Grupo M SA (no confirmado si es Diego Gómez)", group: "executive" },
+    { id: "rios",          label: "Luis Fernando Ríos Espínola",       role: "Imputado. Vinculado a TUIU SA",                 group: "executive" },
+    { id: "gayol",         label: "André Gayol Pires",                 role: "Accionista de TUIU SA. Imputado",               group: "executive" },
+    { id: "di_iorio",      label: "Nicolás S. Di Iorio Olivares",      role: "Imputado. Vinculado a TUIU SA",                 group: "executive" },
+    { id: "franco",        label: "Rodrigo Ramón Franco Ortiz",        role: "Imputado. Vinculado a TUIU SA",                 group: "executive" },
+    { id: "mauro_vw",      label: "Mauro Vargas Wildberger",           role: "Presidente y accionista de Franede. Accionista de AIME", group: "executive" },
+    { id: "martin_vw",     label: "Martín Vargas Wildberger",          role: "Accionista de AIME SA",                         group: "executive" },
+    { id: "cecilia",       label: "Cecilia Domínguez Elizeche",        role: "Vicepresidenta de Franede SA",                  group: "executive" },
+    { id: "gloria_vf",     label: "Gloria Villasanti Farinha",         role: "Titular de AIME SA",                            group: "executive" },
+    { id: "raul_sanchez",  label: "Raúl Fernando Sánchez Gómez",       role: "Director de AIME SA",                           group: "executive" },
+    // Added for Conatel and Nubicom (ABC 13/10/2026; tuit de @hectordalegre). Appended so existing codes stay the same
+    { id: "conatel",       label: "Conatel",                           role: "Regulador de telecomunicaciones; órdenes de transferencia a ueno (oct. 2026)", group: "state", short: "Conatel" }
+  ];
+
+  /* ---------------------------------------------------------------
+     FUENTES (sources)
+     Add each article ONCE here, then reference its key from any
+     connection with  src: ["key"]  (a connection can cite several).
+     Connections without src simply show no source line.
+     --------------------------------------------------------------- */
+  const SOURCES = {
+    "abc-2025-04-20": {
+      medio: "ABC Color",
+      fecha: "20/04/2025",
+      titulo: "Concuñado de Santiago Peña figura como directivo en firma \u201camiga\u201d",
+      url: "https://www.abc.com.py/politica/2025/04/20/concunado-de-santiago-pena-figura-como-directivo-en-firma-amiga/"
+    },
+    "abc-2023-07-08": {
+      medio: "ABC Color",
+      fecha: "08/07/2023",
+      titulo: "Adjudicado por IPS y hermano de Santi son socios en otra compañía",
+      url: "https://www.abc.com.py/politica/2023/07/08/adjudicado-por-ips-y-hermano-de-santi-son-socios-en-otra-compania/"
+    },
+    "abc-2025-04-06": {
+      medio: "ABC Color",
+      fecha: "06/04/2025",
+      titulo: "Hermano de Santi era parte de offshore de banco favorito del IPS",
+      url: "https://www.abc.com.py/politica/2025/04/06/hermano-de-santi-era-parte-de-offshore-de-banco-favorito-dei-ips/"
+    },
+    "abc-2025-04-08": {
+      medio: "ABC Color",
+      fecha: "08/04/2025",
+      titulo: "Exponen en Diputados nexos de empresa de la que Santi Peña era accionista con caso A Ultranza Py",
+      url: "https://www.abc.com.py/politica/2025/04/08/exponen-en-diputados-nexos-de-empresa-de-la-que-santi-pena-era-accionista-con-caso-a-ultranza-py/"
+    },
+    "abc-2025-12-14": {
+      medio: "ABC Color",
+      fecha: "14/12/2025",
+      titulo: "Grupo Vázquez fue favorecido con US$ 780 millones en la era Peña",
+      url: "https://www.abc.com.py/politica/2025/12/14/grupo-vazquez-fue-favorecido-con-us-780-millones-en-la-era-pena/"
+    },
+    "ultimahora-2026-11-07": {
+      medio: "Última Hora",
+      fecha: "07/11/2026",
+      titulo: "Grandes deudores de ueno aparecen en la investigación del BCP sobre desvío de fondos",
+      url: "https://www.ultimahora.com/grandes-deudores-de-ueno-aparecen-en-la-investigacion-del-bcp-sobre-desvio-de-fondos"
+    },
+    "abc-2026-11-04": {
+      medio: "ABC Color",
+      fecha: "04/11/2026",
+      titulo: "Caso ueno: imputan a exdirectivos por supuesta lesión de confianza y otros delitos",
+      url: "https://www.abc.com.py/nacionales/2026/11/04/caso-ueno-imputan-a-exdirectivos-por-supuesta-lesion-de-confianza-y-otros-delitos/"
+    },
+    "abc-2026-10-13": {
+      medio: "ABC Color",
+      fecha: "13/10/2026",
+      titulo: "Conatel da por cumplido el despliegue de Nubicom, pero admite cobertura limitada y que tiene dos clientes",
+      url: "https://www.abc.com.py/economia/2026/10/13/conatel-da-por-cumplido-el-despliegue-de-nubicom-pero-admite-cobertura-limitada-y-desconoce-sus-clientes/"
+    },
+    "x-dalegre-2026": {
+      medio: "X (tuit de @hectordalegre)",
+      fecha: "Posterior al 26/10/2026 (sin fecha visible en el texto recibido)",
+      titulo: "Tuit de @hectordalegre sobre depósitos de Conatel en ueno (con video)",
+      url: "https://x.com/hectordalegre/status/2119058915094630612"
+    },
+    "docs-transf-conatel-2026": {
+      medio: "Órdenes de transferencia (capturas del video del tuit)",
+      fecha: "13/10/2026 y 15/10/2026",
+      titulo: "Orden de transferencia N° 25/2026 (G. 50.000 M desde Interfisa) y N° 28/2026 (G. 20.000 M desde BNF) a ueno bank",
+      url: "https://x.com/hectordalegre/status/2119058915094630612"
+    }
+  };
+
+  const links = [
+    // State fund exposure (inflow)
+    { source: "ips",           target: "ueno",    desc: "Captación masiva: USD 300 a 380 millones (CDA, Fondo Común y operativas)." },
+    { source: "ande",          target: "ueno",    desc: "Fondeo público: US$ 46 millones (préstamos BID/Taiwán) + G. 36.000 millones propios." },
+    { source: "caja_ande",     target: "ueno",    desc: "Saldos expuestos: G. 43.092 millones en depósitos de jubilados." },
+    { source: "mef",           target: "ueno",    desc: "Recursos del Tesoro: Depósitos a la vista y cuentas corrientes." },
+    { source: "petropar",      target: "ueno",    desc: "Saldos institucionales estatales expuestos al proceso de resolución." },
+    { source: "caja_bancaria", target: "ueno",    desc: "Exposición de fondos de la Caja de Jubilaciones de Empleados de Bancos." },
+    { source: "itaipu",        target: "ueno",    desc: "Captación de recursos vinculados a la entidad binacional." },
+    // Core matrix & structure
+    { source: "lux",           target: "ueno",    desc: "Matriz dueña del banco. Capitalización de ecosistema sin efectivo." },
+    { source: "fp",            target: "lux",     desc: "Ingreso a offshore en Luxemburgo coincidente con colosal fondeo.", src: ["abc-2025-04-20"] },
+    { source: "sp",            target: "fp",      desc: "Vínculo familiar directo (Hermano).", src: ["abc-2025-04-20"] },
+    { source: "sp",            target: "muar",    desc: "Vínculo familiar directo (Nuera del Presidente)." },
+    { source: "vision",        target: "ueno",    desc: "Absorción (Junio 2024) para expansión acelerada." },
+    { source: "gv",            target: "comercio",desc: "Adquisición en 2021, antecedente histórico del banco." },
+    { source: "comercio",      target: "ueno",    desc: "Evolución corporativa hacia banco digital." },
+    // Regulators
+    { source: "cv",            target: "ueno",    desc: "Puerta Giratoria: De presidente de ueno a BCP." },
+    { source: "cv",            target: "bn",      desc: "Presentación de renuncia al titular del Senado." },
+    { source: "jg",            target: "ueno",    desc: "Puerta Giratoria: Del BNF a presidente de ueno." },
+    { source: "bcp_dir",       target: "ueno",    desc: "Directorio BCP. Oficializaron el procedimiento de resolución del banco." },
+    // Holding & the drain (outflow)
+    { source: "fmvv",          target: "gv",      desc: "Principal accionista de Grupo Vázquez." },
+    { source: "vhv",           target: "gv",      desc: "Fundador histórico (Credicentro 1984)." },
+    { source: "gv",            target: "ueno",    desc: "Controlador mayoritario del banco." },
+    { source: "dg",            target: "grupo_m", desc: "Asume control el 30/09/2025." },
+    { source: "dg",            target: "hanoi",   desc: "CEO de Hanoi SA / Monchis." },
+    { source: "ou",            target: "grupo_m", desc: "Asume control junto a Diego Gómez el 30/09/2025." },
+    { source: "gv",            target: "hanoi",   desc: "Firma perteneciente al holding." },
+    { source: "ueno",          target: "muar",    desc: "Desvío: Financiamiento a empresa del entorno presidencial." },
+    { source: "ueno",          target: "mowi",    desc: "Crédito extremo: Parte del desvío de US$ 146 millones." },
+    { source: "ueno",          target: "hendy",   desc: "Crédito extremo: Parte del desvío de US$ 146 millones." },
+    { source: "ueno",          target: "grupo_m", desc: "Crédito extremo: Parte del desvío de US$ 146 millones." },
+    { source: "ueno",          target: "franede", desc: "Préstamo en condiciones desfavorables, violando límites." },
+    { source: "ueno",          target: "aime",    desc: "Préstamo en condiciones desfavorables, violando límites." },
+    { source: "ueno",          target: "tuiu",    desc: "Préstamo en condiciones desfavorables, violando límites." },
+    { source: "mowi",          target: "itti",    desc: "Transferencias millonarias desde Mowi para cubrir sobregiros de Itti." },
+    { source: "hendy",         target: "itti",    desc: "Transferencias millonarias desde Hendy para cubrir sobregiros." },
+    { source: "hendy",         target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre." },
+    { source: "mowi",          target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre." },
+    // César Berea Vargas (fuente: ABC Color, 20/04/2025)
+    { source: "sp",            target: "cbv",     desc: "Vínculo familiar: concuñado del Presidente (esposo de Adriana Ocampos Villate, hermana de la Primera Dama).", src: ["abc-2025-04-20"] },
+    { source: "cbv",           target: "ueno",    desc: "Director comercial de empresas en ueno desde abril de 2024, según su perfil de LinkedIn citado por ABC.", src: ["abc-2025-04-20"] },
+    { source: "cbv",           target: "gv",      desc: "Representante de Red Digital SA, operadora de Wepa y empresa del Grupo Vázquez.", src: ["abc-2025-04-20"] },
+    // Added after the first release (sources: ABC Color, 2023 and 2025)
+    { source: "sp",            target: "uhs",     desc: "Santiago Peña era accionista de Ueno Holding hasta abril de 2025 (según ABC; el Presidente dice que vendió sus acciones a finales de marzo de 2025).", src: ["abc-2025-04-06", "abc-2025-04-08"] },
+    { source: "gv",            target: "uhs",     desc: "Socio de Ueno Holding junto a ITTI y Ueno Seguros (según ABC).", src: ["abc-2025-04-06"] },
+    { source: "useg",          target: "uhs",     desc: "Socio de Ueno Holding (según ABC).", src: ["abc-2025-04-06"] },
+    { source: "lux",           target: "upy",     desc: "U Holdings S.à r.l. es accionista de u Paraguay S.A. (según ABC).", src: ["abc-2025-04-06"] },
+    { source: "upy",           target: "ueno",    desc: "Segunda mayor participante de ueno bank, con 17,8% (según ABC).", src: ["abc-2025-04-06"] },
+    { source: "egb",           target: "ueno",    desc: "Director suplente y accionista de ueno bank (según ABC).", src: ["abc-2025-12-14"] },
+    { source: "gv",            target: "nubicom", desc: "Según ABC, Nubicom Paraguay está dirigida plenamente por el Grupo Vázquez. Un senador opositor denuncia vínculos con el entorno presidencial (denuncia, no probada).", src: ["abc-2025-12-14"] },
+    { source: "ips",           target: "wels",    desc: "Adjudicó a Wels S.A. un contrato de G. 8.197 millones (2023).", src: ["abc-2023-07-08"] },
+    { source: "sp",            target: "mnp",     desc: "Vínculo familiar: hermano del Presidente.", src: ["abc-2023-07-08"] },
+    { source: "mnp",           target: "wels",    desc: "Socio, junto al representante de Wels, en la empresa Aquaservice (2018). No se documenta participación directa en Wels.", src: ["abc-2023-07-08"] },
+    { source: "sp",            target: "gpo",     desc: "Vínculo familiar: hijo del Presidente.", src: ["abc-2023-07-08"] },
+    { source: "gpo",           target: "wels",    desc: "Director suplente de Wels S.A. según acta del 24/03/2021. La empresa dijo que dejó de integrarla en agosto de 2022.", src: ["abc-2023-07-08"] },
+    // Added from Última Hora (07/11/2026): money route to Vinanzas and large debtors
+    { source: "vinanzas",      target: "ueno",    desc: "Compró la cartera morosa de ueno por USD 74,4 millones; el préstamo sirvió para financiar la compra.", src: ["ultimahora-2026-11-07"] },
+    { source: "gsr",           target: "ueno",    desc: "Deudora de ueno: G. 453.828 millones. Financiamiento de USD 72,8 millones (Caso IX).", src: ["ultimahora-2026-11-07"] },
+    { source: "officedesign",  target: "ueno",    desc: "Deudora de ueno: G. 357.057 millones. Capital adeudado de G. 359.722 millones (Caso X).", src: ["ultimahora-2026-11-07"] },
+    { source: "berilo",        target: "ueno",    desc: "Deudora de ueno: G. 419.231 millones. Préstamos y sobregiros de USD 26,4 millones (Caso XI).", src: ["ultimahora-2026-11-07"] },
+    { source: "nuevomundo",    target: "ueno",    desc: "Deudora de ueno: G. 198.205 millones. Saldo de riesgo de G. 198.962 millones (Caso VII).", src: ["ultimahora-2026-11-07"] },
+    { source: "galadriel",     target: "ueno",    desc: "Deudora de ueno: G. 88.623 millones en préstamos y sobregiros acumulados.", src: ["ultimahora-2026-11-07"] },
+    { source: "technoma",      target: "vinanzas",desc: "Préstamo de USD 10 millones el 11/06/2026 para comprar bonos de Itti y ueno. USD 4,68 millones y G. 31.200 millones fueron a Vinanzas.", src: ["ultimahora-2026-11-07"] },
+    { source: "latropa",       target: "vinanzas",desc: "Préstamo de USD 10 millones el 11/06/2026 para comprar bonos de Kasas, Model e Itti. Fondos destinados a Vinanzas.", src: ["ultimahora-2026-11-07"] },
+    { source: "kasas",         target: "vinanzas",desc: "Vendió bonos por USD 10,05 millones a Factopar y La Tropa. Los fondos terminaron en Vinanzas.", src: ["ultimahora-2026-11-07"] },
+    { source: "model",         target: "latropa", desc: "Vendió bonos por USD 2,12 millones a La Tropa Fletes.", src: ["ultimahora-2026-11-07"] },
+    { source: "factopar",      target: "vinanzas",desc: "Recibió USD 6,841 millones, G. 93.000 millones y G. 64.500 millones el 15/06/2026. Usados para comprar bonos y transferir a Vinanzas.", src: ["ultimahora-2026-11-07"] },
+    { source: "sagas",         target: "vinanzas",desc: "Recibió G. 86.100 millones el 15/06/2026 y los transfirió íntegramente a Vinanzas.", src: ["ultimahora-2026-11-07"] },
+    { source: "hdinvest",      target: "vinanzas",desc: "Recibió USD 35 millones y G. 36.900 millones el 15/06/2026, transferidos directamente a Vinanzas.", src: ["ultimahora-2026-11-07"] },
+    { source: "satec",         target: "vinanzas",desc: "Recibió USD 20 millones el 15/06/2026 y los pasó íntegramente a Vinanzas.", src: ["ultimahora-2026-11-07"] },
+    { source: "henrici",       target: "itti",    desc: "Recibió USD 10,59 millones el 27/03/2026 y los transfirió a Itti Saeca.", src: ["ultimahora-2026-11-07"] },
+    // Added from ABC Color (04/11/2026): charges and owners
+    { source: "rey",           target: "ueno",    desc: "Director de Ueno Bank, imputado por lesión de confianza y otros delitos.", src: ["abc-2026-11-04"] },
+    { source: "mongelos",      target: "ueno",    desc: "Directora de Ueno Bank, imputada por lesión de confianza y otros delitos.", src: ["abc-2026-11-04"] },
+    { source: "torres",        target: "ueno",    desc: "Directora de Ueno Bank, imputada por lesión de confianza y otros delitos.", src: ["abc-2026-11-04"] },
+    { source: "gomez_abente",  target: "ueno",    desc: "Director de Ueno Bank, imputado por lesión de confianza y otros delitos.", src: ["abc-2026-11-04"] },
+    { source: "duarte",        target: "ueno",    desc: "Director de Ueno Bank, imputado por lesión de confianza y otros delitos.", src: ["abc-2026-11-04"] },
+    { source: "almada",        target: "ueno",    desc: "Ex síndico de Ueno Bank, imputado por lesión de confianza y otros delitos.", src: ["abc-2026-11-04"] },
+    { source: "jg",            target: "ueno",    desc: "Imputado junto a otros directivos de Ueno Bank (lesión de confianza y otros delitos).", src: ["abc-2026-11-04"] },
+    { source: "fmvv",          target: "ueno",    desc: "Vicepresidente 1° de Ueno Bank. Principal imputado; la fiscalía pidió prisión preventiva.", src: ["abc-2026-11-04"] },
+    { source: "ueno",          target: "mowi",    desc: "Créditos de G. 254.157 millones a MOWI SA (2025–2026).", src: ["abc-2026-11-04"] },
+    { source: "ueno",          target: "hendy",   desc: "Créditos de G. 252.521 millones a Grupo Hendy SA en tres operaciones (2025–2026).", src: ["abc-2026-11-04"] },
+    { source: "ueno",          target: "grupo_m", desc: "Créditos de G. 237.105 millones a Grupo M SA, sin garantía real (2025–2026).", src: ["abc-2026-11-04"] },
+    { source: "sala",          target: "mowi",    desc: "Presidente de MOWI SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "pizurno",       target: "mowi",    desc: "Vicepresidente de MOWI SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "godoy",         target: "hendy",   desc: "Presidenta de Grupo Hendy SA según un pasaje del artículo. Otro pasaje da otro dato sobre Hendy (ver contradicción).", src: ["abc-2026-11-04"] },
+    { source: "mengual",       target: "hendy",   desc: "Señalado como presidente de Grupo Hendy. Contradice el dato de Godoy Ayala; hay que confirmarlo.", src: ["abc-2026-11-04"] },
+    { source: "ou",            target: "hendy",   desc: "Vicepresidente de Grupo Hendy SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "astigarraga",   target: "grupo_m", desc: "Imputado, vinculado a Grupo M SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "angulo",        target: "grupo_m", desc: "Imputado, vinculado a Grupo M SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "guillermo_vaz", target: "grupo_m", desc: "Imputado, vinculado a Grupo M SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "gomez_arce",    target: "grupo_m", desc: "Imputado, vinculado a Grupo M SA (según ABC). No confirmado si es el mismo Diego Gómez del mapa.", src: ["abc-2026-11-04"] },
+    { source: "rios",          target: "tuiu",    desc: "Imputado, vinculado a TUIU SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "gayol",         target: "tuiu",    desc: "Accionista de TUIU SA (según ABC). Mismo nombre que el accionista de Discover Paraguay.", src: ["abc-2026-11-04"] },
+    { source: "di_iorio",      target: "tuiu",    desc: "Imputado, vinculado a TUIU SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "franco",        target: "tuiu",    desc: "Imputado, vinculado a TUIU SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "mauro_vw",      target: "franede", desc: "Presidente y accionista de Franede SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "cecilia",       target: "franede", desc: "Vicepresidenta de Franede SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "mauro_vw",      target: "aime",    desc: "Accionista de AIME SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "martin_vw",     target: "aime",    desc: "Accionista de AIME SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "gloria_vf",     target: "aime",    desc: "Titular de AIME SA (según ABC).", src: ["abc-2026-11-04"] },
+    { source: "raul_sanchez",  target: "aime",    desc: "Director de AIME SA (según ABC).", src: ["abc-2026-11-04"] },
+    // Added for Conatel and Nubicom (ABC 13/10/2026; tuit de @hectordalegre). Unverified: the tweet could not be opened, so its claims are reported as stated in it
+    { source: "conatel",       target: "ueno",    desc: "Dos órdenes de transferencia a la cuenta 6192324350 de ueno bank: N° 25/2026 (13/10/2026) por G. 50.000 millones desde Interfisa, y N° 28/2026 (15/10/2026) por G. 20.000 millones desde el BNF. Concepto: 'pago a proveedores y acreedores varios'. El tuit habla además de un pico de G. 90.000 millones y de USD 16 millones; esas cifras no aparecen en los documentos vistos.", src: ["docs-transf-conatel-2026", "x-dalegre-2026"] },
+    { source: "conatel",       target: "nubicom", desc: "Conatel dio por cumplido el despliegue 5G de Nubicom (34 radiobases inspeccionadas; el mínimo exigido era 20), pero admite que tiene apenas dos abonados por cobertura limitada.", src: ["abc-2026-10-13"] }
+  ];
+
+  /* ---------- derived fields ---------- */
+  nodes.forEach((n, i) => n.code = "N-" + String(i).padStart(2, "0"));
+  nodes.forEach(n => { n.cat = n.cat || GROUP_CAT[n.group]; });
+  links.forEach((l, i) => l.code = "L-" + String(i + 1).padStart(2, "0"));
+
+  // Money amounts inside a description (USD / US$ / G.)
+  const AMOUNT_RE = /(?:USD|US\$|G\.)\s?[\d.,]+(?:\s?a\s?[\d.,]+)?(?:\s?millones)?/g;
+  links.forEach(l => l.amounts = l.desc.match(AMOUNT_RE) || []);
+
+  // Resolve source keys -> source objects (unknown keys are reported in the console)
+  links.forEach(l => {
+    l.sources = (l.src || []).map(k => {
+      if (!SOURCES[k]) console.warn("Fuente desconocida en " + l.source + " → " + l.target + ": " + k);
+      return SOURCES[k];
+    }).filter(Boolean);
+  });
+  const srcLabel = s => s.medio + " · " + s.fecha;
+  const openUrl = url => window.open(url, "_blank", "noopener,noreferrer");
+
+  // Anchors for groups laid out automatically
+  (function autoAnchors() {
+    const state = nodes.filter(n => n.group === "state");
+    state.forEach((n, i) => { n.ax = -640; n.ay = (i - (state.length - 1) / 2) * 125; });
+    // Satellites on a tighter arc. Nubicom (next to Grupo Vázquez) and Wels (next to the Peña family)
+    // have their own anchors; Grupo M and Hanoi go last so they sit near their directors (Gómez / Urdapilleta).
+    const ARC_ORDER = ["franede", "aime", "tuiu", "mowi", "hendy", "grupo_m", "hanoi"];
+    const arc = nodes.filter(n => n.group === "satellite" && n.ax === undefined)
+      .sort((p, q) => ARC_ORDER.indexOf(p.id) - ARC_ORDER.indexOf(q.id));
+    const a0 = -25 * Math.PI / 180, a1 = 55 * Math.PI / 180;
+    arc.forEach((n, i) => {
+      const a = a0 + (a1 - a0) * (i / Math.max(1, arc.length - 1));
+      n.ax = Math.cos(a) * 470; n.ay = Math.sin(a) * 450;
+    });
+    // People with no anchor of their own sit in a small ring beside the company or bank they are linked to.
+    // Without this, their position is NaN and the whole map is pushed off-screen.
+    nodes.filter(n => n.ax === undefined).forEach((n, i) => {
+      const l = links.find(l => l.source === n.id);
+      const t = l && nodes.find(m => m.id === l.target);
+      const base = t && t.ax !== undefined ? t : { ax: 0, ay: 0 };
+      const a = i * 0.9;
+      n.ax = base.ax + Math.cos(a) * 150; n.ay = base.ay + Math.sin(a) * 150;
+    });
+  })();
+
+  const byId = new Map(nodes.map(n => [n.id, n]));
+  const radius = n => GROUPS[n.group].r;
+  const display = n => n.short || n.label;
+  const hasOuter = n => n.group === "hub" || n.group === "state";
+  const labelW = n => display(n).length * (n.group === "hub" ? 10 : 6.4);
+
+  /* ================================================================
+     SVG STAGE
+     ================================================================ */
+  const stage = document.getElementById("stage");
+  let W = stage.clientWidth, H = stage.clientHeight;
+
+  const svg = d3.select(stage).append("svg").attr("role", "img")
+    .attr("aria-label", "Red de conexiones del caso ueno");
+
+  const defs = svg.append("defs");
+  defs.append("marker")
+    .attr("id", "arrow").attr("viewBox", "0 -5 10 10")
+    .attr("refX", 10).attr("refY", 0)
+    .attr("markerWidth", 6).attr("markerHeight", 6)
+    .attr("markerUnits", "userSpaceOnUse")
+    .attr("orient", "auto")
+    .append("path").attr("d", "M0,-5L10,0L0,5Z").attr("fill", "#FFFFFF");
+
+  // Background: architectural grid (fixed frame, does not zoom)
+  const bg = svg.append("g").attr("class", "grid");
+  function drawGrid() {
+    bg.selectAll("*").remove();
+    const step = 80;
+    for (let x = step; x < W; x += step) bg.append("line").attr("x1", x).attr("x2", x).attr("y1", 0).attr("y2", H);
+    for (let y = step; y < H; y += step) bg.append("line").attr("y1", y).attr("y2", y).attr("x1", 0).attr("x2", W);
+    bg.append("line").attr("class", "crosshair").attr("x1", W / 2).attr("x2", W / 2).attr("y1", 0).attr("y2", H);
+    bg.append("line").attr("class", "crosshair").attr("y1", H / 2).attr("y2", H / 2).attr("x1", 0).attr("x2", W);
+  }
+  drawGrid();
+
+  const world = svg.append("g");
+  const zoom = d3.zoom().scaleExtent([0.2, 3]).on("zoom", e => world.attr("transform", e.transform));
+  svg.call(zoom).on("dblclick.zoom", null);
+
+  const linkG = world.append("g");
+  const nodeG = world.append("g");
+
+  const linkSel = linkG.selectAll("g.l").data(links).join("g").attr("class", "l");
+  const linkPath = linkSel.append("line").attr("class", "link").attr("marker-end", "url(#arrow)");
+  linkSel.append("line").attr("class", "link-flow");
+  const linkHit = linkSel.append("line").attr("class", "link-hit");
+
+  // Thinner lines for busy nodes: the more connections an endpoint has, the thinner the line
+  // (about 2.2px for quiet nodes down to 0.9px for the bank's many spokes).
+  const degree = new Map(nodes.map(n => [n.id, 0]));
+  const nid = e => (typeof e === "string" ? e : e.id);     // links hold ids until the simulation links them up
+  links.forEach(l => { degree.set(nid(l.source), degree.get(nid(l.source)) + 1); degree.set(nid(l.target), degree.get(nid(l.target)) + 1); });
+  const lineW = l => {
+    const d = Math.max(degree.get(nid(l.source)), degree.get(nid(l.target)));
+    const t = Math.min(1, Math.max(0, (d - 3) / 17));     // 3 or fewer → 0, 20 or more → 1
+    return 2.2 - 1.3 * t;
+  };
+  linkSel.style("--w", l => lineW(l).toFixed(2)).style("--fw", l => (lineW(l) * 0.66).toFixed(2));
+
+  const nodeSel = nodeG.selectAll("g.node").data(nodes).join("g")
+    .attr("class", d => "node " + d.group + (d.pending ? " pending" : ""))
+    .attr("tabindex", 0)
+    .attr("role", "button")
+    .attr("aria-label", d => d.label + " — " + d.role + " (" + CATS[d.cat].name + ")");
+
+  nodeSel.filter(hasOuter).append("circle").attr("class", "ring-outer").attr("r", d => radius(d) + 7);
+  nodeSel.append("circle").attr("class", "ring").attr("r", radius);
+  nodeSel.each(function (d) {
+    const g = d3.select(this);
+    if (d.group === "regulator") {
+      g.append("rect").attr("class", "core").attr("x", -4.5).attr("y", -4.5).attr("width", 9).attr("height", 9);
+    } else {
+      g.append("circle").attr("class", "core")
+        .attr("r", d.group === "hub" ? 8 : d.group === "political" || d.group === "holding" ? 5.5 : 4.5);
+    }
+    g.select(".core").style("fill", CATS[d.cat].color);   // center dot = category color
+  });
+  nodeSel.append("text").attr("class", "label")
+    .attr("dy", d => radius(d) + (hasOuter(d) ? 24 : 16))
+    .text(display);
+  nodeSel.append("text").attr("class", "code")
+    .attr("dy", d => -radius(d) - (hasOuter(d) ? 13 : 7))
+    .text(d => d.code);
+
+  /* ================================================================
+     FORCE SIMULATION
+     Each node is pulled toward its anchor (its "district"), while
+     repulsion + label-aware collision keep everything readable.
+     The whole world is then zoomed to fit the screen.
+     ================================================================ */
+  nodes.forEach((n, i) => {
+    n.phase = i * 1.7; n.freq = 0.00035 + (i % 5) * 0.00007;
+    n.x = n.ax + (Math.random() - .5) * 40; n.y = n.ay + (Math.random() - .5) * 40;
+  });
+
+  function driftForce() {
+    let ns;
+    function force() {
+      const t = performance.now();
+      for (const n of ns) {
+        n.vx += Math.cos(t * n.freq + n.phase) * 0.01;
+        n.vy += Math.sin(t * n.freq * 1.3 + n.phase) * 0.01;
+      }
+    }
+    force.initialize = _ => ns = _;
+    return force;
+  }
+
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(150).strength(0.06))
+    .force("charge", d3.forceManyBody().strength(d => d.group === "hub" ? -900 : -260).distanceMax(380))
+    .force("collide", d3.forceCollide().radius(d => Math.max(radius(d) + (hasOuter(d) ? 30 : 22), labelW(d) / 2 + 6)).iterations(2))
+    .force("x", d3.forceX(d => d.ax).strength(d => d.group === "hub" ? 0.6 : 0.2))
+    .force("y", d3.forceY(d => d.ay).strength(d => d.group === "hub" ? 0.6 : 0.2))
+    .velocityDecay(0.55)
+    .stop();
+
+  // Settle the layout before the first paint so nothing "explodes" on load
+  for (let i = 0; i < 300; i++) sim.tick();
+  sim.force("drift", driftForce()).alphaMin(0).alpha(0.02).alphaTarget(0.012).on("tick", ticked).restart();
+
+  function edgePoints(l) {
+    const dx = l.target.x - l.source.x, dy = l.target.y - l.source.y;
+    const dist = Math.hypot(dx, dy) || 1;
+    const ux = dx / dist, uy = dy / dist;
+    const rs = radius(l.source) + (hasOuter(l.source) ? 9 : 3);
+    const rt = radius(l.target) + (hasOuter(l.target) ? 10 : 4);
+    return { x1: l.source.x + ux * rs, y1: l.source.y + uy * rs, x2: l.target.x - ux * rt, y2: l.target.y - uy * rt };
+  }
+
+  function ticked() {
+    linkSel.each(function (l) {
+      const p = edgePoints(l);
+      d3.select(this).selectAll("line").attr("x1", p.x1).attr("y1", p.y1).attr("x2", p.x2).attr("y2", p.y2);
+    });
+    nodeSel.attr("transform", d => `translate(${d.x},${d.y})`);
+  }
+  ticked();
+
+  // Dragging
+  nodeSel.call(d3.drag()
+    .on("start", (e, d) => { tip.classList.remove("show"); if (!e.active) sim.alphaTarget(0.2).restart(); d.fx = d.x; d.fy = d.y; })
+    .on("drag",  (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on("end",   (e, d) => { if (!e.active) sim.alphaTarget(0.012); d.fx = null; d.fy = null; }));
+
+  /* ---------- map filter (dropdown, top right) ----------
+     Default view = TODO (everything). Ticking an option narrows the map to it; ticking several
+     shows all of them together (e.g. PEP + Imputados). "Solo flujo de dinero" then keeps only
+     the money route. Money lines = public funds into the bank + bank/satellite → satellite. */
+  let flowOn = false;
+  const picked = new Set();   // empty = TODO
+  // Imputados = charged (not convicted): said in the person's role, or in their own connection
+  const PEOPLE = new Set(["political", "family", "regulator", "executive"]);
+  nodes.forEach(n => {
+    n.imputado = /imputad/i.test(n.role) ||
+      (PEOPLE.has(n.group) && links.some(l => l.source === n && /imputad/i.test(l.desc)));
+  });
+  const FILTERS = { imputados: n => n.imputado };
+  CAT_ORDER.forEach(k => FILTERS["cat:" + k] = n => n.cat === k);
+  GROUP_ORDER.forEach(g => FILTERS["group:" + g] = n => n.group === g);
+  const isMoney = l => l.source.group === "state" ||
+    (l.target.group === "satellite" && (l.source.id === "ueno" || l.source.group === "satellite"));
+  const moneyLinks = new Set(links.filter(isMoney));
+  const moneyNodes = new Set();
+  moneyLinks.forEach(l => { moneyNodes.add(l.source.id); moneyNodes.add(l.target.id); });
+  const isHidden = n => (picked.size > 0 && ![...picked].some(k => FILTERS[k](n))) || (flowOn && !moneyNodes.has(n.id));
+  const linkHidden = l => isHidden(l.source) || isHidden(l.target) || (flowOn && !moneyLinks.has(l));
+  const filterActive = () => flowOn || picked.size > 0;
+
+  /* ---------- fit the whole map to the available screen ---------- */
+  function fitView(animate) {
+    const small = W < 760;
+    const padX = small ? 16 : 48, padTop = small ? 56 : 70, padBottom = small ? 16 : 64;   // desktop: room for the one-row legend
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    nodes.forEach(n => {
+      if (isHidden(n)) return;
+      const half = Math.max(radius(n) + 8, labelW(n) / 2);
+      x0 = Math.min(x0, n.x - half); x1 = Math.max(x1, n.x + half);
+      y0 = Math.min(y0, n.y - radius(n) - 24); y1 = Math.max(y1, n.y + radius(n) + 34);
+    });
+    if (x0 === Infinity) return;   // the filter hides everything: keep the current view
+    const availW = W - padX * 2, availH = H - padTop - padBottom;
+    const k = Math.min(1.1, availW / (x1 - x0), availH / (y1 - y0));
+    const tx = padX + availW / 2 - k * (x0 + x1) / 2;
+    const ty = padTop + availH / 2 - k * (y0 + y1) / 2;
+    const tr = d3.zoomIdentity.translate(tx, ty).scale(k);
+    (animate ? svg.transition().duration(800) : svg).call(zoom.transform, tr);
+  }
+  fitView(false);
+
+  /* ================================================================
+     HIGHLIGHT
+     ================================================================ */
+  let selected = null;
+
+  function neighborsOf(id) {
+    const set = new Set([id]);
+    links.forEach(l => {
+      if (l.source.id === id) set.add(l.target.id);
+      if (l.target.id === id) set.add(l.source.id);
+    });
+    return set;
+  }
+
+  function highlight(focus) {
+    linkSel.classed("lit", false);
+    if (!focus) {
+      nodeSel.classed("dimmed", false).classed("active", false);
+      linkSel.classed("dimmed", false);
+      return;
+    }
+    if (focus.type === "search") {
+      nodeSel.classed("dimmed", d => !focus.nodes.has(d.id)).classed("active", false);
+      linkSel.classed("dimmed", l => !focus.links.has(l));
+      return;
+    }
+    if (focus.type === "node") {
+      const nb = neighborsOf(focus.id);
+      nodeSel.classed("dimmed", d => !nb.has(d.id)).classed("active", d => d.id === focus.id);
+      linkSel.classed("dimmed", l => l.source.id !== focus.id && l.target.id !== focus.id);
+      linkSel.classed("lit", l => l.source.id === focus.id || l.target.id === focus.id);
+    } else {
+      const L = focus.link;
+      nodeSel.classed("dimmed", d => d !== L.source && d !== L.target).classed("active", false);
+      linkSel.classed("dimmed", l => l !== L).classed("lit", l => l === L);
+    }
+  }
+
+  /* ================================================================
+     TERMINAL
+     ================================================================ */
+  const term = document.getElementById("term");
+  const resetBtn = document.getElementById("reset");
+  const termTitle = document.getElementById("term-title");
+  let typingToken = 0;
+
+  const RULE = "─".repeat(60);
+  const pad = (s, n) => (s + " ".repeat(n)).slice(0, n);
+  const two = v => String(v).padStart(2, "0");
+  const ts = () => {
+    const d = new Date();
+    return [d.getHours(), d.getMinutes(), d.getSeconds()].map(two).join(":");
+  };
+  const hex = (s) => {
+    let h = 0x811c9dc5;
+    for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 0x01000193); }
+    return ("0000000" + (h >>> 0).toString(16)).slice(-8).toUpperCase();
+  };
+  const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  // Each line: { t: text, c: class, instant: bool, onClick, onEnter, onLeave }
+  function type(lines) {
+    const token = ++typingToken;
+    term.innerHTML = "";
+    term.scrollTop = 0;
+    const total = lines.reduce((s, L) => s + (L.instant ? 0 : (L.t || "").length), 0);
+    const speed = Math.max(3, Math.ceil(total / 200));   // long dumps finish in ~3-4 s
+    const cursor = document.createElement("span");
+    cursor.className = "cursor";
+    let li = 0, ci = 0, el = null;
+
+    function newLine() {
+      const L = lines[li];
+      el = document.createElement(L.href ? "a" : "div");
+      el.className = "ln " + (L.c || "");
+      if (L.dot) { el.classList.add(L.dotEnd ? "dote" : "dotl"); el.style.setProperty("--dot", L.dot); }
+      if (L.href) {
+        el.href = L.href; el.target = "_blank"; el.rel = "noopener noreferrer";
+        el.classList.add("src-line");
+        el.title = L.href;
+      }
+      if (L.onClick) {
+        el.classList.add("link-line");
+        el.addEventListener("click", L.onClick);
+        if (L.onEnter) el.addEventListener("mouseenter", L.onEnter);
+        if (L.onLeave) el.addEventListener("mouseleave", L.onLeave);
+      }
+      term.appendChild(el);
+    }
+
+    function step() {
+      if (token !== typingToken) return;
+      let budget = speed;
+      while (budget > 0 && li < lines.length) {
+        if (!el) newLine();
+        const txt = lines[li].t || "";
+        if (lines[li].instant || txt.length === 0) {
+          el.textContent = txt; ci = txt.length;
+        } else {
+          const take = Math.min(budget, txt.length - ci);
+          ci += take; budget -= take;
+          el.textContent = txt.slice(0, ci);
+        }
+        el.appendChild(cursor);
+        if (ci >= txt.length) { li++; ci = 0; el = null; budget -= 1; }
+      }
+      if (li < lines.length) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function homeScreen() {
+    termTitle.textContent = "tty://watchdog/archivo_01";
+    resetBtn.hidden = true;
+    const count = g => nodes.filter(n => n.group === g).length;
+    const lines = [
+      { t: "[" + ts() + "] SESIÓN ABIERTA · TLS OK", c: "muted" },
+      { t: "[" + ts() + "] montando /archivo/01 ... listo", c: "muted" },
+      { t: "" },
+      { t: "ARCHIVO [01] // OPERACIÓN: UENO", c: "bold" },
+      { t: RULE, c: "rule", instant: true },
+      { t: "CLASIF.    : ██████████ / USO PERIODÍSTICO", c: "gray" },
+      { t: "ESTADO     : EN CURSO", c: "gray" },
+      { t: "ENTIDADES  : " + two(nodes.length) + "  ·  VÍNCULOS: " + two(links.length), c: "gray" },
+      { t: "F. ESTADO  : " + two(count("state")) + "  ·  SATÉLITES: " + two(count("satellite")), c: "gray" },
+      { t: "HASH       : 0x" + hex("ueno" + nodes.length + links.length), c: "gray" },
+      { t: RULE, c: "rule", instant: true },
+      { t: "" },
+      { t: "> SUMARIO", c: "bold" },
+      { t: "  Izquierda: fondos públicos que entran." },
+      { t: "  Centro: ueno bank." },
+      { t: "  Derecha: créditos que salen hacia" },
+      { t: "  empresas satélite del holding." },
+      { t: "" },
+      { t: "> CÓDIGO DE COLOR", c: "bold" }
+    ];
+    CAT_ORDER.forEach(k => lines.push({ t: CATS[k].name, c: "gray", dot: CATS[k].color }));
+    lines.push({ t: "" });
+    lines.push({ t: "> ÍNDICE DE ENTIDADES  [clic para abrir]", c: "bold" });
+    GROUP_ORDER.forEach(g => {
+      const list = nodes.filter(n => n.group === g);
+      if (!list.length) return;
+      lines.push({ t: "" });
+      lines.push({ t: "  ── " + GROUPS[g].name + " [" + two(list.length) + "]", c: "muted" });
+      list.forEach(n => lines.push({
+        t: n.code + "  " + pad(display(n), 24) + " ›",
+        dot: CATS[n.cat].color,
+        onClick: () => select(n.id),
+        onEnter: () => highlight({ type: "node", id: n.id }),
+        onLeave: () => highlight(selected)
+      }));
+    });
+    lines.push({ t: "" });
+    const srcKeys = Object.keys(SOURCES);
+    if (srcKeys.length) {
+      lines.push({ t: "> FUENTES [" + two(srcKeys.length) + "]", c: "bold" });
+      srcKeys.forEach(k => {
+        const s = SOURCES[k];
+        const n = links.filter(l => l.sources.includes(s)).length;
+        lines.push({ t: "↗ " + srcLabel(s) + "  (" + n + (n === 1 ? " vínculo)" : " vínculos)"), c: "ind2 bold", href: s.url });
+        lines.push({ t: s.titulo, c: "ind2 gray", href: s.url });
+      });
+      lines.push({ t: "" });
+    }
+    lines.push({ t: "> INSTRUCCIONES", c: "bold" });
+    lines.push({ t: "  clic nodo     → volcado de datos", c: "gray" });
+    lines.push({ t: "  clic vínculo  → detalle y montos", c: "gray" });
+    lines.push({ t: "  arrastrar     → reposicionar", c: "gray" });
+    lines.push({ t: "  rueda / pinza → zoom", c: "gray" });
+    lines.push({ t: "  tecla f  o  / → buscar", c: "gray" });
+    lines.push({ t: "  ícono ☰       → filtrar el mapa", c: "gray" });
+    lines.push({ t: "  esc / fondo   → volver al índice", c: "gray" });
+    lines.push({ t: "" });
+    lines.push({ t: "$ esperando_entrada", c: "muted" });
+    type(lines);
+  }
+
+  function nodeScreen(n) {
+    termTitle.textContent = "tty://archivo_01/" + n.id;
+    resetBtn.hidden = false;
+    const out = links.filter(l => l.source.id === n.id);
+    const inc = links.filter(l => l.target.id === n.id);
+    const lines = [
+      { t: "[" + ts() + "] $ consultar --entidad=" + n.id, c: "muted" },
+      { t: "[" + ts() + "] 200 OK · " + (out.length + inc.length) + " registros", c: "muted" },
+      { t: "" },
+      { t: n.code + " // " + GROUPS[n.group].name, c: "inv" },
+      { t: n.label, c: "big" },
+      { t: RULE, c: "rule", instant: true },
+      { t: "ID_ENTIDAD : " + n.id },
+      { t: "ROL        : " + n.role },
+      { t: "GRUPO      : " + GROUPS[n.group].name },
+      { t: "CATEGORÍA  : " + CATS[n.cat].name, dot: CATS[n.cat].color, dotEnd: true },
+      { t: "GRADO      : " + (out.length + inc.length) + "  (entran:" + inc.length + " / salen:" + out.length + ")" },
+      { t: "CONTROL    : 0x" + hex(n.id + n.label), c: "gray" }
+    ];
+    if (n.pending) lines.push({ t: "ESTADO     : IDENTIDAD POR CONFIRMAR", c: "inv" });
+    lines.push({ t: RULE, c: "rule", instant: true });
+    lines.push({ t: "" });
+    lines.push({ t: "> CONEXIONES [" + two(out.length + inc.length) + "]", c: "bold" });
+
+    const add = (l, dir) => {
+      const other = dir === "OUT" ? l.target : l.source;
+      lines.push({ t: "" });
+      lines.push({
+        t: (dir === "OUT" ? "  ──▶ SALE   " : "  ◀── ENTRA  ") + l.code + "  " + display(other),
+        c: "bold",
+        onClick: () => select(other.id),
+        onEnter: () => highlight({ type: "link", link: l }),
+        onLeave: () => highlight(selected)
+      });
+      lines.push({ t: l.source.id + " → " + l.target.id, c: "ind muted" });
+      if (l.amounts.length) lines.push({ t: "MONTO: " + l.amounts.join(" + "), c: "amtl" });
+      lines.push({ t: "\"" + l.desc + "\"", c: "ind gray" });
+      l.sources.forEach(s => lines.push({ t: "FUENTE ↗ " + srcLabel(s), c: "ind", href: s.url }));
+    };
+    inc.forEach(l => add(l, "IN"));
+    out.forEach(l => add(l, "OUT"));
+    lines.push({ t: "" });
+    lines.push({ t: RULE, c: "rule", instant: true });
+    lines.push({ t: "[" + ts() + "] FIN · clic en conexión = saltar", c: "muted" });
+    type(lines);
+  }
+
+  function linkScreen(l) {
+    termTitle.textContent = "tty://archivo_01/" + l.code.toLowerCase();
+    resetBtn.hidden = false;
+    const lines = [
+      { t: "[" + ts() + "] $ rastrear --vinculo=" + l.code, c: "muted" },
+      { t: "" },
+      { t: l.code + " // VÍNCULO", c: "inv" },
+      { t: display(l.source) + " → " + display(l.target), c: "big" },
+      { t: RULE, c: "rule", instant: true },
+      { t: "ORIGEN     : " + l.source.label },
+      { t: "DESTINO    : " + l.target.label },
+      { t: "TIPO       : " + GROUPS[l.source.group].name + " → " + GROUPS[l.target.group].name }
+    ];
+    if (l.amounts.length) lines.push({ t: "MONTO      : " + l.amounts.join(" + "), c: "amtl flush" });
+    lines.push(
+      { t: RULE, c: "rule", instant: true },
+      { t: "" },
+      { t: "> DESCRIPCIÓN", c: "bold" },
+      { t: "\"" + l.desc + "\"", c: "ind2" },
+      { t: "" }
+    );
+    if (l.sources.length) {
+      lines.push({ t: "> FUENTES [" + two(l.sources.length) + "]", c: "bold" });
+      l.sources.forEach(s => {
+        lines.push({ t: "↗ " + srcLabel(s), c: "ind2 bold", href: s.url });
+        lines.push({ t: s.titulo, c: "ind2 gray", href: s.url });
+      });
+      lines.push({ t: "" });
+    }
+    lines.push(
+      { t: "> ABRIR ENTIDAD", c: "bold" },
+      { t: "  ◀ " + l.source.code + "  " + display(l.source), onClick: () => select(l.source.id) },
+      { t: "  ▶ " + l.target.code + "  " + display(l.target), onClick: () => select(l.target.id) },
+      { t: "" },
+      { t: "[" + ts() + "] FIN", c: "muted" }
+    );
+    type(lines);
+  }
+
+  /* ---------- filter dropdown ---------- */
+  const filterBox = document.getElementById("filter");
+  const filterBtn = document.getElementById("filterBtn");
+  const filterPanel = document.getElementById("filterPanel");
+
+  function filterRow(key, label, count, color, note) {
+    return '<label class="f-row"><input type="checkbox" data-key="' + key + '">' +
+      (color ? '<i class="f-dot" style="background:' + color + '"></i>' : "") +
+      '<span class="f-name">' + esc(label) + (note ? "<small>" + esc(note) + "</small>" : "") + "</span>" +
+      (count != null ? '<span class="f-n">' + two(count) + "</span>" : "") +
+      "</label>";
+  }
+  (function buildFilter() {
+    let h = '<div class="f-head">Vista</div>';
+    h += filterRow("todo", "Todo", nodes.length);
+    h += '<div class="f-head">Causa judicial</div>';
+    h += filterRow("imputados", "Imputados", nodes.filter(n => n.imputado).length, null, "Imputado no significa condenado");
+    h += '<div class="f-head">Categoría</div>';
+    CAT_ORDER.forEach(k => {
+      const c = nodes.filter(n => n.cat === k).length;
+      if (c) h += filterRow("cat:" + k, CATS[k].legend, c, CATS[k].color);
+    });
+    h += '<div class="f-head">Tipo de entidad</div>';
+    GROUP_ORDER.forEach(g => {
+      const c = nodes.filter(n => n.group === g).length;
+      if (c) h += filterRow("group:" + g, GROUPS[g].name, c);
+    });
+    h += '<div class="f-head">Vínculos</div>';
+    h += filterRow("flow", "Solo flujo de dinero", null, null, "Fondos públicos → ueno → empresas satélite");
+    h += '<div class="f-foot"><span id="f-count"></span></div>';
+    filterPanel.innerHTML = h;
+  })();
+  const fCount = document.getElementById("f-count");
+
+  function applyFilter(refit = true) {
+    nodeSel.classed("hidden", isHidden);
+    linkSel.classed("hidden", linkHidden);
+    document.getElementById("tip").classList.remove("show");
+    const shown = nodes.filter(n => !isHidden(n)).length;
+    const on = filterActive();
+    filterBtn.title = on ? "Filtro activo: " + shown + " de " + nodes.length + " entidades visibles" : "Filtro: elegí qué entidades mostrar en el mapa";
+    filterBtn.classList.toggle("on", on);
+    fCount.textContent = shown + " de " + nodes.length + " visibles";
+    filterPanel.querySelectorAll("input[data-key]").forEach(inp => {
+      const k = inp.dataset.key;
+      inp.checked = k === "todo" ? !on : k === "flow" ? flowOn : picked.has(k);
+    });
+    if (refit) fitView(true);
+  }
+  function clearFilter() {
+    flowOn = false;
+    picked.clear();
+    applyFilter();
+  }
+  function openFilter(open) {
+    filterPanel.hidden = !open;
+    filterBtn.setAttribute("aria-expanded", String(open));
+  }
+
+  filterPanel.addEventListener("change", e => {
+    const k = e.target.dataset.key;
+    if (!k) return;
+    if (k === "todo") { clearFilter(); return; }
+    if (k === "flow") flowOn = e.target.checked;
+    else if (e.target.checked) picked.add(k); else picked.delete(k);
+    applyFilter();
+  });
+  filterBtn.addEventListener("click", () => openFilter(filterPanel.hidden));
+  document.addEventListener("pointerdown", e => { if (!filterBox.contains(e.target)) openFilter(false); }, true);
+  filterBox.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !filterPanel.hidden) { e.stopPropagation(); openFilter(false); filterBtn.focus(); }
+  });
+  applyFilter(false);   // sync the checkboxes and the button label
+
+  function select(id) {
+    if (isHidden(byId.get(id))) clearFilter();   // asked for something the filter hides → show everything
+    selected = { type: "node", id };
+    highlight(selected);
+    nodeScreen(byId.get(id));
+  }
+  function selectLink(l) {
+    if (linkHidden(l)) clearFilter();
+    selected = { type: "link", link: l };
+    highlight(selected);
+    linkScreen(l);
+  }
+  function reset() {
+    const qi = document.getElementById("q");
+    if (qi && qi.value) { qi.value = ""; qi.dispatchEvent(new Event("input")); }
+    selected = null;
+    highlight(null);
+    homeScreen();
+  }
+
+  /* ================================================================
+     EVENTS
+     ================================================================ */
+  const tip = document.getElementById("tip");
+
+  function moveTip(e) {
+    // sit beside the cursor (not under it, so the node's own name stays readable); flip left near the sidebar
+    const w = tip.offsetWidth || 280, h = tip.offsetHeight || 120;
+    const room = window.innerWidth - parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sidebar-w") || 0);
+    let x = e.clientX + 26;
+    if (x + w > room - 8) x = e.clientX - w - 26;
+    tip.style.left = Math.max(8, x) + "px";
+    tip.style.top = Math.max(8, Math.min(e.clientY - 24, window.innerHeight - h - 10)) + "px";
+  }
+
+  // Same style of card as the connector tooltip, but for an entity
+  function nodeTip(n) {
+    const out = links.filter(l => l.source.id === n.id);
+    const inc = links.filter(l => l.target.id === n.id);
+    const cat = CATS[n.cat];
+    let h = '<div class="t-head">' + n.code + " · " + esc(GROUPS[n.group].name) + "</div>";
+    h += '<div class="t-name">' + esc(n.label) + "</div>";
+    h += '<div class="t-row">' + esc(n.role) + "</div>";
+    h += '<div class="t-row" style="margin-top:6px"><span class="t-dot" style="background:' + cat.color + '"></span>' + esc(cat.name) + "</div>";
+    h += '<div class="t-row">Conexiones: <b>' + (inc.length + out.length) + "</b> (entran " + inc.length + " / salen " + out.length + ")</div>";
+    if (n.pending) h += '<div class="t-row"><span class="amt">IDENTIDAD POR CONFIRMAR</span></div>';
+    const amts = [];
+    inc.concat(out).forEach(l => l.amounts.forEach(a => amts.push(a)));
+    if (amts.length) {
+      const shown = amts.slice(0, 4).map(a => '<span class="amt">' + esc(a) + "</span>").join(" ");
+      h += '<div class="t-amt">MONTOS: ' + shown + (amts.length > 4 ? " +" + (amts.length - 4) : "") + "</div>";
+    }
+    h += '<div class="t-src" style="border-top:1px dashed var(--dim)">clic para abrir el detalle</div>';
+    return h;
+  }
+
+  nodeSel
+    .on("click", (e, d) => { e.stopPropagation(); tip.classList.remove("show"); select(d.id); })
+    .on("keydown", (e, d) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(d.id); } })
+    .on("mouseenter", (e, d) => {
+      if (!selected) highlight({ type: "node", id: d.id });
+      tip.innerHTML = nodeTip(d);
+      tip.classList.add("show");
+      moveTip(e);
+    })
+    .on("mousemove", moveTip)
+    .on("mouseleave", () => { if (!selected) highlight(null); tip.classList.remove("show"); });
+
+  linkHit
+    .on("click", (e, l) => { e.stopPropagation(); selectLink(l); })
+    .on("mouseenter", function (e, l) {
+      d3.select(this.parentNode).select(".link").classed("hover", true);
+      let body = esc(l.desc);
+      l.amounts.forEach(a => { body = body.split(esc(a)).join('<span class="amt">' + esc(a) + "</span>"); });
+      const srcHtml = l.sources.length
+        ? '<div class="t-src">FUENTE: ' + l.sources.map(s => esc(srcLabel(s))).join(" / ") + "<br>clic en la línea para abrir</div>"
+        : "";
+      tip.innerHTML = '<div class="t-head">' + l.code + " · " + esc(display(l.source)) + " → " + esc(display(l.target)) + "</div>" + body + srcHtml;
+      tip.classList.add("show");
+    })
+    .on("mousemove", moveTip)
+    .on("mouseleave", function () {
+      d3.select(this.parentNode).select(".link").classed("hover", false);
+      tip.classList.remove("show");
+    });
+
+  svg.on("click", reset);
+  resetBtn.addEventListener("click", reset);
+  document.addEventListener("keydown", e => { if (e.key === "Escape") reset(); });
+
+  /* ---------- legend ---------- */
+  const legend = d3.select("#legend");
+  const addHead = txt => legend.append("div").attr("class", "item head").append("span").text(txt);
+  addHead("Forma");
+  [
+    { k: "hub", label: "Banco núcleo" },
+    { k: "state", label: "Fondos del Estado" },
+    { k: "offshore", label: "Offshore" },
+    { k: "regulator", label: "Regulador" },
+    { k: "person", label: "Persona / holding" },
+    { k: "satellite", label: "Empresa satélite" },
+    { k: "flow", label: "Flujo" }
+  ].forEach(it => {
+    const row = legend.append("div").attr("class", "item");
+    const s = row.append("svg").attr("width", it.k === "flow" ? 30 : 18).attr("height", 18);
+    if (it.k === "flow") {
+      s.append("line").attr("x1", 0).attr("x2", 22).attr("y1", 9).attr("y2", 9).attr("stroke", "#fff").attr("stroke-width", 2);
+      s.append("path").attr("d", "M22,5L30,9L22,13Z").attr("fill", "#fff");
+      row.append("span").text(it.label);
+      return;
+    }
+    const sat = it.k === "satellite";
+    const c = s.append("circle").attr("cx", 9).attr("cy", 9).attr("r", 7)
+      .attr("fill", sat ? "#fff" : "none").attr("stroke", "#fff").attr("stroke-width", 1.6);
+    if (it.k === "offshore") c.attr("stroke-dasharray", "3 2.5");
+    if (it.k === "hub" || it.k === "state") s.append("circle").attr("cx", 9).attr("cy", 9).attr("r", 10).attr("fill", "none").attr("stroke", "#fff").attr("stroke-width", .8).attr("stroke-dasharray", it.k === "state" ? "1 2.5" : null);
+    if (it.k === "regulator") s.append("rect").attr("x", 7).attr("y", 7).attr("width", 4).attr("height", 4).attr("fill", "#fff");
+    else s.append("circle").attr("cx", 9).attr("cy", 9).attr("r", it.k === "hub" ? 2.5 : 1.5).attr("fill", sat ? "#000" : "#fff");
+    row.append("span").text(it.label);
+  });
+
+  // Color dots live on the same row; details appear on hover (and light up that category on the map)
+  legend.append("div").attr("class", "sep");
+  addHead("Color");
+  const dotsBox = legend.append("div").attr("class", "dots");
+  CAT_ORDER.forEach(k => {
+    const members = nodes.filter(n => n.cat === k);
+    dotsBox.append("i").attr("class", "dot").attr("tabindex", 0)
+      .attr("aria-label", CATS[k].name + " (" + members.length + ")")
+      .style("background", CATS[k].color)
+      .on("mouseenter focus", function (e) {
+        if (!selected) highlight({ type: "search", nodes: new Set(members.map(n => n.id)), links: new Set() });
+        const r = this.getBoundingClientRect();
+        tip.innerHTML = '<div class="t-head">COLOR</div><div class="t-name"><span class="t-dot" style="background:' + CATS[k].color + '"></span>' + esc(CATS[k].name) + "</div>" +
+          '<div class="t-row"><b>' + members.length + "</b> " + (members.length === 1 ? "entidad" : "entidades") + "</div>" +
+          '<div class="t-row" style="margin-top:6px">' + members.map(n => esc(display(n))).join(" · ") + "</div>";
+        tip.classList.add("show");
+        tip.style.left = Math.max(8, Math.min(r.left, window.innerWidth - 300)) + "px";
+        tip.style.top = Math.max(8, r.top - tip.offsetHeight - 12) + "px";
+      })
+      .on("mouseleave blur", () => { if (!selected) highlight(null); tip.classList.remove("show"); });
+  });
+
+  /* ---------- clock ---------- */
+  const clock = document.getElementById("clock");
+  setInterval(() => clock.textContent = ts(), 1000);
+  clock.textContent = ts();
+
+  /* ---------- resize ---------- */
+  let rz;
+  window.addEventListener("resize", () => {
+    W = stage.clientWidth; H = stage.clientHeight;
+    drawGrid();
+    clearTimeout(rz); rz = setTimeout(() => fitView(true), 200);
+  });
+
+  /* ================================================================
+     SEARCH
+     Accent-insensitive: "vazquez" finds "Vázquez", "itaipu" finds "Itaipú".
+     Searches names, roles, groups and connection descriptions (amounts too).
+     ================================================================ */
+  const q = document.getElementById("q");
+  const qCount = document.getElementById("q-count");
+  const qClear = document.getElementById("q-clear");
+  const results = document.getElementById("results");
+  const fold = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+  nodes.forEach(n => n.hay = fold([n.label, n.short || "", n.role, n.id, GROUPS[n.group].name, CATS[n.cat].name, n.code].join(" ")));
+  links.forEach(l => l.hay = fold([l.desc, l.code, l.source.label, l.target.label, ...l.sources.map(s => s.medio + " " + s.titulo)].join(" ")));
+
+  let hits = [], cursorIdx = -1;
+
+  // Wrap matched text in <mark>, using accent-folded positions
+  function mark(text, term) {
+    const f = fold(text), i = f.indexOf(term);
+    if (!term || i < 0) return esc(text);
+    return esc(text.slice(0, i)) + "<mark>" + esc(text.slice(i, i + term.length)) + "</mark>" + esc(text.slice(i + term.length));
+  }
+
+  function runSearch() {
+    const raw = q.value.trim();
+    const terms = fold(raw).split(/\s+/).filter(Boolean);
+    qClear.hidden = !raw;
+    document.getElementById("q-key").hidden = !!raw;
+    if (!terms.length) {
+      hits = []; results.hidden = true; q.setAttribute("aria-expanded", "false");
+      qCount.textContent = "";
+      highlight(selected);
+      return;
+    }
+    const match = hay => terms.every(tm => hay.includes(tm));
+    const nHits = nodes.filter(n => match(n.hay));
+    const lHits = links.filter(l => match(l.hay));
+
+    // Map: matching nodes + matching links (and their endpoints)
+    const ns = new Set(nHits.map(n => n.id)), ls = new Set(lHits);
+    lHits.forEach(l => { ns.add(l.source.id); ns.add(l.target.id); });
+    highlight({ type: "search", nodes: ns, links: ls });
+
+    const first = terms[0];
+    hits = [
+      ...nHits.map(n => ({ kind: "node", n })),
+      ...lHits.map(l => ({ kind: "link", l }))
+    ];
+    qCount.textContent = hits.length + (hits.length === 1 ? " RESULTADO" : " RESULTADOS");
+
+    let html = "";
+    if (!hits.length) html = '<div class="r-empty">Sin coincidencias para "' + esc(raw) + '".</div>';
+    if (nHits.length) html += '<div class="r-head">Entidades [' + two(nHits.length) + "]</div>";
+    hits.forEach((h, i) => {
+      if (h.kind === "link" && (i === 0 || hits[i - 1].kind !== "link")) html += '<div class="r-head">Vínculos [' + two(lHits.length) + "]</div>";
+      if (h.kind === "node") {
+        const n = h.n;
+        html += '<div class="r" role="option" data-i="' + i + '"><div class="r-top"><span class="r-dot" style="background:' + CATS[n.cat].color + '"></span><span class="r-code">' + n.code + '</span><span class="r-name">' + mark(n.label, first) + '</span>' + (isHidden(n) ? '<span class="r-off">oculto</span>' : "") + '</div>' +
+                '<div class="r-sub">' + mark(n.role, first) + "</div></div>";
+      } else {
+        const l = h.l;
+        const sub = l.amounts.length ? l.amounts.join(" + ") : l.desc;
+        html += '<div class="r" role="option" data-i="' + i + '"><div class="r-top"><span class="r-code">' + l.code + '</span><span class="r-name">' + esc(display(l.source)) + " → " + esc(display(l.target)) + '</span>' + (linkHidden(l) ? '<span class="r-off">oculto</span>' : "") + '</div>' +
+                '<div class="r-sub">' + mark(sub, first) + "</div></div>";
+      }
+    });
+    results.innerHTML = html;
+    results.hidden = false;
+    q.setAttribute("aria-expanded", "true");
+    setCursor(hits.length ? 0 : -1);
+  }
+
+  function setCursor(i) {
+    cursorIdx = i;
+    results.querySelectorAll(".r").forEach(el => el.classList.toggle("on", +el.dataset.i === i));
+    const el = results.querySelector('.r[data-i="' + i + '"]');
+    if (el) el.scrollIntoView({ block: "nearest" });
+  }
+
+  // Smoothly bring an entity (or a link's midpoint) to the centre of the map
+  function centerOn(x, y) {
+    const k = Math.max(d3.zoomTransform(svg.node()).k, 0.85);
+    svg.transition().duration(700).call(zoom.transform, d3.zoomIdentity.translate(W / 2 - k * x, H / 2 - k * y).scale(k));
+  }
+
+  function choose(i) {
+    const h = hits[i];
+    if (!h) return;
+    closeResults();
+    if (h.kind === "node") { select(h.n.id); centerOn(h.n.x, h.n.y); }
+    else { selectLink(h.l); centerOn((h.l.source.x + h.l.target.x) / 2, (h.l.source.y + h.l.target.y) / 2); }
+    q.blur();
+  }
+
+  function closeResults() {
+    results.hidden = true; q.setAttribute("aria-expanded", "false");
+  }
+
+  function clearSearch() {
+    q.value = "";
+    runSearch();
+  }
+
+  q.addEventListener("input", runSearch);
+  q.addEventListener("focus", () => { if (q.value.trim()) runSearch(); });
+  q.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown") { e.preventDefault(); if (hits.length) setCursor((cursorIdx + 1) % hits.length); }
+    else if (e.key === "ArrowUp") { e.preventDefault(); if (hits.length) setCursor((cursorIdx - 1 + hits.length) % hits.length); }
+    else if (e.key === "Enter") { e.preventDefault(); choose(cursorIdx < 0 ? 0 : cursorIdx); }
+    else if (e.key === "Escape") { e.stopPropagation(); if (q.value) clearSearch(); else q.blur(); }
+  });
+  results.addEventListener("mousedown", e => {
+    const el = e.target.closest(".r");
+    if (el) { e.preventDefault(); choose(+el.dataset.i); }
+  });
+  results.addEventListener("mousemove", e => {
+    const el = e.target.closest(".r");
+    if (el && +el.dataset.i !== cursorIdx) setCursor(+el.dataset.i);
+  });
+  q.addEventListener("blur", () => setTimeout(closeResults, 120));
+  qClear.addEventListener("click", () => { clearSearch(); q.focus(); });
+  document.addEventListener("keydown", e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target.matches && e.target.matches('input[type="text"], textarea, [contenteditable]')) return;   // the reader is typing
+    if (e.key === "/" || e.key.toLowerCase() === "f") { e.preventDefault(); openFilter(false); q.focus(); q.select(); }
+  });
+
+  homeScreen();
+})();
+</script>
+</body>
+</html>
