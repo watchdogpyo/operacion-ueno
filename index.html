@@ -493,7 +493,7 @@
     { id: "cv",            label: "Carlos Carvallo",                   role: "Ex presidente del BCP / Ex presidente de ueno", group: "regulator",  ax: -200, ay: -320 },
     { id: "bcp_dir",       label: "Directorio BCP",                    role: "L. Caballero, H. Insfrán, M.A. González, M.A. Mora", group: "regulator", ax: -290, ay: -470 },
     // Politicians & family
-    { id: "sp",            label: "Santiago Peña",                     role: "Presidente del Paraguay",                       group: "political",  ax: -60,  ay: 520 },
+    { id: "sp",            label: "Santiago Peña",                     role: "Presidente del Paraguay durante los hechos del caso; ex presidente según Última Hora (07/11/2026)",                       group: "political",  ax: -60,  ay: 520 },
     { id: "bn",            label: "Basilio Núñez",                     role: "Titular del Senado",                            group: "political",  ax: -470, ay: -470 },
     { id: "fp",            label: "Francisco Peña",                    role: "Hermano del Presidente",                        group: "family",     ax: -290, ay: 450 },
     // Grupo Vázquez
@@ -501,17 +501,17 @@
     { id: "fmvv",          label: "Federico Miguel Vázquez",           role: "Accionista principal",                          group: "executive",  ax: 720,  ay: -480, short: "F. Miguel Vázquez" },
     { id: "vhv",           label: "Víctor Hugo Vázquez",               role: "Fundador de Credicentro",                       group: "executive",  ax: 760,  ay: -310 },
     { id: "jg",            label: "Juan Manuel Gustale",               role: "Ex presidente de ueno / Ex BNF",                group: "executive", cat: "pep",  ax: 60,   ay: -500 },
-    { id: "dg",            label: "Diego Gómez",                       role: "CEO de Hanoi SA / Control de Grupo M",          group: "executive",  ax: 780,  ay: 380 },
-    { id: "ou",            label: "Óscar Urdapilleta",                 role: "Control de Grupo M",                            group: "executive",  ax: 640,  ay: 520 },
+    { id: "dg",            label: "Diego Gómez",                       role: "CEO de Hanoi SA (Monchis); propietario de Grupo M desde 30/09/2025",          group: "executive",  ax: 780,  ay: 380 },
+    { id: "ou",            label: "Óscar Urdapilleta",                 role: "Vicepresidente de Grupo Hendy; propietario de Grupo M desde 30/09/2025. Imputado",                            group: "executive",  ax: 640,  ay: 520 },
     // Satellites (the drain)
-    { id: "muar",          label: "Muar",                              role: "Nuera del Pte.",                                group: "satellite",  cat: "family",  ax: 60,  ay: 420 },
+    { id: "muar",          label: "Muar",                              role: "Empresa de Serenella Argaña (nuera del Pte.)",                                group: "satellite",  ax: 60,  ay: 420 },
     { id: "franede",       label: "Franede SA",                        role: "Deudora",                                       group: "satellite" },
     { id: "aime",          label: "Aime SA",                           role: "Corredora de seguros",                          group: "satellite" },
     { id: "tuiu",          label: "Tuiu SA",                           role: "Deudora",                                       group: "satellite" },
     { id: "mowi",          label: "Mowi SA",                           role: "Deudora",                                       group: "satellite" },
     { id: "hendy",         label: "Grupo Hendy SA",                    role: "Deudora",                                       group: "satellite" },
     { id: "grupo_m",       label: "Grupo M SA",                        role: "Deudora",                                       group: "satellite" },
-    { id: "hanoi",         label: "Hanoi SA / Monchis",                role: "Satélite",                                      group: "satellite" },
+    { id: "hanoi",         label: "Hanoi SA / Monchis",                role: "Empresa del Grupo Vázquez (Monchis)",                                      group: "satellite" },
     { id: "itti",          label: "Itti",                              role: "Satélite tecnológico",                          group: "satellite",  ax: 830,  ay: 0 },
     { id: "redipro",       label: "Redipro SA",                        role: "Procesamiento digital",                         group: "satellite",  ax: 830,  ay: 170 },
     // Added after the first release: appended at the end so existing N-/L- codes stay the same
@@ -567,7 +567,8 @@
     { id: "gloria_vf",     label: "Gloria Villasanti Farinha",         role: "Titular de AIME SA",                            group: "executive" },
     { id: "raul_sanchez",  label: "Raúl Fernando Sánchez Gómez",       role: "Director de AIME SA",                           group: "executive" },
     // Added for Conatel and Nubicom (ABC 13/10/2026; tuit de @hectordalegre). Appended so existing codes stay the same
-    { id: "conatel",       label: "Conatel",                           role: "Regulador de telecomunicaciones; órdenes de transferencia a ueno (oct. 2026)", group: "state", short: "Conatel" }
+    { id: "conatel",       label: "Conatel",                           role: "Regulador de telecomunicaciones; según un tuit, depositó fondos en ueno (oct. 2026, no verificado)", group: "state", short: "Conatel" },
+    { id: "serenella", label: "Serenella Argaña", role: "Nuera del Presidente; esposa de Gonzalo Peña Ocampos", group: "family", ax: 110, ay: 520 }
   ];
 
   /* ---------------------------------------------------------------
@@ -613,6 +614,12 @@
       titulo: "Grandes deudores de ueno aparecen en la investigación del BCP sobre desvío de fondos",
       url: "https://www.ultimahora.com/grandes-deudores-de-ueno-aparecen-en-la-investigacion-del-bcp-sobre-desvio-de-fondos"
     },
+    "abc-2026-10-12": {
+      medio: "ABC Color",
+      fecha: "12/10/2026",
+      titulo: "Ueno movió US$ 146 millones hacia tres empresas vinculadas",
+      url: "https://www.abc.com.py/politica/2026/10/12/ueno-movio-us-146-millones-hacia-tres-empresas-vinculadas/"
+    },
     "abc-2026-11-04": {
       medio: "ABC Color",
       fecha: "04/11/2026",
@@ -650,9 +657,11 @@
     { source: "itaipu",        target: "ueno",    desc: "Captación de recursos vinculados a la entidad binacional." },
     // Core matrix & structure
     { source: "lux",           target: "ueno",    desc: "Matriz dueña del banco. Capitalización de ecosistema sin efectivo." },
-    { source: "fp",            target: "lux",     desc: "Ingreso a offshore en Luxemburgo coincidente con colosal fondeo.", src: ["abc-2025-04-20"] },
+    { source: "fp",            target: "lux",     desc: "Entró como accionista de U Holdings el 20/03/2024, con 58 acciones compradas a Grupo Vázquez.", src: ["abc-2025-04-06"] },
     { source: "sp",            target: "fp",      desc: "Vínculo familiar directo (Hermano).", src: ["abc-2025-04-20"] },
-    { source: "sp",            target: "muar",    desc: "Vínculo familiar directo (Nuera del Presidente)." },
+    { source: "sp",            target: "serenella", desc: "Nuera del Presidente: Serenella Argaña, esposa de Gonzalo Peña Ocampos, hijo del Presidente.", src: ["ultimahora-2026-11-07"] },
+    { source: "serenella",     target: "muar",    desc: "Muar SRL es una empresa de Serenella Argaña, nuera del Presidente (según Última Hora).", src: ["ultimahora-2026-11-07"] },
+    { source: "gpo",           target: "serenella", desc: "Casada con Gonzalo Peña Ocampos. Dato del mantenedor del mapa: falta una fuente que lo confirme.", },
     { source: "vision",        target: "ueno",    desc: "Absorción (Junio 2024) para expansión acelerada." },
     { source: "gv",            target: "comercio",desc: "Adquisición en 2021, antecedente histórico del banco." },
     { source: "comercio",      target: "ueno",    desc: "Evolución corporativa hacia banco digital." },
@@ -665,21 +674,21 @@
     { source: "fmvv",          target: "gv",      desc: "Principal accionista de Grupo Vázquez." },
     { source: "vhv",           target: "gv",      desc: "Fundador histórico (Credicentro 1984)." },
     { source: "gv",            target: "ueno",    desc: "Controlador mayoritario del banco." },
-    { source: "dg",            target: "grupo_m", desc: "Asume control el 30/09/2025." },
-    { source: "dg",            target: "hanoi",   desc: "CEO de Hanoi SA / Monchis." },
-    { source: "ou",            target: "grupo_m", desc: "Asume control junto a Diego Gómez el 30/09/2025." },
-    { source: "gv",            target: "hanoi",   desc: "Firma perteneciente al holding." },
+    { source: "dg",            target: "grupo_m", desc: "Figura como propietario de Grupo M desde el 30/09/2025 (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "dg",            target: "hanoi",   desc: "CEO de Hanoi SA (Monchis), según ABC 12/10/2026.", src: ["abc-2026-10-12"] },
+    { source: "ou",            target: "grupo_m", desc: "Propietario de Grupo M desde el 30/09/2025, junto a Diego Gómez (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "gv",            target: "hanoi",   desc: "Hanoi SA (Monchis) es otra empresa del Grupo Vázquez (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
     { source: "ueno",          target: "muar",    desc: "Desvío: Financiamiento a empresa del entorno presidencial." },
-    { source: "ueno",          target: "mowi",    desc: "Crédito extremo: Parte del desvío de US$ 146 millones." },
-    { source: "ueno",          target: "hendy",   desc: "Crédito extremo: Parte del desvío de US$ 146 millones." },
-    { source: "ueno",          target: "grupo_m", desc: "Crédito extremo: Parte del desvío de US$ 146 millones." },
-    { source: "ueno",          target: "franede", desc: "Préstamo en condiciones desfavorables, violando límites." },
-    { source: "ueno",          target: "aime",    desc: "Préstamo en condiciones desfavorables, violando límites." },
-    { source: "ueno",          target: "tuiu",    desc: "Préstamo en condiciones desfavorables, violando límites." },
-    { source: "mowi",          target: "itti",    desc: "Transferencias millonarias desde Mowi para cubrir sobregiros de Itti." },
-    { source: "hendy",         target: "itti",    desc: "Transferencias millonarias desde Hendy para cubrir sobregiros." },
-    { source: "hendy",         target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre." },
-    { source: "mowi",          target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre." },
+    { source: "ueno",          target: "mowi",    desc: "Movió US$ 42,5 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "hendy",   desc: "Movió US$ 42 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "grupo_m", desc: "Movió US$ 62 millones; forma parte de los ~US$ 146 millones dados a tres empresas vinculadas (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "franede", desc: "Créditos con condiciones 'paupérrimas' que superaron el límite regulatorio (memo del exgerente de Supervisión, según ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "aime",    desc: "Créditos con condiciones 'paupérrimas' que superaron el límite regulatorio (memo del exgerente de Supervisión, según ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "ueno",          target: "tuiu",    desc: "Créditos con condiciones 'paupérrimas' que superaron el límite regulatorio (memo del exgerente de Supervisión, según ABC 12/10/2026).", src: ["abc-2026-10-12"] },
+    { source: "mowi",          target: "itti",    desc: "Transferencias millonarias desde Mowi para cubrir sobregiros de Itti.", src: ["abc-2026-10-12"] },
+    { source: "hendy",         target: "itti",    desc: "Transferencias millonarias desde Hendy para cubrir sobregiros.", src: ["abc-2026-10-12"] },
+    { source: "hendy",         target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre.", src: ["abc-2026-10-12"] },
+    { source: "mowi",          target: "redipro", desc: "Desvío de fondos aprobados el 30 de septiembre.", src: ["abc-2026-10-12"] },
     // César Berea Vargas (fuente: ABC Color, 20/04/2025)
     { source: "sp",            target: "cbv",     desc: "Vínculo familiar: concuñado del Presidente (esposo de Adriana Ocampos Villate, hermana de la Primera Dama).", src: ["abc-2025-04-20"] },
     { source: "cbv",           target: "ueno",    desc: "Director comercial de empresas en ueno desde abril de 2024, según su perfil de LinkedIn citado por ABC.", src: ["abc-2025-04-20"] },
@@ -694,7 +703,7 @@
     { source: "gv",            target: "nubicom", desc: "Según ABC, Nubicom Paraguay está dirigida plenamente por el Grupo Vázquez. Un senador opositor denuncia vínculos con el entorno presidencial (denuncia, no probada).", src: ["abc-2025-12-14"] },
     { source: "ips",           target: "wels",    desc: "Adjudicó a Wels S.A. un contrato de G. 8.197 millones (2023).", src: ["abc-2023-07-08"] },
     { source: "sp",            target: "mnp",     desc: "Vínculo familiar: hermano del Presidente.", src: ["abc-2023-07-08"] },
-    { source: "mnp",           target: "wels",    desc: "Socio, junto al representante de Wels, en la empresa Aquaservice (2018). No se documenta participación directa en Wels.", src: ["abc-2023-07-08"] },
+    { source: "mnp",           target: "wels",    desc: "Socio, con el representante de Wels, en Aquaservice (2018). Según ABC, en las actas de 2020 a 2022 fue el mayor accionista de Wels (G. 5.269 M). En 2023 esas acciones aparecen a nombre de Óscar Mongelós Pankow y su hijo.", src: ["abc-2023-07-08"] },
     { source: "sp",            target: "gpo",     desc: "Vínculo familiar: hijo del Presidente.", src: ["abc-2023-07-08"] },
     { source: "gpo",           target: "wels",    desc: "Director suplente de Wels S.A. según acta del 24/03/2021. La empresa dijo que dejó de integrarla en agosto de 2022.", src: ["abc-2023-07-08"] },
     // Added from Última Hora (07/11/2026): money route to Vinanzas and large debtors
@@ -745,7 +754,7 @@
     { source: "gloria_vf",     target: "aime",    desc: "Titular de AIME SA (según ABC).", src: ["abc-2026-11-04"] },
     { source: "raul_sanchez",  target: "aime",    desc: "Director de AIME SA (según ABC).", src: ["abc-2026-11-04"] },
     // Added for Conatel and Nubicom (ABC 13/10/2026; tuit de @hectordalegre). Unverified: the tweet could not be opened, so its claims are reported as stated in it
-    { source: "conatel",       target: "ueno",    desc: "Dos órdenes de transferencia a la cuenta 6192324350 de ueno bank: N° 25/2026 (13/10/2026) por G. 50.000 millones desde Interfisa, y N° 28/2026 (15/10/2026) por G. 20.000 millones desde el BNF. Concepto: 'pago a proveedores y acreedores varios'. El tuit habla además de un pico de G. 90.000 millones y de USD 16 millones; esas cifras no aparecen en los documentos vistos.", src: ["docs-transf-conatel-2026", "x-dalegre-2026"] },
+    { source: "conatel",       target: "ueno",    desc: "Según el tuit de @hectordalegre (no verificado: no se pudieron abrir los documentos): dos órdenes de transferencia a la cuenta 6192324350 de ueno bank, N° 25/2026 (13/10/2026) por G. 50.000 millones desde Interfisa, y N° 28/2026 (15/10/2026) por G. 20.000 millones desde el BNF. Concepto: 'pago a proveedores y acreedores varios'. Revisar: el título del tuit habla de depósitos 'del 15 al 26 de octubre'. El tuit también menciona un pico de G. 90.000 millones; el título confirma USD 16 millones, el pico no se pudo verificar.", src: ["docs-transf-conatel-2026", "x-dalegre-2026"] },
     { source: "conatel",       target: "nubicom", desc: "Conatel dio por cumplido el despliegue 5G de Nubicom (34 radiobases inspeccionadas; el mínimo exigido era 20), pero admite que tiene apenas dos abonados por cobertura limitada.", src: ["abc-2026-10-13"] }
   ];
 
