@@ -493,13 +493,13 @@
     { id: "cv",            label: "Carlos Carvallo",                   role: "Ex presidente del BCP / Ex presidente de ueno", group: "regulator",  ax: -200, ay: -320 },
     { id: "bcp_dir",       label: "Directorio BCP",                    role: "L. Caballero, H. Insfrán, M.A. González, M.A. Mora", group: "regulator", ax: -290, ay: -470 },
     // Politicians & family
-    { id: "sp",            label: "Santiago Peña",                     role: "Presidente del Paraguay durante los hechos del caso; ex presidente según Última Hora (07/11/2026)",                       group: "political",  ax: -60,  ay: 520 },
+    { id: "sp",            label: "Santiago Peña",                     role: "Presidente del Paraguay durante los hechos del caso; ex presidente según Última Hora (07/11/2026)",                       group: "political",  r: 26, ax: -60,  ay: 520 },
     { id: "fp",            label: "Francisco Peña",                    role: "Hermano del Presidente",                        group: "family",     ax: -290, ay: 450 },
     // Grupo Vázquez
     { id: "gv",            label: "Grupo Vázquez SAE",                 role: "Holding",                                       group: "holding",    ax: 520,  ay: -330 },
-    { id: "fmvv",          label: "Federico Miguel Vázquez",           role: "Accionista principal",                          group: "executive",  ax: 720,  ay: -480, short: "F. Miguel Vázquez" },
+    { id: "fmvv",          label: "Federico Miguel Vázquez",           role: "Accionista principal",                          group: "executive",  r: 26, ax: 720,  ay: -480, short: "F. Miguel Vázquez" },
     { id: "vhv",           label: "Víctor Hugo Vázquez",               role: "Fundador de Credicentro",                       group: "executive",  ax: 760,  ay: -310 },
-    { id: "jg",            label: "Juan Manuel Gustale",               role: "Directivo de ueno bank. Imputado",                group: "executive",  ax: 60,   ay: -500 },
+    { id: "jg",            label: "Juan Manuel Gustale",               role: "Directivo de ueno bank. Imputado",                group: "executive",  r: 26, ax: 60,   ay: -500 },
     { id: "dg",            label: "Diego Gómez",                       role: "CEO de Hanoi SA (Monchis); propietario de Grupo M desde 30/09/2025",          group: "executive",  ax: 780,  ay: 380 },
     { id: "ou",            label: "Óscar Urdapilleta",                 role: "Vicepresidente de Grupo Hendy; propietario de Grupo M desde 30/09/2025. Imputado",                            group: "executive",  ax: 640,  ay: 520 },
     // Satellites (the drain)
@@ -851,7 +851,7 @@
   })();
 
   const byId = new Map(nodes.map(n => [n.id, n]));
-  const radius = n => GROUPS[n.group].r;
+  const radius = n => n.r || GROUPS[n.group].r;   // n.r = per-node size override (key figures)
   const display = n => n.short || n.label;
   const hasOuter = n => n.group === "hub" || n.group === "state";
   const labelW = n => display(n).length * (n.group === "hub" ? 10 : 6.4);
