@@ -1246,8 +1246,8 @@
       { t: "GRUPO      : " + GROUPS[n.group].name },
       { t: "CATEGORÍA  : " + CATS[n.cat].name, dot: CATS[n.cat].color, dotEnd: true },
       { t: "GRADO      : " + (out.length + inc.length) + "  (entran:" + inc.length + " / salen:" + out.length + ")" },
-      { t: "ENTRADAS   : " + (inc.length ? [...new Set(inc.map(l => display(l.source)))].join(", ") : "ninguna registrada en las fuentes") },
-      { t: "SALIDAS     : " + (out.length ? [...new Set(out.map(l => display(l.target)))].join(", ") : "ninguna registrada en las fuentes") },
+      { t: "RECIBE DE  : " + (inc.length ? [...new Set(inc.map(l => display(l.source)))].join(", ") : "ninguna registrada en las fuentes") },
+      { t: "ENVÍA A    : " + (out.length ? [...new Set(out.map(l => display(l.target)))].join(", ") : "ninguna registrada en las fuentes") },
       { t: "CONTROL    : 0x" + hex(n.id + n.label), c: "gray" }
     ];
     if (n.pending) lines.push({ t: "ESTADO     : IDENTIDAD POR CONFIRMAR", c: "inv" });
