@@ -658,7 +658,10 @@
     // Added: Tuti (ex Red UTS, Grupo Vázquez) and the two payment companies ueno bank reports with less than 50% (consultado 09/11/2026)
     { id: "tuti",  label: "Tuti (ex Red UTS)", role: "Venta online de entradas; «parte del Grupo Vázquez». Antes Red UTS; vende las entradas Red UTS Paraguay S.A.", group: "satellite", short: "Tuti" },
     { id: "wepa",  label: "Red Digital S.A. (Wepa)", role: "Billetera y pagos Wepa. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Wepa" },
-    { id: "upay",  label: "Red Digital de Procesamientos S.A. (UPay)", role: "UPay. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "UPay" }
+    { id: "upay",  label: "Red Digital de Procesamientos S.A. (UPay)", role: "UPay. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "UPay" },
+    // Added from the Grupo Vázquez shareholder list (grupovazquez.com/inversores, composición al 30/04/2026). Appended so existing codes stay the same
+    { id: "rebeca_vf",    label: "Rebeca Elizabeth Villasanti Farinha", role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Rebeca Villasanti" },
+    { id: "adriana_vm",   label: "Adriana Vazquez Muniagurria",         role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Adriana Vazquez M." }
   ];
 
   /* ---------------------------------------------------------------
@@ -835,6 +838,12 @@
       fecha: "15/10/2026",
       titulo: "ueno bank mantiene menos del 50% de participación en Wepa y UPay",
       url: "https://www.latribuna.com.py/negocios/economia/2026/10/15/ueno-bank-mantiene-menos-del-50-de-participacion-en-wepa-y-upay/"
+    },
+    "gv-accionistas-2026": {
+      medio: "Grupo Vázquez (sitio oficial, sección Inversores)",
+      fecha: "Composición accionaria al 30/04/2026; consultado 09/11/2026",
+      titulo: "Grupo Vázquez S.A.E.: Nómina de accionistas (capital integrado Gs. 500.000.000.000)",
+      url: "https://www.grupovazquez.com/inversores/#accionistas"
     }
   };
 
@@ -861,7 +870,7 @@
     { source: "cv",            target: "ueno",    desc: "Puerta Giratoria: De presidente de ueno a BCP." },
     { source: "bcp_dir",       target: "ueno",    desc: "Directorio BCP. Oficializaron el procedimiento de resolución del banco." },
     // Holding & the drain (outflow)
-    { source: "fmvv",          target: "gv",      desc: "Principal accionista de Grupo Vázquez." },
+    { source: "fmvv",          target: "gv",      desc: "Principal accionista de Grupo Vázquez. Según la nómina de accionistas (al 30/04/2026), figura como «Federico Miguel Vázquez Villasanti» con Gs. 379.700.000.000: 75,94% de participación y 94,02% de los votos.", amt: ["Gs. 379.700.000.000"], src: ["gv-accionistas-2026"] },
     { source: "vhv",           target: "gv",      desc: "Fundador histórico (Credicentro 1984)." },
     { source: "gv",            target: "ueno",    desc: "Controlador mayoritario del banco." },
     { source: "dg",            target: "grupo_m", desc: "Figura como propietario de Grupo M desde el 30/09/2025 (ABC 12/10/2026).", src: ["abc-2026-10-12"] },
@@ -990,7 +999,11 @@
     { source: "tuti", target: "itti", desc: "Los términos y condiciones de Tuti designan a ITTI USA, Inc. (Dallas, Texas) como responsable del tratamiento de los datos del cliente; el pie de la página dice «Powered by itti». Las entradas las vende Red UTS Paraguay S.A.", src: ["tuti-terminos", "tuti-nosotros"] },
     { source: "wepa", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital S.A. (Wepa) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
     { source: "upay", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital de Procesamientos S.A. (UPay) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
-    { source: "wepa", target: "gv", desc: "Red Digital SA, operadora de Wepa, figura como empresa del Grupo Vázquez (ABC 20/04/2025).", src: ["abc-2025-04-20"] }
+    { source: "wepa", target: "gv", desc: "Red Digital SA, operadora de Wepa, figura como empresa del Grupo Vázquez (ABC 20/04/2025).", src: ["abc-2025-04-20"] },
+    // Nómina de accionistas de Grupo Vázquez S.A.E. al 30/04/2026 (capital Gs. 500.000.000.000; 100% = 4 accionistas). The page gives no roles or relationships between them
+    { source: "guillermo_vaz", target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos. La nómina trae el nombre «Guillermo Vazquez Muniagurria», igual al del imputado vinculado a Grupo M SA; la página no aclara que sean la misma persona.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] },
+    { source: "rebeca_vf",     target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] },
+    { source: "adriana_vm",    target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] }
   ];
 
 
@@ -1066,7 +1079,7 @@
     { id: "own",   title: "ACCIONISTAS", hub: "lux", x: 20, y: -330,
       members: ["upy", "ueno_cdb"] },
     { id: "gv",    title: "GRUPO VÁZQUEZ", hub: "gv", x: 120, y: -680,
-      members: ["fmvv", "vhv", "uhs", "useg", "nubicom", "hanoi", "tuti"] },
+      members: ["fmvv", "rebeca_vf", "adriana_vm", "vhv", "uhs", "useg", "nubicom", "hanoi", "tuti"] },
     { id: "ante",  title: "ANTECEDENTES", x: 270, y: -330, cols: 1, members: ["vision", "comercio"] },
     { id: "pena",  title: "FAMILIA PEÑA", hub: "sp", x: -560, y: -620,
       members: ["fp", "mnp", "gpo", "serenella", "cbv", "muar", "wels"] },
