@@ -578,7 +578,7 @@
     { id: "grupo_m",       label: "Grupo M SA",                        role: "Deudora",                                       group: "satellite" },
     { id: "hanoi",         label: "Hanoi SA / Monchis",                role: "Empresa del Grupo Vázquez (Monchis)",                                      group: "satellite" },
     { id: "itti",          label: "Itti",                              role: "Satélite tecnológico",                          group: "satellite",  ax: 830,  ay: 0 },
-    { id: "redipro",       label: "Redipro SA",                        role: "Procesamiento digital",                         group: "satellite",  ax: 830,  ay: 170 },
+    { id: "redipro",       label: "Red Digital de Procesamiento S.A. (Redipro / UPay)", role: "Procesamiento digital; opera UPay. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Redipro / UPay", ax: 830,  ay: 170 },
     // Added after the first release: appended at the end so existing N-/L- codes stay the same
     { id: "cbv",           label: "César Berea Vargas",                role: "Concuñado del Presidente / Director comercial en ueno (desde abril 2024)", group: "family", ax: 286, ay: 386 },
     // Added after the first release (sources: ABC Color, 2023 and 2025): appended so existing codes stay the same
@@ -655,10 +655,9 @@
     // Added to PRODUCTOS DE ueno (the products' own legal pages, consultado 09/11/2026)
     { id: "uprop", label: "uprop (itti Prop)", role: "Plataforma de solicitud de créditos para terrenos y viviendas; canaliza las solicitudes a ueno bank. Sus términos y condiciones citan a «ITTI SAECA»", group: "satellite", short: "uprop" },
     { id: "ubox",  label: "ubox (MATCH S.A.)", role: "Courier de compras en EE. UU., exclusivo para clientes de ueno bank. Prestador según sus términos y condiciones (sept. 2026): MATCH S.A.", group: "satellite", short: "ubox" },
-    // Added: Tuti (ex Red UTS, Grupo Vázquez) and the two payment companies ueno bank reports with less than 50% (consultado 09/11/2026)
+    // Added: Tuti (ex Red UTS, Grupo Vázquez) and the payment company Wepa (ueno bank reports less than 50%; UPay is merged into the redipro node) (consultado 09/11/2026)
     { id: "tuti",  label: "Tuti (ex Red UTS)", role: "Venta online de entradas; «parte del Grupo Vázquez». Antes Red UTS; vende las entradas Red UTS Paraguay S.A.", group: "satellite", short: "Tuti" },
     { id: "wepa",  label: "Red Digital S.A. (Redisa / Wepa)", role: "Billetera y pagos Wepa; Última Hora la llama «Redisa». ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Redisa / Wepa" },
-    { id: "upay",  label: "Red Digital de Procesamientos S.A. (UPay)", role: "UPay. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "UPay" },
     // Added from the Grupo Vázquez shareholder list (grupovazquez.com/inversores, composición al 30/04/2026). Appended so existing codes stay the same
     { id: "rebeca_vf",    label: "Rebeca Elizabeth Villasanti Farinha", role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Rebeca Villasanti" },
     { id: "adriana_vm",   label: "Adriana Vazquez Muniagurria",         role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Adriana Vazquez M." }
@@ -1004,7 +1003,7 @@
     { source: "tuti", target: "ueno", desc: "El lanzamiento de la marca Tuti se hizo en el stand de ueno bank en la Expo 2024, con un sorteo de un auto para quienes pagaran con medios de pago de ueno bank (promoción comercial; ninguna de las fuentes indica propiedad del banco sobre Tuti).", src: ["infonegocios-2024-07-17"] },
     { source: "tuti", target: "itti", desc: "Los términos y condiciones de Tuti designan a ITTI USA, Inc. (Dallas, Texas) como responsable del tratamiento de los datos del cliente; el pie de la página dice «Powered by itti». Las entradas las vende Red UTS Paraguay S.A.", src: ["tuti-terminos", "tuti-nosotros"] },
     { source: "wepa", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital S.A. (Wepa) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
-    { source: "upay", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital de Procesamientos S.A. (UPay) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
+    { source: "redipro", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital de Procesamientos S.A. (UPay), que Última Hora llama Redipro (Red Digital de Procesamiento SA) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
     { source: "wepa", target: "gv", desc: "Red Digital SA, operadora de Wepa, figura como empresa del Grupo Vázquez (ABC 20/04/2025).", src: ["abc-2025-04-20"] },
     // Added from Última Hora (04/11/2026): Redisa (Red Digital SA) as destination and source of funds. The article does not give amounts for Redisa, owners, or any charge against the company
     { source: "hendy",   target: "wepa", desc: "Según Última Hora, los fondos de los préstamos de Grupo Hendy fueron transferidos mayormente a itti, Redipro y Redisa (Red Digital SA). El artículo no indica el monto recibido por Redisa.", src: ["ultimahora-2026-11-04"] },
@@ -1108,8 +1107,8 @@
     { id: "rat",   title: "CALIFICADORAS", cols: 2, members: ["fix_scr", "solventa"] },
     // products that ueno bank offers to its clients, run through other companies (uprop, ubox)
     { id: "prod",  title: "PRODUCTOS DE ueno", cols: 2, members: ["uprop", "ubox"] },
-    // payment companies in which ueno bank reports a stake below 50% (not subsidiaries); Wepa is also linked to Grupo Vázquez
-    { id: "eco",   title: "ECOSISTEMA FINANCIERO (<50%)", cols: 2, members: ["wepa", "upay"] },
+    // payment company in which ueno bank reports a stake below 50% (not a subsidiary); Wepa is also linked to Grupo Vázquez
+    { id: "eco",   title: "ECOSISTEMA FINANCIERO (<50%)", cols: 2, members: ["wepa"] },
     // right: money that left the bank
     { id: "debt",  title: "GRANDES DEUDORES", x: 300, y: 40, cols: 3,
       members: ["gsr", "officedesign", "berilo", "nuevomundo", "galadriel"] },
