@@ -657,7 +657,7 @@
     { id: "ubox",  label: "ubox (MATCH S.A.)", role: "Courier de compras en EE. UU., exclusivo para clientes de ueno bank. Prestador según sus términos y condiciones (sept. 2026): MATCH S.A.", group: "satellite", short: "ubox" },
     // Added: Tuti (ex Red UTS, Grupo Vázquez) and the two payment companies ueno bank reports with less than 50% (consultado 09/11/2026)
     { id: "tuti",  label: "Tuti (ex Red UTS)", role: "Venta online de entradas; «parte del Grupo Vázquez». Antes Red UTS; vende las entradas Red UTS Paraguay S.A.", group: "satellite", short: "Tuti" },
-    { id: "wepa",  label: "Red Digital S.A. (Wepa)", role: "Billetera y pagos Wepa. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Wepa" },
+    { id: "wepa",  label: "Red Digital S.A. (Redisa / Wepa)", role: "Billetera y pagos Wepa; Última Hora la llama «Redisa». ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Redisa / Wepa" },
     { id: "upay",  label: "Red Digital de Procesamientos S.A. (UPay)", role: "UPay. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "UPay" },
     // Added from the Grupo Vázquez shareholder list (grupovazquez.com/inversores, composición al 30/04/2026). Appended so existing codes stay the same
     { id: "rebeca_vf",    label: "Rebeca Elizabeth Villasanti Farinha", role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Rebeca Villasanti" },
@@ -712,6 +712,12 @@
       fecha: "07/11/2026",
       titulo: "Grandes deudores de ueno aparecen en la investigación del BCP sobre desvío de fondos",
       url: "https://www.ultimahora.com/grandes-deudores-de-ueno-aparecen-en-la-investigacion-del-bcp-sobre-desvio-de-fondos"
+    },
+    "ultimahora-2026-11-04": {
+      medio: "Última Hora",
+      fecha: "04/11/2026",
+      titulo: "La ruta de los préstamos de ueno a sus firmas vinculadas, que derivó en su colapso y en 27 imputados",
+      url: "https://www.ultimahora.com/la-ruta-de-los-prestamos-de-ueno-a-sus-firmas-vinculadas-que-derivo-en-su-colapso-y-en-27-imputados"
     },
     "abc-2026-10-12": {
       medio: "ABC Color",
@@ -1000,6 +1006,12 @@
     { source: "wepa", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital S.A. (Wepa) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
     { source: "upay", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital de Procesamientos S.A. (UPay) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
     { source: "wepa", target: "gv", desc: "Red Digital SA, operadora de Wepa, figura como empresa del Grupo Vázquez (ABC 20/04/2025).", src: ["abc-2025-04-20"] },
+    // Added from Última Hora (04/11/2026): Redisa (Red Digital SA) as destination and source of funds. The article does not give amounts for Redisa, owners, or any charge against the company
+    { source: "hendy",   target: "wepa", desc: "Según Última Hora, los fondos de los préstamos de Grupo Hendy fueron transferidos mayormente a itti, Redipro y Redisa (Red Digital SA). El artículo no indica el monto recibido por Redisa.", src: ["ultimahora-2026-11-04"] },
+    { source: "wepa",    target: "hendy", desc: "Según Última Hora, las amortizaciones de los préstamos de Grupo Hendy se hicieron con fondos transferidos por itti, Redisa, Redipro y Vinanzas. El artículo no indica el monto aportado por Redisa.", src: ["ultimahora-2026-11-04"] },
+    { source: "grupo_m", target: "wepa", desc: "Según Última Hora, parte de los fondos de los préstamos de Grupo M fue a itti Saeca, Red Digital SA y Kaitel SA; los sobregiros de enero a mayo de 2026 se transfirieron íntegramente a itti, Redipro y Redisa. El artículo no indica el monto recibido por Redisa.", src: ["ultimahora-2026-11-04"] },
+    { source: "tuiu",    target: "wepa", desc: "Según Última Hora, los desembolsos a TUIU SA fueron transferidos de inmediato o en un plazo próximo a itti, Redisa y Redipro. El artículo no indica el monto recibido por Redisa.", src: ["ultimahora-2026-11-04"] },
+    { source: "wepa",    target: "tuiu", desc: "Según Última Hora, el pago de los créditos de TUIU SA provino de una «recirculación de fondos entre sociedades vinculadas», entre ellas itti, Redisa, Redipro y Vinanzas. El artículo no indica el monto aportado por Redisa.", src: ["ultimahora-2026-11-04"] },
     // Nómina de accionistas de Grupo Vázquez S.A.E. al 30/04/2026 (capital Gs. 500.000.000.000; 100% = 4 accionistas). The page gives no roles or relationships between them
     { source: "guillermo_vaz", target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos. La nómina trae el nombre «Guillermo Vazquez Muniagurria», igual al del imputado vinculado a Grupo M SA; la página no aclara que sean la misma persona.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] },
     { source: "rebeca_vf",     target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] },
