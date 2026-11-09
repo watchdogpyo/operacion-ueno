@@ -660,7 +660,9 @@
     { id: "wepa",  label: "Red Digital S.A. (Redisa / Wepa)", role: "Billetera y pagos Wepa; Última Hora la llama «Redisa». ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Redisa / Wepa" },
     // Added from the Grupo Vázquez shareholder list (grupovazquez.com/inversores, composición al 30/04/2026). Appended so existing codes stay the same
     { id: "rebeca_vf",    label: "Rebeca Elizabeth Villasanti Farinha", role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Rebeca Villasanti" },
-    { id: "adriana_vm",   label: "Adriana Vazquez Muniagurria",         role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Adriana Vazquez M." }
+    { id: "adriana_vm",   label: "Adriana Vazquez Muniagurria",         role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Adriana Vazquez M." },
+    // Added from the La Tropa S.A.E. bond prospectus (PEG USD1, julio 2026) and the Solventa&Riskmétrica reports (dic. 2025 y jun. 2026). Not the same node as "latropa" (La Tropa Fletes EAS, Última Hora): that identity is not confirmed
+    { id: "latropa_sae",  label: "La Tropa S.A.E.",                     role: "Consignataria de ganado. Emisora del programa de bonos PEG USD1 (USD 20 M) en la BVA; ueno Casa de Bolsa es el agente organizador. Accionistas al 30/06/2026: Carlos Damián Gauto Paredes (65%) y Guillermo Damián Gauto Paredes (35%). Al 31/12/2025 tenía una inversión en renta fija en «Ueno Holding S.A.E.C.A.» (informe de Solventa)", group: "satellite", short: "La Tropa S.A.E." }
   ];
 
   /* ---------------------------------------------------------------
@@ -849,6 +851,24 @@
       fecha: "Composición accionaria al 30/04/2026; consultado 09/11/2026",
       titulo: "Grupo Vázquez S.A.E.: Nómina de accionistas (capital integrado Gs. 500.000.000.000)",
       url: "https://www.grupovazquez.com/inversores/#accionistas"
+    },
+    "latropa-prospecto-2026": {
+      medio: "La Tropa S.A.E. (prospecto publicado por la Bolsa de Valores de Asunción)",
+      fecha: "Julio 2026 (firmado el 27/08/2026)",
+      titulo: "Prospecto del Programa de Emisión Global de Bonos PEG USD1 (USD 20.000.000): destino de fondos, agente organizador, principales clientes y accionistas",
+      url: "https://www.bolsadevalores.com.py/uploads/2026/09/c.-Prospecto-del-PEG-USD1.pdf"
+    },
+    "solventa-latropa-2025-12": {
+      medio: "Solventa&Riskmétrica (informe publicado por la Bolsa de Valores de Asunción)",
+      fecha: "01/06/2026 (corte al 31/12/2025)",
+      titulo: "Informe de calificación del PEG USD1 de La Tropa S.A.E.: pyBBB, tendencia Estable",
+      url: "https://www.bolsadevalores.com.py/uploads/2026/09/Calificacion-LA-TROPA-SAE-PEG-USD1-Dic25-firmado.pdf"
+    },
+    "solventa-latropa-2026-06": {
+      medio: "Solventa&Riskmétrica (informe publicado por la Bolsa de Valores de Asunción)",
+      fecha: "15/09/2026 (corte al 30/06/2026)",
+      titulo: "Informe de calificación del PEG USD1 de La Tropa S.A.E.: mejora a pyBBB+, tendencia Estable",
+      url: "https://www.bolsadevalores.com.py/uploads/2026/09/Informe-de-calificacion-PEG-USD1-La-Tropa-Jun26-firmado-Act.pdf"
     }
   };
 
@@ -1014,7 +1034,13 @@
     // Nómina de accionistas de Grupo Vázquez S.A.E. al 30/04/2026 (capital Gs. 500.000.000.000; 100% = 4 accionistas). The page gives no roles or relationships between them
     { source: "guillermo_vaz", target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos. La nómina trae el nombre «Guillermo Vazquez Muniagurria», igual al del imputado vinculado a Grupo M SA; la página no aclara que sean la misma persona.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] },
     { source: "rebeca_vf",     target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] },
-    { source: "adriana_vm",    target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] }
+    { source: "adriana_vm",    target: "gv", desc: "Figura en la nómina de accionistas de Grupo Vázquez S.A.E. (al 30/04/2026) con Gs. 40.100.000.000: 8,02% de participación y 1,99% de los votos.", amt: ["Gs. 40.100.000.000"], src: ["gv-accionistas-2026"] },
+    // Added from the La Tropa S.A.E. prospectus and the Solventa&Riskmétrica reports. Facts as written there: the program is registered, but the prospectus says La Tropa has no bond issues yet, and the use of funds is a plan («se prevé»)
+    { source: "ueno",        target: "latropa_sae", desc: "Principal acreedor que el programa de bonos prevé cancelar: USD 13.594.174,43, el 97% de los USD 14 millones de pasivos con entidades financieras a reestructurar (70% de los fondos). Deuda sin garantía, según el prospecto. El prospecto agrega que «ambas deudas» tienen codeudoría de los accionistas principales (no aclara a cuáles se refiere). ueno Bank figura entre los bancos con los que opera La Tropa.", amt: ["USD 13.594.174,43"], src: ["latropa-prospecto-2026"] },
+    { source: "ueno_cdb",    target: "latropa_sae", desc: "Agente organizador del programa de bonos PEG USD1 (USD 20 millones). El informe de Solventa de dic. 2025 lo designa además colocador y representante de obligacionistas; el prospecto designa como representante a Mersán Abogados S.R.L. Según el prospecto, La Tropa no tenía emisiones de renta fija ni deudas bursátiles al 30/06/2026.", amt: ["USD 20 millones"], src: ["latropa-prospecto-2026", "solventa-latropa-2025-12", "solventa-latropa-2026-06"] },
+    { source: "gv",          target: "latropa_sae", desc: "Grupo Vázquez S.A.E. figura entre los mayores compradores de La Tropa por monto operado (cuadro «Principales Clientes» del prospecto): USD 8 millones. En el mismo cuadro: Beef Paraguay S.A. (USD 96 M), Frigorífico Guaraní S.A.C.I. (USD 64,7 M), Frigorífico Concepción S.A. (USD 19,2 M) y Frigomerc S.A. (USD 15,4 M).", amt: ["USD 8 millones"], src: ["latropa-prospecto-2026"] },
+    { source: "solventa",    target: "latropa_sae", desc: "Califica el PEG USD1: pyBBB, tendencia Estable (corte 31/12/2025) y pyBBB+, tendencia Estable (corte 30/06/2026). El informe de jun. 2026 señala endeudamiento elevado: apalancamiento financiero 33,15 y Deuda/EBITDA 25,95 (33,26 en jun. 2025); deuda bancaria +54,20% interanual (G. 173.203 a G. 267.087 millones), con alta concentración en el corto plazo. Solventa también califica a ueno bank.", amt: ["G. 267.087 millones"], src: ["solventa-latropa-2025-12", "solventa-latropa-2026-06"] },
+    { source: "latropa_sae", target: "latropa",  desc: "[POR CONFIRMAR] El prospecto dice que La Tropa S.A.E. hace su logística de transporte de ganado «mediante su La Tropa Transporte E.A.S.». Última Hora nombra a «La Tropa Fletes EAS» como receptora de un préstamo de ueno bank del 11/06/2026. Los nombres no coinciden exactamente y ninguna fuente confirma que sea la misma empresa.", amt: [], src: ["latropa-prospecto-2026", "ultimahora-2026-11-07"] }
   ];
 
 
@@ -1122,7 +1148,9 @@
     { id: "hendy", title: "GRUPO HENDY SA", hub: "hendy", x: 430, y: 410, members: ["godoy", "mengual", "ou"] },
     { id: "tuiu",  title: "TUIU SA", hub: "tuiu", x: 210, y: 560, members: ["rios", "gayol", "di_iorio", "franco"] },
     { id: "fran",  title: "FRANEDE SA", hub: "franede", x: 160, y: 900, members: ["cecilia", "mauro_vw"] },
-    { id: "aime",  title: "AIME SA", hub: "aime", x: -60, y: 640, members: ["martin_vw", "gloria_vf", "raul_sanchez"] }
+    { id: "aime",  title: "AIME SA", hub: "aime", x: -60, y: 640, members: ["martin_vw", "gloria_vf", "raul_sanchez"] },
+    // bond issuer whose financial-sector debt is mostly owed to ueno bank and whose bonds are organized by ueno Casa de Bolsa (prospecto PEG USD1, julio 2026)
+    { id: "tropa", title: "LA TROPA S.A.E.", hub: "latropa_sae", members: [] }
   ];
 
   (function clusterLayout() {
