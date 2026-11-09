@@ -654,7 +654,11 @@
     { id: "solventa",      label: "Solventa & Riskmetrica",            role: "Calificadora de riesgo local. Califica a ueno bank: AApy, perspectiva «Stable» (según la página de inversores de ueno)", group: "rating", short: "Solventa & Riskmetrica" },
     // Added to PRODUCTOS DE ueno (the products' own legal pages, consultado 09/11/2026)
     { id: "uprop", label: "uprop (itti Prop)", role: "Plataforma de solicitud de créditos para terrenos y viviendas; canaliza las solicitudes a ueno bank. Sus términos y condiciones citan a «ITTI SAECA»", group: "satellite", short: "uprop" },
-    { id: "ubox",  label: "ubox (MATCH S.A.)", role: "Courier de compras en EE. UU., exclusivo para clientes de ueno bank. Prestador según sus términos y condiciones (sept. 2026): MATCH S.A.", group: "satellite", short: "ubox" }
+    { id: "ubox",  label: "ubox (MATCH S.A.)", role: "Courier de compras en EE. UU., exclusivo para clientes de ueno bank. Prestador según sus términos y condiciones (sept. 2026): MATCH S.A.", group: "satellite", short: "ubox" },
+    // Added: Tuti (ex Red UTS, Grupo Vázquez) and the two payment companies ueno bank reports with less than 50% (consultado 09/11/2026)
+    { id: "tuti",  label: "Tuti (ex Red UTS)", role: "Venta online de entradas; «parte del Grupo Vázquez». Antes Red UTS; vende las entradas Red UTS Paraguay S.A.", group: "satellite", short: "Tuti" },
+    { id: "wepa",  label: "Red Digital S.A. (Wepa)", role: "Billetera y pagos Wepa. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Wepa" },
+    { id: "upay",  label: "Red Digital de Procesamientos S.A. (UPay)", role: "UPay. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "UPay" }
   ];
 
   /* ---------------------------------------------------------------
@@ -807,6 +811,30 @@
       fecha: "Septiembre 2026 (consultado 09/11/2026)",
       titulo: "Contrato único de términos y condiciones del servicio ubox (prestador: MATCH S.A.)",
       url: "https://resources.ubox.com.py/terms-and-conditions/v1/UBOX-TC-MATCHSA.pdf"
+    },
+    "tuti-nosotros": {
+      medio: "Tuti (sitio oficial)",
+      fecha: "consultado 09/11/2026",
+      titulo: "Tuti, «Sobre nosotros»: «Como evolución de Red UTS» y «Como parte del Grupo Vázquez»",
+      url: "https://www.tuti.com.py/nosotros"
+    },
+    "tuti-terminos": {
+      medio: "Tuti (sitio oficial)",
+      fecha: "consultado 09/11/2026",
+      titulo: "Tuti: Términos y condiciones (vendedor: Red UTS Paraguay S.A.; responsable de datos: ITTI USA, Inc.)",
+      url: "https://www.tuti.com.py/terms-and-conditions"
+    },
+    "infonegocios-2024-07-17": {
+      medio: "Infonegocios",
+      fecha: "17/07/2024",
+      titulo: "Red UTS ahora es Tuti del Grupo Vázquez: empieza una nueva era de expansión para la ticketera digital",
+      url: "https://infonegocios.com.py/default/red-uts-ahora-es-tuti-del-grupo-vazquez-empieza-una-nueva-era-de-expansion-para-la-ticketera-digital"
+    },
+    "latribuna-2026-10-15": {
+      medio: "La Tribuna",
+      fecha: "15/10/2026",
+      titulo: "ueno bank mantiene menos del 50% de participación en Wepa y UPay",
+      url: "https://www.latribuna.com.py/negocios/economia/2026/10/15/ueno-bank-mantiene-menos-del-50-de-participacion-en-wepa-y-upay/"
     }
   };
 
@@ -956,7 +984,13 @@
     // Added from the products' own legal pages (consultado 09/11/2026). None of them gives a RUC, an address or owners
     { source: "uprop", target: "ueno", desc: "Plataforma que gestiona solicitudes de crédito para compra de terrenos, construcción o compra y refacción de viviendas «canalizando la solicitud a UENO Bank S.A.»; el banco define las condiciones del crédito y adopta la decisión final. Préstamos de hasta Gs. 1.500.000.000, según los términos y condiciones de uprop.", amt: ["Gs. 1.500.000.000"], src: ["uprop-terminos"] },
     { source: "uprop", target: "itti", desc: "Los términos y condiciones de uprop (que se presenta como «itti Prop») citan a «ITTI SAECA» como la parte propietaria y contraparte del usuario. La página no indica RUC ni domicilio; la identificación con Itti Saeca surge solo del nombre.", src: ["uprop-terminos"] },
-    { source: "ubox", target: "ueno", desc: "Servicio de courier «exclusivo para clientes de ueno bank»: se gestiona desde la app del banco, se retira en locales de ueno bank y se paga con tarjeta en sus terminales; se puede sumar hasta 300 upys pagando con ueno bank. Prestador según los términos y condiciones: MATCH S.A., que designa a ITTI USA LLC (Dallas, Texas) como responsable del tratamiento de los datos personales.", src: ["ubox-landing", "ubox-terminos"] }
+    { source: "ubox", target: "ueno", desc: "Servicio de courier «exclusivo para clientes de ueno bank»: se gestiona desde la app del banco, se retira en locales de ueno bank y se paga con tarjeta en sus terminales; se puede sumar hasta 300 upys pagando con ueno bank. Prestador según los términos y condiciones: MATCH S.A., que designa a ITTI USA LLC (Dallas, Texas) como responsable del tratamiento de los datos personales.", src: ["ubox-landing", "ubox-terminos"] },
+    { source: "tuti", target: "gv", desc: "Tuti se presenta como «evolución de Red UTS» y «parte del Grupo Vázquez». Infonegocios (17/07/2024) informó la transformación de Red UTS a Tuti, «una empresa del Grupo Vázquez». No se indica porcentaje de propiedad.", src: ["tuti-nosotros", "infonegocios-2024-07-17"] },
+    { source: "tuti", target: "ueno", desc: "El lanzamiento de la marca Tuti se hizo en el stand de ueno bank en la Expo 2024, con un sorteo de un auto para quienes pagaran con medios de pago de ueno bank (promoción comercial; ninguna de las fuentes indica propiedad del banco sobre Tuti).", src: ["infonegocios-2024-07-17"] },
+    { source: "tuti", target: "itti", desc: "Los términos y condiciones de Tuti designan a ITTI USA, Inc. (Dallas, Texas) como responsable del tratamiento de los datos del cliente; el pie de la página dice «Powered by itti». Las entradas las vende Red UTS Paraguay S.A.", src: ["tuti-terminos", "tuti-nosotros"] },
+    { source: "wepa", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital S.A. (Wepa) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
+    { source: "upay", target: "ueno", desc: "ueno bank informó a la Superintendencia de Bancos (estructura accionaria al 04/10/2026) que mantiene una participación inferior al 50% en Red Digital de Procesamientos S.A. (UPay) y que no es subsidiaria del banco, sino parte de su «ecosistema financiero». El porcentaje exacto figura solo en una imagen de la nota.", src: ["latribuna-2026-10-15"] },
+    { source: "wepa", target: "gv", desc: "Red Digital SA, operadora de Wepa, figura como empresa del Grupo Vázquez (ABC 20/04/2025).", src: ["abc-2025-04-20"] }
   ];
 
 
@@ -1032,7 +1066,7 @@
     { id: "own",   title: "ACCIONISTAS", hub: "lux", x: 20, y: -330,
       members: ["upy", "ueno_cdb"] },
     { id: "gv",    title: "GRUPO VÁZQUEZ", hub: "gv", x: 120, y: -680,
-      members: ["fmvv", "vhv", "uhs", "useg", "nubicom", "hanoi"] },
+      members: ["fmvv", "vhv", "uhs", "useg", "nubicom", "hanoi", "tuti"] },
     { id: "ante",  title: "ANTECEDENTES", x: 270, y: -330, cols: 1, members: ["vision", "comercio"] },
     { id: "pena",  title: "FAMILIA PEÑA", hub: "sp", x: -560, y: -620,
       members: ["fp", "mnp", "gpo", "serenella", "cbv", "muar", "wels"] },
@@ -1049,6 +1083,8 @@
     { id: "rat",   title: "CALIFICADORAS", cols: 2, members: ["fix_scr", "solventa"] },
     // products that ueno bank offers to its clients, run through other companies (uprop, ubox)
     { id: "prod",  title: "PRODUCTOS DE ueno", cols: 2, members: ["uprop", "ubox"] },
+    // payment companies in which ueno bank reports a stake below 50% (not subsidiaries); Wepa is also linked to Grupo Vázquez
+    { id: "eco",   title: "ECOSISTEMA FINANCIERO (<50%)", cols: 2, members: ["wepa", "upay"] },
     // right: money that left the bank
     { id: "debt",  title: "GRANDES DEUDORES", x: 300, y: 40, cols: 3,
       members: ["gsr", "officedesign", "berilo", "nuevomundo", "galadriel"] },
