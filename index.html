@@ -577,7 +577,7 @@
     { id: "hendy",         label: "Grupo Hendy SA",                    role: "Deudora",                                       group: "satellite" },
     { id: "grupo_m",       label: "Grupo M SA",                        role: "Deudora",                                       group: "satellite" },
     { id: "hanoi",         label: "Hanoi SA / Monchis",                role: "Empresa del Grupo Vázquez (Monchis)",                                      group: "satellite" },
-    { id: "itti",          label: "Itti",                              role: "Satélite tecnológico",                          group: "satellite",  ax: 830,  ay: 0 },
+    { id: "itti",          label: "Itti",                              role: "Satélite tecnológico. Su Memoria de Sostenibilidad 2025 la presenta como «sociedad controlante de un ecosistema de empresas» (itti S.A.E.C.A.); ver los grupos «CONTROLADAS POR ITTI» y «MARCAS Y ADQUISICIONES DE ITTI»", group: "satellite",  ax: 830,  ay: 0 },
     { id: "redipro",       label: "Red Digital de Procesamiento S.A. (Redipro / UPay)", role: "Procesamiento digital; opera UPay. ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Redipro / UPay", ax: 830,  ay: 170 },
     // Added after the first release: appended at the end so existing N-/L- codes stay the same
     { id: "cbv",           label: "César Berea Vargas",                role: "Concuñado del Presidente / Director comercial en ueno (desde abril 2024)", group: "family", ax: 286, ay: 386 },
@@ -660,7 +660,33 @@
     { id: "wepa",  label: "Red Digital S.A. (Redisa / Wepa)", role: "Billetera y pagos Wepa; Última Hora la llama «Redisa». ueno bank informa una participación inferior al 50% y que no es subsidiaria", group: "satellite", short: "Redisa / Wepa" },
     // Added from the Grupo Vázquez shareholder list (grupovazquez.com/inversores, composición al 30/04/2026). Appended so existing codes stay the same
     { id: "rebeca_vf",    label: "Rebeca Elizabeth Villasanti Farinha", role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Rebeca Villasanti" },
-    { id: "adriana_vm",   label: "Adriana Vazquez Muniagurria",         role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Adriana Vazquez M." }
+    { id: "adriana_vm",   label: "Adriana Vazquez Muniagurria",         role: "Accionista de Grupo Vázquez S.A.E. (8,02%)", group: "executive", short: "Adriana Vazquez M." },
+    // Added from itti's Memoria de Sostenibilidad 2025. Companies itti S.A.E.C.A. controls (>50%, page 54). Tuti (Red UTS), Hanoi (Monchis) and Model are already above. Appended so existing codes stay the same
+    { id: "idl",          label: "Impresión Distribución y Logística S.A.", role: "Sociedad controlada por itti (99,23%, Memoria 2025)", group: "satellite", short: "Impresión Dist. y Logística", ax: 1100, ay: -330 },
+    { id: "place_analyzer", label: "Place Analyzer E.A.S.",             role: "Sociedad controlada por itti (60,00%, Memoria 2025). Adquirida en 2023 junto con muv (línea de tiempo)", group: "satellite", short: "Place Analyzer", ax: 1230, ay: -330 },
+    { id: "click",        label: "Click S.A.",                          role: "Sociedad controlada por itti (60,00%, Memoria 2025)", group: "satellite", ax: 1360, ay: -330 },
+    { id: "discover",     label: "Discover Py S.A.",                    role: "Sociedad controlada por itti (94,63%, Memoria 2025)", group: "satellite", short: "Discover Py", ax: 1100, ay: -240 },
+    { id: "wom77",        label: "Wom 77 S.A.",                         role: "Sociedad controlada por itti (60,00%, Memoria 2025)", group: "satellite", ax: 1230, ay: -240 },
+    { id: "tiva",         label: "Tiva S.A.",                           role: "Sociedad controlada por itti (60,00%, Memoria 2025)", group: "satellite", ax: 1360, ay: -240 },
+    { id: "fintux",       label: "Fintux E.A.S.",                       role: "Sociedad controlada por itti (69,79%, Memoria 2025)", group: "satellite", ax: 1100, ay: -150 },
+    { id: "kostas",       label: "Kostas Viajes S.A.",                  role: "Sociedad controlada por itti (98,94%, Memoria 2025)", group: "satellite", short: "Kostas Viajes", ax: 1230, ay: -150 },
+    { id: "comdetur",     label: "Comdetur",                            role: "Sociedad controlada por itti (99,00%, Memoria 2025)", group: "satellite", ax: 1360, ay: -150 },
+    { id: "consolid",     label: "Consolid",                            role: "Sociedad controlada por itti (80,00%, Memoria 2025)", group: "satellite", ax: 1100, ay: -60 },
+    { id: "uttoki",       label: "Uttoki",                              role: "Sociedad controlada por itti (51,00%, Memoria 2025)", group: "satellite", ax: 1230, ay: -60 },
+    // Added from itti's Memoria de Sostenibilidad 2025: brands, products, acquisitions and investments (pages 7, 8, 24, 26, 27, 35, 59). Tuti and Wepa are already above
+    { id: "bankitti",     label: "Bankitti (core bancario)",            role: "Core bancario de itti: «la evolución digital de nuestro histórico ITGF» (Memoria 2025)", group: "satellite", short: "Bankitti", ax: 1100, ay: 90 },
+    { id: "facturitti",   label: "Facturitti (facturación digital)",    role: "Procesos de facturación digital: «automatizamos la gestión fiscal de las empresas» (Memoria 2025)", group: "satellite", short: "Facturitti", ax: 1230, ay: 90 },
+    { id: "minegocio",    label: "Mi Negocio Suite",                    role: "Plataforma «todo en uno» de comercio electrónico (Memoria 2025)", group: "satellite", ax: 1360, ay: 90 },
+    { id: "itti_secure",  label: "itti secure (firma digital)",         role: "Firma digital cualificada «aprobada por el MIC»; más de 1 millón de certificados emitidos en 2025 (Memoria 2025)", group: "satellite", short: "itti secure", ax: 1100, ay: 180 },
+    { id: "kadiko",       label: "Kadiko",                              role: "Producto de itti; su desarrollo se inició en 2019 (línea de tiempo, Memoria 2025)", group: "satellite", ax: 1230, ay: 180 },
+    { id: "finera",       label: "Finera",                              role: "Producto de itti, junto a Bankitti en «Core Bancario» (Memoria 2025)", group: "satellite", ax: 1360, ay: 180 },
+    { id: "conto",        label: "conto",                               role: "Inversión de itti en 2023 (línea de tiempo, Memoria 2025)", group: "satellite", ax: 1100, ay: 270 },
+    { id: "mas_money",    label: "Más Money",                           role: "Inversión de itti en 2023 (línea de tiempo, Memoria 2025)", group: "satellite", ax: 1230, ay: 270 },
+    { id: "muv",          label: "muv",                                 role: "Adquirida por itti en 2023 (línea de tiempo, Memoria 2025)", group: "satellite", ax: 1360, ay: 270 },
+    { id: "pagopar",      label: "Pagopar",                             role: "Adquirida por itti en 2023 (línea de tiempo, Memoria 2025)", group: "satellite", ax: 1100, ay: 360 },
+    { id: "hendyla",      label: "Hendyla",                             role: "Adquirida por itti en 2023 (línea de tiempo, Memoria 2025). [POR CONFIRMAR] si tiene relación con Grupo Hendy SA (deudora, arriba): la memoria no lo dice", group: "satellite", ax: 1230, ay: 360 },
+    { id: "uela",         label: "uela",                                role: "Se incorpora al ecosistema de itti en 2024 (línea de tiempo, Memoria 2025)", group: "satellite", ax: 1360, ay: 360 },
+    { id: "j_fleischman", label: "J. Fleischman",                       role: "Fusión con itti concretada en 2022 (línea de tiempo, Memoria 2025)", group: "satellite", ax: 1100, ay: 450 }
   ];
 
   /* ---------------------------------------------------------------
@@ -867,6 +893,12 @@
       fecha: "15/09/2026 (corte al 30/06/2026)",
       titulo: "Informe de calificación del PEG USD1 de La Tropa S.A.E.: mejora a pyBBB+, tendencia Estable",
       url: "https://www.bolsadevalores.com.py/uploads/2026/09/Informe-de-calificacion-PEG-USD1-La-Tropa-Jun26-firmado-Act.pdf"
+    },
+    "itti-memoria-2025": {
+      medio: "itti S.A.E.C.A. (Memoria de Sostenibilidad 2025, publicada por la propia empresa)",
+      fecha: "Publicada en abril 2026; consultado 09/11/2026",
+      titulo: "Memoria de Sostenibilidad 2025: línea de tiempo «Haciendo historia con cada paso» (p. 8), «Productos y servicios» (pp. 24-27) y «Ecosistema corporativo. Sociedades controladas y vinculadas» (p. 54)",
+      url: "https://df1l66ipci6bm.cloudfront.net/wp-content/uploads/2026/04/29141717/MD_compressed.pdf"
     }
   };
 
@@ -1038,6 +1070,42 @@
     { source: "ueno_cdb",    target: "latropa", desc: "Agente organizador del programa de bonos PEG USD1 (USD 20 millones). El informe de Solventa de dic. 2025 lo designa además colocador y representante de obligacionistas; el prospecto designa como representante a Mersán Abogados S.R.L. Según el prospecto, La Tropa no tenía emisiones de renta fija ni deudas bursátiles al 30/06/2026.", amt: ["USD 20 millones"], src: ["latropa-prospecto-2026", "solventa-latropa-2025-12", "solventa-latropa-2026-06"] },
     { source: "gv",          target: "latropa", desc: "Grupo Vázquez S.A.E. figura entre los mayores compradores de La Tropa por monto operado (cuadro «Principales Clientes» del prospecto): USD 8 millones. En el mismo cuadro: Beef Paraguay S.A. (USD 96 M), Frigorífico Guaraní S.A.C.I. (USD 64,7 M), Frigorífico Concepción S.A. (USD 19,2 M) y Frigomerc S.A. (USD 15,4 M).", amt: ["USD 8 millones"], src: ["latropa-prospecto-2026"] },
     { source: "solventa",    target: "latropa", desc: "Califica el PEG USD1: pyBBB, tendencia Estable (corte 31/12/2025) y pyBBB+, tendencia Estable (corte 30/06/2026). El informe de jun. 2026 señala endeudamiento elevado: apalancamiento financiero 33,15 y Deuda/EBITDA 25,95 (33,26 en jun. 2025); deuda bancaria +54,20% interanual (G. 173.203 a G. 267.087 millones), con alta concentración en el corto plazo. Solventa también califica a ueno bank.", amt: ["G. 267.087 millones"], src: ["solventa-latropa-2025-12", "solventa-latropa-2026-06"] },
+    // Added from itti's Memoria de Sostenibilidad 2025 (itti-memoria-2025). Facts as written there; "money: false" because the memoria reports ownership, brands and services, not money moving
+    // Group tie and the bank
+    { source: "gv",    target: "itti", desc: "La línea de tiempo de la memoria registra, en 2021: «Grupo Vázquez compra acciones de itti» (p. 8). No indica porcentaje ni monto.", src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "ueno", desc: "Según la memoria, «en alianza estratégica con Oracle Corporation, ejecutamos la migración del core bancario de ueno bank a la nube» (p. 26); la línea de tiempo 2025 dice «Migración exitosa del core de ueno bank a la nube de Oracle» (p. 8). La memoria no indica el monto del contrato ni si el core de ueno es Bankitti.", money: false, src: ["itti-memoria-2025"] },
+    // Companies already on the map that the memoria places under itti
+    { source: "itti",  target: "tuti", desc: "La memoria lista a «Red UTS S.A.» entre las sociedades controladas por itti S.A.E.C.A. (60,06%, p. 54). La línea de tiempo registra la «Adquisición de Red UTS» (2022) y «Red UTS se transforma en tuti» (2024) (p. 8); la memoria describe a tuti como la plataforma de venta de tickets de itti (p. 27). Los términos de Tuti nombran como vendedor a «Red UTS Paraguay S.A.»; la memoria escribe «Red UTS S.A.».", money: false, src: ["itti-memoria-2025", "tuti-terminos"] },
+    { source: "itti",  target: "hanoi", desc: "La memoria lista a «Hanoi S.A.» entre las sociedades controladas por itti S.A.E.C.A. (72,76%, p. 54). La línea de tiempo registra, en 2024: «Se incorporan Monchis y uela» (p. 8). La memoria no dice que Hanoi S.A. sea Monchis: esa equivalencia viene de ABC (12/10/2026).", money: false, src: ["itti-memoria-2025", "abc-2026-10-12"] },
+    { source: "itti",  target: "model", desc: "[POR CONFIRMAR] La memoria lista «Model (60,00%)» entre las sociedades controladas por itti S.A.E.C.A. (p. 54), sin forma societaria. El mapa ya tiene a «Model SA» como la empresa que vendió bonos a La Tropa (Última Hora, 07/11/2026): falta una fuente que confirme que son la misma empresa.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "wepa", desc: "La línea de tiempo registra «Fundación de wepa, red de pagos, cobros y corresponsalía» (2020) y «wepa comienza a operar en el mercado de las redes de pagos» (2021) (p. 8). La memoria la llama «Red transaccional wepa» y dice que itti opera como Agente Máster de Western Union a través de ella (p. 26). Red Digital S.A. no figura en la lista de sociedades controladas por itti (p. 54).", money: false, src: ["itti-memoria-2025"] },
+    // Companies controlled by itti S.A.E.C.A. (more than 50% of capital), page 54. The memoria only lists them: it does not describe what they do
+    { source: "itti",  target: "idl",            desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Impresión Distribución y Logística S.A.» (99,23%) (Memoria 2025, p. 54).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "place_analyzer", desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Place Analyzer E.A.S.» (60,00%) (p. 54). La línea de tiempo registra la «Adquisición de muv y Place Analyzer» en 2023 (p. 8).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "click",          desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Click S.A.» (60,00%) (Memoria 2025, p. 54).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "discover",       desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Discover Py S.A.» (94,63%) (Memoria 2025, p. 54).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "wom77",          desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Wom 77 S.A.» (60,00%) (Memoria 2025, p. 54).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "tiva",           desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Tiva S.A.» (60,00%) (Memoria 2025, p. 54).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "fintux",         desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Fintux E.A.S.» (69,79%) (Memoria 2025, p. 54).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "kostas",         desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Kostas Viajes S.A.» (98,94%) (Memoria 2025, p. 54).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "comdetur",       desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Comdetur» (99,00%) (Memoria 2025, p. 54). La memoria no indica su forma societaria.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "consolid",       desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Consolid» (80,00%) (Memoria 2025, p. 54). La memoria no indica su forma societaria.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "uttoki",         desc: "Figura entre las sociedades controladas por itti S.A.E.C.A.: «Uttoki» (51,00%) (Memoria 2025, p. 54). La memoria no indica su forma societaria.", money: false, src: ["itti-memoria-2025"] },
+    // Brands and products (pages 7, 8, 24, 26, 27, 35)
+    { source: "itti",  target: "bankitti",       desc: "La memoria presenta a Bankitti como el core bancario de itti: «La evolución digital de nuestro histórico ITGF» (p. 26), y dice que el 45% de las entidades financieras reguladas confía en Bankitti (p. 7). La línea de tiempo registra el lanzamiento de ITGF en 2004 y su segunda versión en 2008, «de la mano de la tecnología Oracle» (p. 8).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "facturitti",     desc: "«Con Facturitti automatizamos la gestión fiscal de las empresas», dentro de «Firma y facturación electrónica» (Memoria 2025, p. 27).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "minegocio",      desc: "Plataforma «todo en uno» que integra tiendas en línea, pasarela de pago (Checkout), digitalización de RR.HH. (Humanitti) y sistematización de créditos (Analista) (p. 27). La línea de tiempo registra el inicio de su desarrollo en 2019 y su lanzamiento al mercado en 2020 (p. 8).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "itti_secure",    desc: "Firma digital cualificada «aprobada por el MIC»; la memoria dice que en 2025 superó el millón de certificados emitidos (p. 27 y línea de tiempo, p. 8).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "kadiko",         desc: "La línea de tiempo registra, en 2019: «Inicia el desarrollo de nuevos productos como KADIKO y MiNegocio» (p. 8). En la página de productos figura bajo «Gestión de documentos y automatización de procesos» (p. 24).", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "finera",         desc: "La línea de tiempo registra el desarrollo de FINERA (2018) y un premio internacional «por su nueva interfaz de usuario» (2020) (p. 8). En la página de productos figura junto a Bankitti bajo «Core Bancario» (p. 24).", money: false, src: ["itti-memoria-2025"] },
+    // Acquisitions and investments, 2022-2024 (timeline, page 8)
+    { source: "itti",  target: "conto",          desc: "La línea de tiempo registra, en 2023: «Inversión en conto y Más Money» (p. 8). La memoria dice que los colaboradores de itti tienen descuentos en el servicio de conto, «que simplifica su gestión de trámites tributarios» (p. 35). No indica porcentaje ni monto de la inversión.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "mas_money",      desc: "La línea de tiempo registra, en 2023: «Inversión en conto y Más Money» (Memoria 2025, p. 8). No indica porcentaje ni monto de la inversión.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "muv",            desc: "La línea de tiempo registra, en 2023: «Adquisición de muv y Place Analyzer» (Memoria 2025, p. 8). No indica porcentaje ni monto.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "pagopar",        desc: "La línea de tiempo registra, en 2023: «Adquisición de Hendyla y Pagopar» (Memoria 2025, p. 8). No indica porcentaje ni monto.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "hendyla",        desc: "La línea de tiempo registra, en 2023: «Adquisición de Hendyla y Pagopar» (Memoria 2025, p. 8). No indica porcentaje ni monto. [POR CONFIRMAR] si Hendyla tiene relación con Grupo Hendy SA (deudora de ueno bank en el mapa): la memoria no lo dice y por eso no se traza ese vínculo.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "uela",           desc: "La línea de tiempo registra, en 2024: «Se incorporan Monchis y uela» (Memoria 2025, p. 8). No indica porcentaje ni monto.", money: false, src: ["itti-memoria-2025"] },
+    { source: "itti",  target: "j_fleischman",   desc: "La línea de tiempo registra, en 2022: «Se concreta la fusión itti y J. Fleischman» (p. 8). El estado de cambios en el patrimonio incluye la línea «Absorción patrimonio J Fleischman» (p. 59).", money: false, src: ["itti-memoria-2025"] }
   ];
 
 
@@ -1139,6 +1207,12 @@
       members: ["technoma", "latropa", "kasas", "factopar", "sagas", "hdinvest", "satec", "model"] },
     { id: "itti",  title: "DESTINO DE FONDOS", hub: "itti", x: 1000, y: 110,
       members: ["redipro", "henrici"] },
+    // itti's own Memoria de Sostenibilidad 2025: companies it controls (>50%, p. 54), then its brands, acquisitions and investments.
+    // Tuti, Hanoi (Monchis), Model and Wepa are also tied to itti, but stay in their own groups above
+    { id: "itti_ctrl", title: "CONTROLADAS POR ITTI (>50%)", cols: 4,
+      members: ["idl", "place_analyzer", "click", "discover", "wom77", "tiva", "fintux", "kostas", "comdetur", "consolid", "uttoki"] },
+    { id: "itti_prod", title: "MARCAS Y ADQUISICIONES DE ITTI", cols: 4,
+      members: ["bankitti", "facturitti", "minegocio", "itti_secure", "kadiko", "finera", "conto", "mas_money", "muv", "pagopar", "hendyla", "uela", "j_fleischman"] },
     { id: "mowi",  title: "MOWI SA", hub: "mowi", x: 560, y: 190, members: ["sala", "pizurno"] },
     { id: "gm",    title: "GRUPO M SA", hub: "grupo_m", x: 870, y: 520,
       members: ["dg", "astigarraga", "angulo", "guillermo_vaz", "gomez_arce"] },
@@ -1689,10 +1763,11 @@
   CAT_ORDER.forEach(k => FILTERS["cat:" + k] = n => n.cat === k);
   GROUP_ORDER.forEach(g => FILTERS["group:" + g] = n => n.group === g);
   // Money lines = public funds into the bank + money between the bank and the satellite companies (both ways)
+  // A link with  money: false  is never a money line (ownership, brands, services: no money moves in the source)
   const bankOrSat = n => n.id === "ueno" || n.group === "satellite";
-  const isMoney = l => l.source.group === "state" ||
+  const isMoney = l => l.money !== false && (l.source.group === "state" ||
     (l.target.group === "satellite" && bankOrSat(l.source)) ||
-    (l.source.group === "satellite" && l.target.id === "ueno");
+    (l.source.group === "satellite" && l.target.id === "ueno"));
   const moneyLinks = new Set(links.filter(isMoney));
   // money lines are bright and animated; the other ties (family, ownership, posts) are thin dashed gray lines
   linkSel.classed("money", isMoney);

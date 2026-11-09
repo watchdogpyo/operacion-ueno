@@ -45,6 +45,7 @@ Todo está en `index.html`. Los datos están en tres listas dentro del archivo:
   ```js
   { source: "mi_empresa", target: "ueno", desc: "Qué dice la fuente, con montos si los hay.", src: ["abc-2026-11-04"] },
   ```
+  - Por defecto, un vínculo entre una empresa satélite y el banco (o entre dos satélites) se dibuja como **línea de dinero**. Si la fuente habla de propiedad, marcas o servicios y no de dinero, agregá `money: false` al vínculo.
 
 Antes de mandar el cambio, abrí `index.html` en el navegador y comprobá que el mapa carga y que tu entidad aparece.
 
