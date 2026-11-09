@@ -697,7 +697,9 @@
     { id: "costaflor",    label: "Establecimiento Costa Flor",          role: "Sector agropecuario del Grupo Vázquez: «nuestra apuesta estratégica por la economía verde» (Memoria del Grupo, p. 45)", group: "satellite", short: "Costa Flor", ax: 1100, ay: 720 },
     { id: "terravaz",     label: "Terravaz",                            role: "Real Estate del Grupo Vázquez; gestiona el Complejo Costanera, de uso mixto (shopping, hotel y rooftop) en Encarnación (Memoria del Grupo, p. 48)", group: "satellite", ax: 1230, ay: 720 },
     { id: "oniria",       label: "Oniria\\TBWA",                      role: "Agencia de comunicación fundada en 2001; el Grupo Vázquez la lista en Marketing y publicidad (Memoria del Grupo, p. 50)", group: "satellite", short: "Oniria\\TBWA", ax: 1360, ay: 720 },
-    { id: "veintitres",   label: "Veintitrés Sports",                   role: "Marketing deportivo; el Grupo Vázquez la lista como «23 Sport Marketing» (Memoria del Grupo, pp. 19 y 51)", group: "satellite", short: "Veintitrés Sports", ax: 1100, ay: 810 }
+    { id: "veintitres",   label: "Veintitrés Sports",                   role: "Marketing deportivo; el Grupo Vázquez la lista como «23 Sport Marketing» (Memoria del Grupo, pp. 19 y 51)", group: "satellite", short: "Veintitrés Sports", ax: 1100, ay: 810 },
+    // Added from the Grupo Vázquez Memoria 2025 (p. 22): new shareholder of U Holdings in December 2025
+    { id: "otp",          label: "OTP Bank Plc",                        role: "«Uno de los mayores conglomerados bancarios de Europa»; según la Memoria 2025 del Grupo Vázquez se incorporó como accionista de U Holdings en diciembre de 2025 (p. 22)", group: "holding", short: "OTP Bank", ax: -330, ay: 260 }
   ];
 
   /* ---------------------------------------------------------------
@@ -1155,7 +1157,8 @@
     { source: "hanoi", target: "ueno", desc: "La Memoria 2025 del Grupo Vázquez dice, sobre Monchis, que «los beneficios exclusivos con el banco se convirtieron en el principal motor de transaccionalidad» y que integró su aplicación con las terminales uPOS de upay (p. 38). La memoria no nombra a Hanoi S.A.; la equivalencia con Monchis viene de ABC (ver vínculo con Grupo Vázquez).", money: false, src: ["gv-memoria-2025"] },
     { source: "uela", target: "ueno", desc: "La Memoria 2025 del Grupo Vázquez dice que la «principal ventaja competitiva» de uela es la integración con el ecosistema del Grupo: «a través de la sinergia con ueno bank, ofrecemos herramientas exclusivas de financiamiento, reintegros y pagos en cuotas sin intereses» (p. 40).", money: false, src: ["gv-memoria-2025"] },
     { source: "consolid", target: "ueno", desc: "La Memoria 2025 del Grupo Vázquez dice que, al integrar a Consolid, combinan la asesoría de la empresa con «las ventajas de nuestras plataformas digitales y las herramientas de financiamiento exclusivas de ueno bank» (p. 41).", money: false, src: ["gv-memoria-2025"] },
-    { source: "tiva", target: "ueno", desc: "La Memoria 2025 del Grupo Vázquez presenta un plan, no un hecho cumplido: «daremos un paso estratégico hacia la consolidación de nuestro ecosistema, BIMS para integrarlo nativamente a ueno bank» (p. 35).", money: false, src: ["gv-memoria-2025"] }
+    { source: "tiva", target: "ueno", desc: "La Memoria 2025 del Grupo Vázquez presenta un plan, no un hecho cumplido: «daremos un paso estratégico hacia la consolidación de nuestro ecosistema, BIMS para integrarlo nativamente a ueno bank» (p. 35).", money: false, src: ["gv-memoria-2025"] },
+    { source: "otp", target: "lux", desc: "La Memoria 2025 del Grupo Vázquez dice que «en diciembre de 2025, OTP Bank Plc - uno de los mayores conglomerados bancarios de Europa - se incorporó como accionista de U Holdings», hecho que presenta como «un hito para la banca paraguaya» que «valida el modelo de negocio de ueno bank a nivel global» (p. 22). No indica porcentaje de participación ni monto. La nómina de accionistas de U Holdings que ya figura en este mapa es del 12/03/2025, anterior a esa fecha.", src: ["gv-memoria-2025", "ueno-nomina-holdings-2025"] }
   ];
 
 
@@ -1229,7 +1232,7 @@
   const CLUSTERS = [
     // above the bank: who owns and controls it
     { id: "own",   title: "ACCIONISTAS", hub: "lux", x: 20, y: -330,
-      members: ["upy", "ueno_cdb"] },
+      members: ["upy", "ueno_cdb", "otp"] },
     { id: "gv",    title: "GRUPO VÁZQUEZ", hub: "gv", x: 120, y: -680,
       members: ["fmvv", "rebeca_vf", "adriana_vm", "vhv", "uhs", "useg", "nubicom", "hanoi", "tuti"] },
     { id: "ante",  title: "ANTECEDENTES", x: 270, y: -330, cols: 1, members: ["vision", "comercio"] },
