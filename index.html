@@ -651,7 +651,10 @@
     { id: "pwc",              label: "PricewaterhouseCoopers (PwC)",     role: "Auditora externa de ueno bank (ejercicios 2024, 2025 y 2026)", group: "satellite" },
     // Added to CALIFICADORAS (local credit rating agencies listed on ueno's investors page, consultado 08/11/2026)
     { id: "fix_scr",       label: "Fix SCR (Fitch Ratings)",           role: "Calificadora de riesgo local. Califica a ueno bank: AA-py, perspectiva «Strong» (según la página de inversores de ueno)", group: "rating", short: "Fix SCR" },
-    { id: "solventa",      label: "Solventa & Riskmetrica",            role: "Calificadora de riesgo local. Califica a ueno bank: AApy, perspectiva «Stable» (según la página de inversores de ueno)", group: "rating", short: "Solventa & Riskmetrica" }
+    { id: "solventa",      label: "Solventa & Riskmetrica",            role: "Calificadora de riesgo local. Califica a ueno bank: AApy, perspectiva «Stable» (según la página de inversores de ueno)", group: "rating", short: "Solventa & Riskmetrica" },
+    // Added to PRODUCTOS DE ueno (the products' own legal pages, consultado 09/11/2026)
+    { id: "uprop", label: "uprop (itti Prop)", role: "Plataforma de solicitud de créditos para terrenos y viviendas; canaliza las solicitudes a ueno bank. Sus términos y condiciones citan a «ITTI SAECA»", group: "satellite", short: "uprop" },
+    { id: "ubox",  label: "ubox (MATCH S.A.)", role: "Courier de compras en EE. UU., exclusivo para clientes de ueno bank. Prestador según sus términos y condiciones (sept. 2026): MATCH S.A.", group: "satellite", short: "ubox" }
   ];
 
   /* ---------------------------------------------------------------
@@ -786,6 +789,24 @@
       fecha: "consultado 08/11/2026",
       titulo: "Calificaciones locales de ueno bank: Fix Scr (Fitch Ratings) AA-py / Strong; Solventa & Riskmetrica AApy / Stable",
       url: "https://www.ueno.com.py/inversores/en/investors/"
+    },
+    "uprop-terminos": {
+      medio: "uprop (sitio oficial del producto)",
+      fecha: "consultado 09/11/2026",
+      titulo: "uprop: Términos y condiciones (itti Prop, solicitud de créditos canalizada a UENO Bank S.A.)",
+      url: "https://uprop.com.py/terminos-condiciones"
+    },
+    "ubox-landing": {
+      medio: "ubox (sitio oficial del producto)",
+      fecha: "consultado 09/11/2026",
+      titulo: "ubox: servicio de courier «exclusivo para clientes de ueno bank»",
+      url: "https://ubox.com.py/landing"
+    },
+    "ubox-terminos": {
+      medio: "ubox (sitio oficial del producto)",
+      fecha: "Septiembre 2026 (consultado 09/11/2026)",
+      titulo: "Contrato único de términos y condiciones del servicio ubox (prestador: MATCH S.A.)",
+      url: "https://resources.ubox.com.py/terms-and-conditions/v1/UBOX-TC-MATCHSA.pdf"
     }
   };
 
@@ -931,7 +952,11 @@
     { source: "pwc", target: "ueno", desc: "Auditora externa de ueno bank para los ejercicios 2024, 2025 y el ejercicio que finaliza el 31/12/2026, según el Informe anual de Gobierno Corporativo 2025.", src: ["ueno-gobierno-corporativo-2025"] },
     // Added from ueno's investors page (consultado 08/11/2026). It is the bank's own statement; the agencies' reports were not checked
     { source: "fix_scr",  target: "ueno", desc: "Califica a ueno bank en escala local: AA-py, perspectiva «Strong», según la página de inversores del propio banco. No se revisó el informe de la calificadora.", src: ["ueno-inversores-calificaciones"] },
-    { source: "solventa", target: "ueno", desc: "Califica a ueno bank en escala local: AApy, perspectiva «Stable», según la página de inversores del propio banco. No se revisó el informe de la calificadora.", src: ["ueno-inversores-calificaciones"] }
+    { source: "solventa", target: "ueno", desc: "Califica a ueno bank en escala local: AApy, perspectiva «Stable», según la página de inversores del propio banco. No se revisó el informe de la calificadora.", src: ["ueno-inversores-calificaciones"] },
+    // Added from the products' own legal pages (consultado 09/11/2026). None of them gives a RUC, an address or owners
+    { source: "uprop", target: "ueno", desc: "Plataforma que gestiona solicitudes de crédito para compra de terrenos, construcción o compra y refacción de viviendas «canalizando la solicitud a UENO Bank S.A.»; el banco define las condiciones del crédito y adopta la decisión final. Préstamos de hasta Gs. 1.500.000.000, según los términos y condiciones de uprop.", amt: ["Gs. 1.500.000.000"], src: ["uprop-terminos"] },
+    { source: "uprop", target: "itti", desc: "Los términos y condiciones de uprop (que se presenta como «itti Prop») citan a «ITTI SAECA» como la parte propietaria y contraparte del usuario. La página no indica RUC ni domicilio; la identificación con Itti Saeca surge solo del nombre.", src: ["uprop-terminos"] },
+    { source: "ubox", target: "ueno", desc: "Servicio de courier «exclusivo para clientes de ueno bank»: se gestiona desde la app del banco, se retira en locales de ueno bank y se paga con tarjeta en sus terminales; se puede sumar hasta 300 upys pagando con ueno bank. Prestador según los términos y condiciones: MATCH S.A., que designa a ITTI USA LLC (Dallas, Texas) como responsable del tratamiento de los datos personales.", src: ["ubox-landing", "ubox-terminos"] }
   ];
 
 
@@ -1022,6 +1047,8 @@
     { id: "odir",  title: "OTROS DIRECTIVOS", members: ["abreu", "egb"] },
     // private rating agencies that rate the bank (listed on ueno's investors page)
     { id: "rat",   title: "CALIFICADORAS", cols: 2, members: ["fix_scr", "solventa"] },
+    // products that ueno bank offers to its clients, run through other companies (uprop, ubox)
+    { id: "prod",  title: "PRODUCTOS DE ueno", cols: 2, members: ["uprop", "ubox"] },
     // right: money that left the bank
     { id: "debt",  title: "GRANDES DEUDORES", x: 300, y: 40, cols: 3,
       members: ["gsr", "officedesign", "berilo", "nuevomundo", "galadriel"] },
